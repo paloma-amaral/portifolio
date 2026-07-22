@@ -136,7 +136,7 @@ export function ShowcaseSection() {
 
                 {/* 3. Animação de Simulador */}
                 {proj.animationType === "sim" && (
-                  <div className="absolute inset-0 bg-[#451a03] flex flex-col justify-center gap-6 p-6 md:p-10 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-[#451a03] flex flex-col justify-center gap-6 p-6 md:p-10 overflow-hidden">
                     {/* Linhas de grade sutis ao fundo */}
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px]" />
                     
