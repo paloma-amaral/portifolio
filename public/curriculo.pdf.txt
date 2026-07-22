@@ -1,0 +1,7 @@
+PLACEHOLDER — Curriculo PDF
+
+Para ativar o download do currículo:
+1. Coloque o arquivo PDF da Paloma aqui com o nome: curriculo.pdf
+2. O botão "Baixar Currículo (PDF)" em todo o site vai funcionar automaticamente.
+
+Caminho: /public/curriculo.pdf
