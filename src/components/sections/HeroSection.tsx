@@ -157,7 +157,7 @@ export function HeroSection() {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <a href="/curriculo" className="btn-primary">Ver Currículo</a>
-            <a href="#projetos" className="btn-secondary">Ver Projetos</a>
+            <a href="#showcase" className="btn-secondary">Ver Projetos</a>
           </div>
         </div>
 
