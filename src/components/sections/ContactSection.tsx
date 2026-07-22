@@ -48,6 +48,18 @@ export function ContactSection() {
           style={{ background: "radial-gradient(circle, var(--accent) 0%, transparent 70%)" }} />
       </div>
 
+      {/* Texto de Fundo Animado (Marquee) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none flex flex-col justify-center select-none z-0 opacity-[0.02] text-[var(--text-1)]">
+        <motion.div
+          className="flex whitespace-nowrap font-display font-bold text-[12rem] md:text-[18rem] leading-none tracking-tighter"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+        >
+          <span className="pr-12">OPEN TO WORK • OPEN TO WORK • OPEN TO WORK • OPEN TO WORK •</span>
+          <span className="pr-12">OPEN TO WORK • OPEN TO WORK • OPEN TO WORK • OPEN TO WORK •</span>
+        </motion.div>
+      </div>
+
       <div className="section-wrap relative z-10">
         
         <div className="max-w-2xl mx-auto text-center">

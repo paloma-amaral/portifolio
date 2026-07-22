@@ -11,6 +11,7 @@ import { ShowcaseSection } from "@/components/sections/ShowcaseSection";
 import { ScenariosSection } from "@/components/sections/ScenariosSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 export default function HomePage() {
   return (
@@ -30,6 +31,7 @@ export default function HomePage() {
         <ContactSection />
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   );
 }
