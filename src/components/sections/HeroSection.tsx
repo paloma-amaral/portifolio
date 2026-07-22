@@ -93,61 +93,11 @@ export function HeroSection() {
         {/* Seletor de perfil */}
         <ProfileSelector />
 
-        {/* Decoração Visual: Planilha / Dados (Right Side) */}
-        <div className="absolute right-0 lg:right-10 xl:right-24 top-[40%] -translate-y-1/2 w-[350px] hidden lg:flex flex-col gap-3 opacity-[0.25] pointer-events-none select-none z-0" aria-hidden="true">
-          <div className="flex gap-2 mb-2">
-            {[1, 2, 3, 4].map(i => (
-              <div key={`header-${i}`} className="h-2.5 w-full bg-[var(--text-1)] rounded-sm opacity-50" />
-            ))}
-          </div>
-          {[...Array(6)].map((_, rowIndex) => (
-            <div key={`row-${rowIndex}`} className="flex gap-2 items-center">
-              {[...Array(4)].map((_, colIndex) => {
-                // Pseudo-random fixo por índice para evitar erro de hidratação no Next.js
-                const randomDelay = (rowIndex * 0.5 + colIndex * 0.2) % 3;
-                const randomDuration = 2 + (rowIndex % 2);
-                
-                return (
-                  <motion.div
-                    key={`cell-${rowIndex}-${colIndex}`}
-                    className="h-5 w-full rounded border border-[var(--text-1)] relative overflow-hidden"
-                    animate={{ 
-                      backgroundColor: ["transparent", "var(--text-1)", "transparent"],
-                      opacity: [0.1, 0.4, 0.1]
-                    }}
-                    transition={{ 
-                      duration: randomDuration + 2, 
-                      repeat: Infinity, 
-                      delay: randomDelay 
-                    }}
-                  >
-                    <motion.div 
-                      className="absolute inset-0 bg-[var(--accent)]"
-                      animate={{ x: ["-100%", "100%", "100%"] }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: randomDelay,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  </motion.div>
-                );
-              })}
-            </div>
-          ))}
-          <div className="mt-4 border-t border-[var(--text-1)] pt-4 flex justify-between">
-            <div className="h-3 w-1/3 bg-[var(--text-1)] rounded opacity-40" />
-            <motion.div 
-              className="h-3 bg-[var(--accent)] rounded" 
-              animate={{ width: ["20%", "40%", "25%", "45%"] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </div>
-        </div>
-
-        {/* Headline principal */}
-        <div className="max-w-3xl relative z-10">
+        {/* Container Flex para alinhar texto à esquerda e animação à direita */}
+        <div className="flex flex-col lg:flex-row justify-between items-center w-full gap-12">
+          
+          {/* Headline principal (Esquerda) */}
+          <div className="max-w-3xl relative z-10 w-full">
 
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--accent)] mb-4">
             Paloma Amaral · Analista Financeiro &amp; Operações
@@ -214,7 +164,60 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Counters */}
+        {/* Decoração Visual: Planilha / Dados (Direita) */}
+        <div className="w-full max-w-[350px] shrink-0 hidden lg:flex flex-col gap-3 opacity-[0.25] pointer-events-none select-none z-0" aria-hidden="true">
+          <div className="flex gap-2 mb-2">
+            {[1, 2, 3, 4].map(i => (
+              <div key={`header-${i}`} className="h-2.5 w-full bg-[var(--text-1)] rounded-sm opacity-50" />
+            ))}
+          </div>
+          {[...Array(6)].map((_, rowIndex) => (
+            <div key={`row-${rowIndex}`} className="flex gap-2 items-center">
+              {[...Array(4)].map((_, colIndex) => {
+                const randomDelay = (rowIndex * 0.5 + colIndex * 0.2) % 3;
+                const randomDuration = 2 + (rowIndex % 2);
+                
+                return (
+                  <motion.div
+                    key={`cell-${rowIndex}-${colIndex}`}
+                    className="h-5 w-full rounded border border-[var(--text-1)] relative overflow-hidden"
+                    animate={{ 
+                      backgroundColor: ["transparent", "var(--text-1)", "transparent"],
+                      opacity: [0.1, 0.4, 0.1]
+                    }}
+                    transition={{ 
+                      duration: randomDuration + 2, 
+                      repeat: Infinity, 
+                      delay: randomDelay 
+                    }}
+                  >
+                    <motion.div 
+                      className="absolute inset-0 bg-[var(--accent)]"
+                      animate={{ x: ["-100%", "100%", "100%"] }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        delay: randomDelay,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  </motion.div>
+                );
+              })}
+            </div>
+          ))}
+          <div className="mt-4 border-t border-[var(--text-1)] pt-4 flex justify-between">
+            <div className="h-3 w-1/3 bg-[var(--text-1)] rounded opacity-40" />
+            <motion.div 
+              className="h-3 bg-[var(--accent)] rounded" 
+              animate={{ width: ["20%", "40%", "25%", "45%"] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Counters */}
         <div className="border-t border-[var(--border)] pt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
           {COUNTERS.map((c, i) => (
             <motion.div
