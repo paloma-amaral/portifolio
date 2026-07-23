@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-export type ProfileType = "clt" | "pj" | "dados" | "all";
+export type ProfileType = "clt" | "pj" | "dados" | "all" | "dev";
 
 interface ProfileContextProps {
   activeProfile: ProfileType;

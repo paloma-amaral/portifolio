@@ -32,6 +32,8 @@
 
   --border:   #2a2826;
   --border-2: rgba(185, 142, 167, 0.14);
+  
+  --spotlight-bg: rgba(185, 142, 167, 0.12);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -58,11 +60,13 @@
 
   /* Textos: escuros e contrastantes — legíveis sempre */
   --text-1: #120f0d;   /* quase preto */
-  --text-2: #3d3630;   /* marrom escuro */
-  --text-3: #6b625a;   /* médio, mas ainda legível */
+  --text-2: #4a4542;   /* cinza escuro mas suave */
+  --text-3: #756d68;   /* para captions e meta */
+
+  --spotlight-bg: rgba(255, 255, 255, 0.7);
 
   /* Accent no modo claro: mais escuro para contraste */
-  --accent:   #7a3f6a;
+  --accent:   #8a5e78; /* um pouco mais escuro para garantir contraste no claro */
   --accent-2: #5e2e52;
 
   /* Bordas mais visíveis no fundo claro */
@@ -151,8 +155,8 @@ body {
 }
 .btn-primary:hover {
   background: var(--accent-2);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(185,142,167,0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(185,142,167,0.4), 0 0 12px rgba(185,142,167,0.2);
 }
 .btn-primary:active { transform: translateY(0); }
 
@@ -177,8 +181,9 @@ body {
 }
 .btn-secondary:hover {
   border-color: var(--accent);
-  background: rgba(185,142,167,0.06);
-  transform: translateY(-1px);
+  background: rgba(185,142,167,0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(185,142,167,0.15);
 }
 
 /* ─────────────────────────────────────────────
@@ -387,9 +392,69 @@ body {
 .link-accent:hover { border-color: var(--accent); }
 
 /* ─────────────────────────────────────────────
+   PROFESSIONAL ENHANCEMENTS (Bento Box / Glow)
+───────────────────────────────────────────── */
+.card-glow {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.card-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: box-shadow 0.4s ease;
+  pointer-events: none;
+}
+.card-glow:hover {
+  transform: translateY(-4px);
+  background: rgba(28, 26, 25, 0.95);
+  box-shadow: 0 12px 40px -12px rgba(185, 142, 167, 0.35);
+  border-color: var(--accent);
+}
+.light .card-glow:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 40px -12px rgba(122, 63, 106, 0.35);
+}
+.card-glow:hover::after {
+  box-shadow: inset 0 0 0 1px rgba(185, 142, 167, 0.3);
+}
+
+.pill-nav {
+  background: rgba(14, 13, 12, 0.85); /* var(--bg) with opacity */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border-radius: 9999px;
+  padding: 0.25rem 0.5rem;
+}
+.light .pill-nav {
+  background: rgba(245, 242, 239, 0.85); /* light var(--bg) with opacity */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ─────────────────────────────────────────────
    MOBILE TAP
 ───────────────────────────────────────────── */
 .tap-transparent {
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;
+}
+
+@media (min-width: 640px) {
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

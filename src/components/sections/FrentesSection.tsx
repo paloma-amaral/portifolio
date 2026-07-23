@@ -135,7 +135,38 @@ const CASES = [
       body: "Criação de manuais de processos (SOPs) e ferramentas blindadas, permitindo que a empresa rode perfeitamente independente das pessoas."
     }
   },
+  // ── DESENVOLVEDORA ─────────────────────────────────────────────────────────
+  {
+    id: "dev-ux",
+    profileMatch: ["dev"],
+    featuredIn: ["all"],
+    label: "Frontend & UI",
+    before: {
+      title: "Interfaces travadas e genéricas.",
+      body: "Sistemas web com carregamento lento, bloqueio de tela em requisições e zero feedback visual, frustrando a experiência do usuário final."
+    },
+    after: {
+      title: "Aplicações Fluidas e Responsivas.",
+      body: "Uso de React e Tailwind para criar interfaces assíncronas com micro-interações (loading states, animações), engajando e retendo o usuário."
+    }
+  },
+  {
+    id: "dev-estado",
+    profileMatch: ["dev"],
+    featuredIn: [],
+    label: "Arquitetura de Código",
+    before: {
+      title: "Código espaguete e monolítico.",
+      body: "Lógica de negócios, chamadas de API e regras de UI misturadas num único componente gigante, tornando impossível escalar ou dar manutenção."
+    },
+    after: {
+      title: "Clean Code & Componentização.",
+      body: "Separação rigorosa de responsabilidades. Uso de Custom Hooks para gerenciar dados e componentes visuais isolados, garantindo um sistema modular e limpo."
+    }
+  },
 ];
+
+import { SpotlightWrapper } from "@/components/ui/SpotlightWrapper";
 
 // Para "all": pega 1 de cada perfil (o featuredIn: ["all"])
 function getVisible(activeProfile: string) {
@@ -169,13 +200,14 @@ export function FrentesSection() {
           </p>
         </header>
 
-        {/* Sliders de comparação (3 colunas no desktop) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6">
-          {visible.map((current) => {
-            const sliderPos = sliders[current.id] ?? 30;
+        {/* Sliders de comparação (2 colunas no desktop) com Spotlight */}
+        <SpotlightWrapper className="w-full rounded-2xl">
+          <div className="flex flex-nowrap md:grid md:grid-cols-2 gap-8 lg:gap-10 overflow-x-auto snap-x snap-mandatory pb-6 px-1 -mx-1 hide-scrollbar" style={{ scrollPaddingLeft: "5vw" }}>
+            {visible.map((current) => {
+              const sliderPos = sliders[current.id] ?? 30;
 
             return (
-              <div key={current.id} className="w-full flex flex-col">
+              <div key={current.id} className="w-[85vw] md:w-full flex-shrink-0 snap-center flex flex-col">
 
                 {/* Header do Caso */}
                 <div className="flex flex-col items-start mb-4 gap-2">
@@ -185,31 +217,31 @@ export function FrentesSection() {
                 </div>
 
                 {/* Slider Visual */}
-                <div className="relative w-full rounded-xl overflow-hidden border border-[var(--border)] h-[320px] lg:h-[360px] select-none shadow-lg">
+                <div className="relative w-full rounded-xl overflow-hidden border border-[var(--border)] h-[220px] lg:h-[240px] select-none shadow-lg">
 
                   {/* ANTES — cobre o card inteiro, texto no topo */}
-                  <div
-                    className="absolute inset-0 flex items-start p-6 lg:p-7"
-                    style={{ background: 'var(--slider-before-bg)' }}
-                  >
-                    <div className="w-full">
-                      <div className="font-mono text-[9px] uppercase tracking-widest mb-3 font-bold" style={{ color: 'var(--slider-before-tag)' }}>⚠ Antes (O Caos)</div>
-                      <p className="font-display font-bold text-lg lg:text-xl mb-3 leading-tight" style={{ color: 'var(--slider-before-text)' }}>{current.before.title}</p>
-                      <p className="text-xs leading-relaxed" style={{ color: 'var(--slider-before-text)', opacity: 0.8 }}>{current.before.body}</p>
+                    <div
+                      className="absolute inset-0 flex items-start p-6 lg:p-7"
+                      style={{ background: 'var(--slider-before-bg)' }}
+                    >
+                      <div className="w-[85%] md:w-[90%] text-left">
+                        <div className="font-mono text-[9px] uppercase tracking-widest mb-3 font-bold" style={{ color: 'var(--slider-before-tag)' }}>⚠ Antes (O Caos)</div>
+                        <p className="font-display font-bold text-lg lg:text-xl mb-3 leading-tight" style={{ color: 'var(--slider-before-text)' }}>{current.before.title}</p>
+                        <p className="text-[11px] leading-relaxed" style={{ color: 'var(--slider-before-text)', opacity: 0.8 }}>{current.before.body}</p>
+                      </div>
                     </div>
-                  </div>
 
                   {/* DEPOIS — mesmo layout (topo), clip-path revela da esquerda */}
-                  <div
-                    className="absolute inset-0 flex items-start p-6 lg:p-7 transition-none"
-                    style={{ clipPath: `inset(0 0 0 ${sliderPos}%)`, background: 'var(--slider-after-bg)' }}
-                  >
-                    <div className="w-full">
-                      <div className="font-mono text-[9px] uppercase tracking-widest mb-3 font-bold" style={{ color: 'var(--slider-after-text)' }}>✓ Depois (A Solução)</div>
-                      <p className="font-display font-bold text-lg lg:text-xl mb-3 leading-tight" style={{ color: 'var(--slider-after-text)' }}>{current.after.title}</p>
-                      <p className="text-xs leading-relaxed" style={{ color: 'var(--slider-after-text)', opacity: 0.8 }}>{current.after.body}</p>
+                    <div
+                      className="absolute inset-0 flex items-start p-6 lg:p-7 transition-none"
+                      style={{ clipPath: `inset(0 0 0 ${sliderPos}%)`, background: 'var(--slider-after-bg)' }}
+                    >
+                      <div className="w-[85%] md:w-[90%] ml-auto text-right flex flex-col items-end">
+                        <div className="font-mono text-[9px] uppercase tracking-widest mb-3 font-bold" style={{ color: 'var(--slider-after-text)' }}>✓ Depois (A Solução)</div>
+                        <p className="font-display font-bold text-lg lg:text-xl mb-3 leading-tight" style={{ color: 'var(--slider-after-text)' }}>{current.after.title}</p>
+                        <p className="text-[11px] leading-relaxed" style={{ color: 'var(--slider-after-text)', opacity: 0.8 }}>{current.after.body}</p>
+                      </div>
                     </div>
-                  </div>
 
                   {/* Divisor — linha + botão adaptativo ao tema */}
                   <div
@@ -233,7 +265,8 @@ export function FrentesSection() {
               </div>
             );
           })}
-        </div>
+          </div>
+        </SpotlightWrapper>
 
       </div>
     </section>

@@ -8,6 +8,7 @@ const PROFILES: { id: ProfileType; label: string; emoji: string }[] = [
   { id: "clt",   label: "Analista CLT",     emoji: "◇" },
   { id: "dados", label: "Dados & BI",       emoji: "◉" },
   { id: "pj",    label: "Consultoria PJ",   emoji: "◎" },
+  { id: "dev",   label: "Desenvolvedora",   emoji: "▣" },
 ];
 
 export function ProfileSelector() {

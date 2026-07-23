@@ -3,11 +3,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useProfile } from "@/lib/ProfileContext";
+import { SpotlightWrapper } from "@/components/ui/SpotlightWrapper";
 
 const SCENARIOS = [
   {
     id: "s1",
-    profileMatch: ["all"],
+    profileMatch: ["all", "dev"],
     tag: "Perfil Híbrido",
     question: "Desenvolvedora, analista financeira ou consultora: qual é o seu foco principal?",
     answer: "Meu foco é a interseção entre essas áreas. Eu entendo a operação do negócio por dentro, desde rotinas administrativas até o fechamento de caixa, e uso a tecnologia para estruturar isso. Não escrevo apenas o código de um sistema; eu analiso a rotina administrativa e desenvolvo ou configuro a ferramenta exata para fazer a operação rodar de forma organizada."
@@ -35,10 +36,17 @@ const SCENARIOS = [
   },
   {
     id: "s5",
-    profileMatch: ["all"],
+    profileMatch: ["all", "dev"],
     tag: "Diferencial de Mercado",
     question: "Afinal, por que uma empresa deve valorizar a união entre Desenvolvimento Web e Administração?",
     answer: "Porque as empresas sofrem com um abismo de comunicação: o setor de tecnologia constrói sistemas que a operação não consegue usar, e o financeiro usa planilhas porque a tecnologia não entende as regras de negócio. Seja criando uma Landing Page, desenvolvendo um painel de dados ou estruturando o fluxo de caixa, eu não entrego apenas código; eu entrego uma infraestrutura desenhada exclusivamente para proteger e escalar o lucro."
+  },
+  {
+    id: "s6",
+    profileMatch: ["dev"],
+    tag: "Frontend Autônomo",
+    question: "Como você lida com o frontend quando a API do backend ainda não está finalizada?",
+    answer: "No frontend moderno, não ficamos travados esperando o backend. Utilizo mocks de dados e construo a UI completa, com navegação, validação de formulários e estados de carregamento (Skeleton Screens). Quando o endpoint fica pronto, basta conectar a API real no lugar do mock, garantindo que o desenvolvimento seja paralelo e sem atrasos."
   }
 ];
 
@@ -72,62 +80,64 @@ export function ScenariosSection() {
           </p>
         </header>
 
-        <div className="flex flex-col gap-4">
-          {visibleScenarios.map((scenario) => {
-            const isOpen = openId === scenario.id;
+        <SpotlightWrapper className="w-full rounded-2xl">
+          <div className="flex flex-col gap-4">
+            {visibleScenarios.map((scenario) => {
+              const isOpen = openId === scenario.id;
 
-            return (
-              <div 
-                key={scenario.id}
-                className={`border border-[var(--border)] rounded-2xl overflow-hidden transition-colors duration-300 ${isOpen ? 'bg-[var(--bg-2)] border-[var(--border-2)]' : 'bg-[var(--bg)] hover:bg-[var(--bg-2)]'}`}
-              >
-                <button
-                  onClick={() => setOpenId(isOpen ? null : scenario.id)}
-                  className="w-full text-left px-6 py-6 flex items-start gap-4 focus:outline-none"
+              return (
+                <div 
+                  key={scenario.id}
+                  className={`border border-[var(--border)] rounded-2xl overflow-hidden transition-colors duration-300 ${isOpen ? 'bg-[var(--bg-2)] border-[var(--border-2)]' : 'bg-[var(--bg)] hover:bg-[var(--bg-2)]'}`}
                 >
-                  <div className={`mt-1 font-mono text-[10px] uppercase tracking-widest transition-colors ${isOpen ? 'text-[var(--accent)]' : 'text-[var(--text-3)]'}`}>
-                    Q.
-                  </div>
-                  <div className="flex-1">
-                    <span className="inline-block px-2 py-0.5 rounded text-[8px] uppercase tracking-widest bg-[var(--bg-3)] text-[var(--text-2)] mb-3">
-                      {scenario.tag}
-                    </span>
-                    <h3 className={`font-display font-bold text-lg md:text-xl leading-tight transition-colors ${isOpen ? 'text-[var(--text-1)]' : 'text-[var(--text-2)]'}`}>
-                      {scenario.question}
-                    </h3>
-                  </div>
-                  <div className={`transform transition-transform duration-300 mt-1 ${isOpen ? 'rotate-180' : ''}`}>
-                    <svg className="w-5 h-5 text-[var(--text-3)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </div>
-                </button>
+                  <button
+                    onClick={() => setOpenId(isOpen ? null : scenario.id)}
+                    className="w-full text-left px-6 py-6 flex items-start gap-4 focus:outline-none"
+                  >
+                    <div className={`mt-1 font-mono text-[10px] uppercase tracking-widest transition-colors ${isOpen ? 'text-[var(--accent)]' : 'text-[var(--text-3)]'}`}>
+                      Q.
+                    </div>
+                    <div className="flex-1">
+                      <span className="inline-block px-2 py-0.5 rounded text-[8px] uppercase tracking-widest bg-[var(--bg-3)] text-[var(--text-2)] mb-3">
+                        {scenario.tag}
+                      </span>
+                      <h3 className={`font-display font-bold text-lg md:text-xl leading-tight transition-colors ${isOpen ? 'text-[var(--text-1)]' : 'text-[var(--text-2)]'}`}>
+                        {scenario.question}
+                      </h3>
+                    </div>
+                    <div className={`transform transition-transform duration-300 mt-1 ${isOpen ? 'rotate-180' : ''}`}>
+                      <svg className="w-5 h-5 text-[var(--text-3)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </button>
 
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                      <div className="px-6 pb-6 pt-2 ml-7 border-t border-[var(--border)] border-opacity-50 mt-2">
-                        <div className="flex gap-4 items-start">
-                           <div className="mt-1 font-mono text-[10px] uppercase tracking-widest text-[var(--text-3)]">
-                            R.
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <div className="px-6 pb-6 pt-2 ml-7 border-t border-[var(--border)] border-opacity-50 mt-2">
+                          <div className="flex gap-4 items-start">
+                             <div className="mt-1 font-mono text-[10px] uppercase tracking-widest text-[var(--text-3)]">
+                              R.
+                            </div>
+                            <p className="text-sm text-[var(--text-1)] leading-relaxed">
+                              {scenario.answer}
+                            </p>
                           </div>
-                          <p className="text-sm text-[var(--text-1)] leading-relaxed">
-                            {scenario.answer}
-                          </p>
                         </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </SpotlightWrapper>
 
       </div>
     </section>

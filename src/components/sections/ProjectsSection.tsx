@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useProfile } from "@/lib/ProfileContext";
 import type { ProfileType } from "@/lib/ProfileContext";
+import { SpotlightWrapper } from "@/components/ui/SpotlightWrapper";
 
 interface Project {
   id: string;
@@ -112,6 +113,27 @@ const PROJECTS: Project[] = [
     tags: ["Automação", "Processos", "Dashboard"],
     chart: "wave"
   },
+  // --- DESENVOLVEDORA ---
+  {
+    id: "portfolio-moderno",
+    profiles: ["dev", "all"],
+    title: "Desenvolvimento de Portfólio Moderno",
+    business: "Necessidade de um portfólio digital altamente interativo, com arquitetura robusta e performance otimizada, refletindo o perfil técnico e analítico.",
+    method: "Aplicação de React e Next.js para renderização eficiente. Uso de Tailwind CSS e Framer Motion para construir interfaces com glassmorphism (vidro fosco) e micro-interações fluidas.",
+    result: "Criação de uma experiência imersiva e responsiva. Código limpo, componentizado e modular facilitando manutenções e escalabilidade futura.",
+    tags: ["Frontend", "React", "Tailwind CSS"],
+    chart: "scatter"
+  },
+  {
+    id: "sistema-interno-ui",
+    profiles: ["dev", "all"],
+    title: "Interface para Dashboard Gerencial",
+    business: "A diretoria precisava visualizar os indicadores financeiros e de vendas em uma plataforma online própria, saindo das planilhas.",
+    method: "Construção de uma interface dashboard limpa utilizando React. Consumo de dados via API REST e exibição de dados complexos através de tabelas paginadas e gráficos responsivos.",
+    result: "Sistema intuitivo entregue, permitindo que a gestão tome decisões rapidamente baseada em visualização de dados fluida.",
+    tags: ["Fullstack", "API", "UI/UX"],
+    chart: "area"
+  }
 ];
 
 // --- MINI CHARTS (9 Tipos Únicos) ---
@@ -254,9 +276,10 @@ export function ProjectsSection() {
           </div>
         </header>
 
-        {/* Grid de projetos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <AnimatePresence>
+        {/* Grid de projetos com Spotlight */}
+        <SpotlightWrapper className="w-full rounded-[var(--radius-md)]">
+          <div className="flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto snap-x snap-mandatory pb-6 px-1 -mx-1 hide-scrollbar" style={{ scrollPaddingLeft: "5vw" }}>
+            <AnimatePresence>
             {visible.map((project, i) => (
               <motion.div
                 key={project.id}
@@ -266,7 +289,7 @@ export function ProjectsSection() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ delay: i * 0.07, duration: 0.4 }}
                 onClick={() => setActiveProject(project)}
-                className="card p-5 flex flex-col gap-4 cursor-pointer hover:border-[var(--accent)]/50 transition-all hover:-translate-y-0.5 group"
+                className="card p-5 flex flex-col gap-4 cursor-pointer hover:border-[var(--accent)]/50 transition-all hover:-translate-y-0.5 group snap-center flex-shrink-0 w-[85vw] md:w-auto"
               >
                 {/* Mini chart */}
                 <div className="h-16 opacity-70">
@@ -301,7 +324,8 @@ export function ProjectsSection() {
               </motion.div>
             ))}
           </AnimatePresence>
-        </div>
+          </div>
+        </SpotlightWrapper>
 
       </div>
 

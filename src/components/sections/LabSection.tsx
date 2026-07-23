@@ -3,9 +3,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useProfile } from "@/lib/ProfileContext";
+import { SpotlightWrapper } from "@/components/ui/SpotlightWrapper";
 import { CLTWidget } from "../widgets/CLTWidget";
 import { DadosWidget } from "../widgets/DadosWidget";
 import { PJWidget } from "../widgets/PJWidget";
+
+import { DevWidget } from "../widgets/DevWidget";
 
 /* ─── Simulador de Margem, Markup e Markdown ─── */
 function MarginSimulator() {
@@ -173,6 +176,7 @@ const TABS = [
   { id: "gargalos",    label: "Mapa de Gargalos",      profiles: ["all", "clt"] },
   { id: "dados",       label: "Tradutor de Dados",     profiles: ["all", "dados"] },
   { id: "consultoria", label: "ROI de Consultoria",    profiles: ["all", "pj"] },
+  { id: "api-sim",     label: "Simulador de Estado",   profiles: ["all", "dev"] },
 ];
 
 export function LabSection() {
@@ -204,7 +208,12 @@ export function LabSection() {
           {visibleTabs.map(tab => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => {
+                setActiveTab(tab.id);
+                if (typeof window !== "undefined" && window.navigator && window.navigator.vibrate) {
+                  window.navigator.vibrate(50);
+                }
+              }}
               className={`tap-transparent px-4 py-2 rounded-full font-mono text-[10px] uppercase tracking-widest border transition-all ${
                 currentTab === tab.id
                   ? "bg-[var(--accent)] text-[var(--bg)] border-[var(--accent)]"
@@ -216,26 +225,29 @@ export function LabSection() {
           ))}
         </div>
 
-        {/* Widget — altura fixa para não ter scroll externo */}
-        <div className="card overflow-hidden" style={{ minHeight: "480px", maxHeight: "620px" }}>
-          <div className="h-full flex flex-col" style={{ minHeight: "inherit" }}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentTab}
-                initial={{ opacity: 0, x: 12 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -12 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="flex-1 min-h-0 flex flex-col"
-              >
-                {currentTab === "margem"      && <MarginSimulator />}
-                {currentTab === "gargalos"    && <CLTWidget />}
-                {currentTab === "dados"       && <DadosWidget />}
-                {currentTab === "consultoria" && <PJWidget />}
-              </motion.div>
-            </AnimatePresence>
+        {/* Widget */}
+        <SpotlightWrapper className="w-full rounded-[var(--radius-md)]">
+          <div className="card overflow-hidden min-h-[480px] md:max-h-[620px]">
+            <div className="h-full flex flex-col" style={{ minHeight: "inherit" }}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentTab}
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -12 }}
+                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex-1 min-h-0 flex flex-col"
+                >
+                  {currentTab === "margem"      && <MarginSimulator />}
+                  {currentTab === "gargalos"    && <CLTWidget />}
+                  {currentTab === "dados"       && <DadosWidget />}
+                  {currentTab === "consultoria" && <PJWidget />}
+                  {currentTab === "api-sim"     && <DevWidget />}
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
+        </SpotlightWrapper>
 
       </div>
     </section>

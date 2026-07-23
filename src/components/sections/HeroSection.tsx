@@ -9,6 +9,7 @@ const PROFILE_HEADLINES: Record<string, { title: string; sub: string }> = {
   clt:   { title: "Processos que não falham.", sub: "Estruturo backoffice financeiro e ERPs para operar com precisão." },
   dados: { title: "Dados que geram decisão.", sub: "Transformo planilhas em painéis executivos que orientam o negócio." },
   pj:    { title: "Sua operação, sem caos.", sub: "Consultoria financeira e automação para negócios que querem crescer." },
+  dev:   { title: "Código limpo, entrega real.", sub: "Desenvolvimento Frontend e Fullstack moderno (Next.js, React, Tailwind)." },
 };
 
 const COUNTERS = [

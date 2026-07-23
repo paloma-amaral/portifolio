@@ -3,6 +3,8 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/lib/theme-context";
 import { ProfileProvider } from "@/lib/ProfileContext";
 import { themeScript } from "@/lib/theme-script";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { MobileNav } from "@/components/layout/MobileNav";
 import "./globals.css";
 
 /* ── Google Fonts via next/font (zero layout shift) ──────────────────── */

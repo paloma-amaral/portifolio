@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll } from "framer-motion";
+
+import { useProfile } from "@/lib/ProfileContext";
 
 const NAV_LINKS = [
   { href: "/#sobre",       label: "Quem Sou",   id: "sobre" },
@@ -17,9 +19,19 @@ const NAV_LINKS = [
   { href: "/#contato",     label: "Contato",    id: "contato" },
 ];
 
+const PROFILE_LABELS: Record<string, string> = {
+  all: "Geral",
+  clt: "CLT",
+  dados: "Dados",
+  pj: "PJ",
+  dev: "Dev"
+};
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { activeProfile } = useProfile();
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -32,19 +44,39 @@ export function Header() {
 
   return (
     <>
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-[var(--accent)] z-[9999] origin-left"
+        style={{ scaleX: scrollYProgress }}
+      />
+      
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "bg-[var(--bg)]/95 backdrop-blur-md border-b border-[var(--border)]" : "bg-transparent"
+        className={`fixed z-50 transition-all duration-500 top-4 left-4 right-4 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-fit ${
+          scrolled ? "pill-nav px-2" : "bg-transparent md:top-6"
         }`}
       >
-        <div className="max-w-[1100px] mx-auto px-5 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="font-display font-bold text-[17px] tracking-tight text-[var(--text-1)] group-hover:text-[var(--accent)] transition-colors">
-              Paloma Amaral
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
-          </Link>
+        <div className="mx-auto px-4 h-14 md:h-12 flex items-center justify-between gap-4 md:gap-8">
+          {/* Logo + Indicador de Perfil */}
+          <div className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-2 group shrink-0">
+              <span className="font-display font-bold text-[17px] tracking-tight text-[var(--text-1)] group-hover:text-[var(--accent)] transition-colors whitespace-nowrap">
+                Paloma Amaral
+              </span>
+            </Link>
+
+            <AnimatePresence>
+              {activeProfile !== "all" && (
+                <motion.span 
+                  initial={{ opacity: 0, scale: 0.8, x: -10 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, x: -10 }}
+                  className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-[var(--border)] bg-[var(--bg-3)] text-[9px] font-mono uppercase tracking-widest text-[var(--text-2)] whitespace-nowrap select-none"
+                >
+                  <span className="w-1 h-1 rounded-full bg-[var(--accent)] animate-pulse" />
+                  Visão {PROFILE_LABELS[activeProfile]}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* Desktop Nav — só aparece em lg+ para ter espaço */}
           <nav className="hidden lg:flex items-center gap-3 xl:gap-5">
