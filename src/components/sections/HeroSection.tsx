@@ -42,7 +42,7 @@ export function HeroSection() {
             <div className="relative ml-auto w-[78%] overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--bg-3)]">
               <div className="absolute inset-0 bg-[var(--grad)] opacity-25" aria-hidden="true" />
               <Image
-                src="/images/paloma.webp"
+                src="/images/paloma-retrato.webp"
                 alt="Foto de Paloma Amaral"
                 width={800}
                 height={1000}
