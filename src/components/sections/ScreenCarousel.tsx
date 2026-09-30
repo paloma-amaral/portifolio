@@ -41,7 +41,7 @@ export function ScreenCarousel({ slides }: { slides: Slide[] }) {
                   alt={`${s.title}: captura do ambiente de demonstração, com dados fictícios`}
                   width={1600}
                   height={1000}
-                  sizes="(min-width: 768px) 560px, 86vw"
+                  sizes="(min-width: 1024px) 280px, 78vw"
                   loading={i === 0 ? "eager" : "lazy"}
                   className="block h-auto w-full"
                 />
@@ -49,12 +49,12 @@ export function ScreenCarousel({ slides }: { slides: Slide[] }) {
                 <Art kind={s.kind} label={`Ilustração da tela ${s.title}`} />
               )}
             </Browser>
-            <p className="mt-3 font-display text-lg font-semibold">{s.title}</p>
-            <p className="text-[var(--text-2)]">{s.caption}</p>
+            <p className="mt-3 font-display text-base font-semibold">{s.title}</p>
+            <p className="text-sm text-[var(--text-2)]">{s.caption}</p>
           </li>
         ))}
       </ul>
-      <div className="mt-4 flex gap-3">
+      <div className="mt-4 flex gap-3 lg:hidden">
         <button type="button" onClick={() => go(-1)} aria-label="Tela anterior" className="btn-secondary !px-4">
           ←
         </button>

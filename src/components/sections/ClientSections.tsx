@@ -1,4 +1,4 @@
-import { SERVICES, STEPS, WORKS } from "@/lib/content";
+import { SERVICES, WORKS } from "@/lib/content";
 import { Art } from "@/components/ui/Art";
 import { Browser } from "@/components/ui/Device";
 import { Reveal, SpotCard } from "@/components/ui/motion";
@@ -27,7 +27,7 @@ export function ServicesSection() {
                 <Art kind={s.art} label={`Ilustração: ${s.title}`} />
               </div>
               <div className="flex flex-1 flex-col p-6">
-                <h3 className="font-display text-2xl font-semibold tracking-tight">{s.title}</h3>
+                <h3 className="font-display text-xl font-semibold tracking-tight">{s.title}</h3>
                 <p className="mt-3 text-[var(--text-2)]">{s.text}</p>
                 <p className="mt-auto pt-5">
                   <span className="label mr-2 !text-[var(--accent)]">Você recebe</span>
@@ -68,29 +68,6 @@ export function WorksSection() {
         <TodoSlot note="Sites feitos por Paloma: endereço publicado, captura e rótulo." />
         <TodoSlot note="Painel de dados (Power BI): captura e rótulo de Demonstração." />
       </div>
-    </section>
-  );
-}
-
-export function ProcessSection() {
-  return (
-    <section id="como-funciona" aria-labelledby="titulo-processo" className="section-wrap section border-t border-[var(--border)]">
-      <SectionHead id="titulo-processo" eyebrow="Como funciona" title="Quatro passos." />
-      <ol className="grid gap-4 md:grid-cols-4">
-        {STEPS.map((s, i) => (
-          <li key={s.title}>
-            <Reveal delay={i * 0.08} className="h-full">
-              <SpotCard className="h-full p-6">
-                <span className="font-display text-5xl font-bold text-grad" aria-hidden="true">
-                  {i + 1}
-                </span>
-                <h3 className="mt-3 font-display text-xl font-semibold">{s.title}</h3>
-                <p className="mt-2 text-[var(--text-2)]">{s.text}</p>
-              </SpotCard>
-            </Reveal>
-          </li>
-        ))}
-      </ol>
     </section>
   );
 }

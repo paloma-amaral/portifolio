@@ -40,7 +40,7 @@ export function SystemCaseSection() {
         <p>{S.did}</p>
       </SectionHead>
 
-      <Reveal className="mb-14 grid gap-4 md:grid-cols-2">
+      <Reveal className="mb-10 grid gap-4 md:grid-cols-2">
         <div className="bento p-6">
           <p className="label mb-4">Antes</p>
           <ul className="space-y-3">
@@ -65,7 +65,7 @@ export function SystemCaseSection() {
         </div>
       </Reveal>
 
-      <Reveal className="mb-14">
+      <Reveal className="mb-10">
         <ScreenCarousel slides={slides} />
         {!real && (
           <p className="mt-4 text-sm text-[var(--text-3)]">
@@ -75,49 +75,28 @@ export function SystemCaseSection() {
       </Reveal>
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <Reveal className="lg:col-span-2">
-          <SpotCard className="h-full p-6 md:p-8">
-            <h3 className="font-display text-2xl font-semibold">Resultado</h3>
-            <ul className="mt-5 space-y-4">
-              {S.results.map((r) => (
-                <li key={r} className="flex gap-3">
-                  <span aria-hidden="true" className="mt-1 text-[var(--accent)]">◆</span>
-                  {r}
-                </li>
-              ))}
-            </ul>
-          </SpotCard>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <SpotCard className="h-full p-6 md:p-8">
+        <Reveal>
+          <SpotCard className="h-full p-6">
             <h3 className="label mb-5">Ficha técnica</h3>
-            <dl className="grid grid-cols-2 gap-x-4 gap-y-5">
+            <dl className="grid grid-cols-2 gap-x-4 gap-y-4">
               {SYSTEM_FACTS.map((f) => (
                 <div key={f.label}>
-                  <dt className="font-display text-2xl font-bold text-grad">{f.value}</dt>
+                  <dt className="font-display text-xl font-bold text-grad">{f.value}</dt>
                   <dd className="text-sm text-[var(--text-2)]">{f.label}</dd>
                 </div>
               ))}
             </dl>
-            <p className="mt-6 text-[var(--text-2)]">{S.how}</p>
-          </SpotCard>
-        </Reveal>
-
-        <Reveal>
-          <SpotCard className="h-full p-6 md:p-8">
-            <h3 className="font-display text-xl font-semibold">Contexto</h3>
-            <p className="mt-3 text-[var(--text-2)]">{S.context}</p>
+            <p className="mt-5 text-[var(--text-2)]">{S.how}</p>
           </SpotCard>
         </Reveal>
         <Reveal delay={0.1}>
-          <SpotCard className="h-full p-6 md:p-8">
+          <SpotCard className="h-full p-6">
             <h3 className="font-display text-xl font-semibold">Limites</h3>
             <p className="mt-3 text-[var(--text-2)]">{S.limits}</p>
           </SpotCard>
         </Reveal>
         <Reveal delay={0.2}>
-          <SpotCard className="h-full p-6 md:p-8">
+          <SpotCard className="h-full p-6">
             <h3 className="font-display text-xl font-semibold">{S.doc.title}</h3>
             <p className="mt-3 text-[var(--text-2)]">{S.doc.text}</p>
             <p className="mt-4 text-sm text-[var(--text-3)]">{S.code}</p>

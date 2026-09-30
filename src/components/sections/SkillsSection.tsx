@@ -7,11 +7,11 @@ export function SkillsSection() {
     <section id="habilidades" aria-labelledby="titulo-habilidades" className="section-wrap section border-t border-[var(--border)]">
       <SectionHead id="titulo-habilidades" eyebrow="Habilidades" title="O que eu faço no dia a dia." />
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2">
         {SKILLS.map((g, i) => (
           <Reveal key={g.group} delay={i * 0.08} className={i === 1 ? "lg:row-span-1" : ""}>
             <SpotCard className="h-full p-6 md:p-8">
-              <h3 className="font-display text-2xl font-semibold">{g.group}</h3>
+              <h3 className="font-display text-xl font-semibold">{g.group}</h3>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {g.items.map((item) => (
                   <li key={item} className="skill-tag">

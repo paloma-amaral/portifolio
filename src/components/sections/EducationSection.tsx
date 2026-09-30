@@ -11,7 +11,7 @@ export function EducationSection() {
         {EDUCATION.degrees.map((d, i) => (
           <Reveal key={d.title} delay={i * 0.08}>
             <SpotCard className="h-full p-6">
-              <h3 className="font-display text-xl font-semibold">{d.title}</h3>
+              <h3 className="font-display text-lg font-semibold">{d.title}</h3>
               <p className="mt-1 text-[var(--text-2)]">{d.org}</p>
               <p className="mt-3 text-sm text-[var(--accent)]">{d.period}</p>
             </SpotCard>

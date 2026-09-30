@@ -17,9 +17,9 @@ export function TimelineSection() {
               }`}
             />
             <Reveal>
-              <div className="bento p-6 md:p-8">
+              <div className="bento p-5 md:p-6">
                 <p className="label !text-[var(--accent)]">{job.period}</p>
-                <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight">{job.title}</h3>
+                <h3 className="mt-2 font-display text-xl font-semibold tracking-tight">{job.title}</h3>
                 <p className="mt-1 text-[var(--text-2)]">{job.org}</p>
                 <ul className="mt-4 space-y-2">
                   {job.bullets.map((b) => (

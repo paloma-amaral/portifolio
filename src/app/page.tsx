@@ -6,7 +6,7 @@ import { SystemCaseSection } from "@/components/sections/SystemCaseSection";
 import { TimelineSection } from "@/components/sections/TimelineSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
 import { EducationSection } from "@/components/sections/EducationSection";
-import { ServicesSection, WorksSection, ProcessSection } from "@/components/sections/ClientSections";
+import { ServicesSection, WorksSection } from "@/components/sections/ClientSections";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function HomePage() {
@@ -25,7 +25,6 @@ export default function HomePage() {
         <EducationSection />
         <ServicesSection />
         <WorksSection />
-        <ProcessSection />
         <ContactSection />
       </main>
       <Footer />

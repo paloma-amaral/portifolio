@@ -12,7 +12,7 @@ export function HeroSection() {
     <section id="inicio" aria-labelledby="titulo-principal" className="relative">
       <div className="aurora" aria-hidden="true" />
 
-      <div className="section-wrap relative grid gap-14 pb-16 pt-14 md:pt-20 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-10">
+      <div className="section-wrap relative grid gap-14 pb-16 pt-14 md:pt-20 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-10">
         <div>
           <p className="rise label mb-5" style={{ animationDelay: "0.05s" }}>
             {HERO.role}
@@ -23,7 +23,7 @@ export function HeroSection() {
             <span className="text-grad">Amaral</span>
           </h1>
           <p
-            className="rise mt-6 font-display text-2xl font-medium tracking-tight sm:text-3xl"
+            className="rise mt-6 font-display text-xl font-medium tracking-tight sm:text-2xl"
             style={{ animationDelay: "0.22s" }}
           >
             {HERO.tagline}
@@ -45,7 +45,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="rise relative mx-auto w-full max-w-md lg:max-w-none" style={{ animationDelay: "0.25s" }}>
+        <div className="rise relative mx-auto w-full max-w-xs sm:max-w-sm lg:ml-auto lg:mr-0" style={{ animationDelay: "0.25s" }}>
           <Tilt className="relative">
             <div className="relative ml-auto w-[78%] overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--bg-3)]">
               <div className="absolute inset-0 bg-[var(--grad)] opacity-25" aria-hidden="true" />
@@ -54,7 +54,7 @@ export function HeroSection() {
                 alt="Foto de Paloma Amaral"
                 width={800}
                 height={1000}
-                sizes="(min-width: 1024px) 380px, 70vw"
+                sizes="(min-width: 640px) 300px, 240px"
                 priority
                 className="relative block h-auto w-full"
               />

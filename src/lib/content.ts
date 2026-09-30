@@ -26,15 +26,8 @@ export const HERO = {
 export const ABOUT = {
   title: "Quem está por trás do sistema.",
   paragraphs: [
-    "Sou de Pitangueiras (SP) e cuido do financeiro e do fiscal de 5 empresas de um mesmo grupo.",
-    "Comecei aos 18 anos, num escritório administrativo. Hoje faço o contas a pagar, emito as notas fiscais e mantenho o sistema de gestão que o grupo usa todos os dias.",
-    "Estudo Engenharia de Software na UNAERP (7º período de 8) e uso o que aprendo para resolver problemas da rotina.",
-  ],
-  facts: [
-    { value: "5 empresas", label: "financeiro e fiscal, em 4 segmentos" },
-    { value: "Desde 06/2026", label: "sistema de gestão em produção" },
-    { value: "Mais de 4 anos", label: "em rotinas administrativas, fiscais e financeiras" },
-    { value: "Remoto ou híbrido", label: "Ribeirão Preto, Bebedouro, Sertãozinho e Jaboticabal" },
+    "Sou de Pitangueiras (SP), tenho 23 anos e comecei a trabalhar num escritório administrativo aos 18. Hoje cuido do financeiro e do fiscal de 5 empresas de um mesmo grupo.",
+    "Estudo Engenharia de Software na UNAERP (7º período de 8) e uso o que aprendo para tirar a rotina da planilha e colocar num sistema.",
   ],
   principles: [
     { title: "Só mostro o que existe", text: "Cada trabalho do site tem rótulo: Em produção ou Demonstração." },
@@ -58,7 +51,7 @@ export const SYSTEM_FACTS = [
   { value: "5", label: "empresas, em 4 segmentos" },
   { value: "Mais de 10", label: "planilhas substituídas" },
   { value: "06/2026", label: "em produção" },
-  { value: "2", label: "pessoas registram os dados todos os dias" },
+  { value: "2 por dia", label: "pessoas registram os dados; a diretoria consulta" },
 ];
 
 export const SYSTEM_SCREENS = [
@@ -106,13 +99,6 @@ export const WORKS = [
   },
 ];
 
-export const STEPS = [
-  { title: "Conversa", text: "Entendo a rotina, quem usa e o que hoje é feito à mão." },
-  { title: "Protótipo", text: "Você vê as telas antes de o sistema existir." },
-  { title: "Entrega", text: "Sistema no ar, com dados de teste e treinamento." },
-  { title: "Ajustes", text: "Correções e melhorias a partir do uso real." },
-];
-
 export const SYSTEM_CASE = {
   title: "Sistema de gestão financeira e administrativa",
   context:
@@ -150,8 +136,8 @@ export const EXPERIENCE: Job[] = [
       "Desde 03/2026, respondo pelo financeiro e pelo fiscal de 5 empresas de um mesmo grupo.",
       "Lanço as contas a pagar, apresento a programação diária para aprovação da diretoria, efetuo os pagamentos e negocio prazos e descontos com fornecedores.",
       "Emito NFC-e e notas fiscais de serviço; faço e confiro o caixa das empresas de água e gás contra o sistema de vendas e o extrato bancário.",
-      "Elaboro orçamentos e negocio taxas de maquininha.",
-      "Desenvolvi e mantenho o sistema de gestão descrito acima.",
+      "Elaboro orçamentos, negocio taxas de maquininha e abro e cancelo contas e serviços.",
+      "Desenvolvi e mantenho o sistema de gestão do grupo (projeto acima).",
       "04/2025 a 02/2026: emissão de notas fiscais, caixa, apoio ao financeiro e suporte de informática no escritório.",
     ],
   },
@@ -160,8 +146,8 @@ export const EXPERIENCE: Job[] = [
     org: "Usina Pitangueiras, Pitangueiras (SP)",
     period: "05/2024 – 04/2025",
     bullets: [
-      "Primeiros meses no almoxarifado.",
-      "Depois, em compras: follow-up com fornecedores por telefone e mensagem para acompanhar prazos de entrega.",
+      "Almoxarifado nos primeiros meses: organização das requisições.",
+      "Depois, em compras: follow-up com fornecedores por e-mail, WhatsApp e ligação para acompanhar prazos de entrega.",
     ],
   },
   {
@@ -178,10 +164,12 @@ export const EXPERIENCE: Job[] = [
     org: "Empório Hortifrutti & Armazém das Bebidas",
     period: "06/2022 – 12/2023",
     bullets: [
-      "Contas a pagar e a receber; conciliação de pedidos, notas fiscais, pagamentos e extratos bancários; conferência de caixas.",
-      "Lançamento e conferência de documentos fiscais (NF-e, boletos, DANFEs) e emissão de NF-e de compra e venda.",
-      "Cadastro de produtos, fornecedores e clientes no ERP; precificação e margens; negociação com fornecedores.",
-      "Relatórios de vendas, estoque e financeiros e inventários; documentei as atribuições do cargo para a contratação do substituto.",
+      "Contas a pagar e a receber, com cobrança de clientes em atraso e negociação de prazos e descontos com fornecedores.",
+      "Conciliação de pedidos, notas fiscais, pagamentos e extratos bancários; conferência de caixas e projeção de fluxo de caixa.",
+      "Lançamento e conferência de NF-e, boletos e DANFEs; emissão de NF-e de compra e venda.",
+      "Cadastro de produtos, fornecedores e clientes no ERP; precificação, margens e acompanhamento da concorrência.",
+      "Relatórios de vendas, estoque e financeiros; inventários periódicos.",
+      "Documentei as atribuições do cargo para a contratação do substituto.",
     ],
   },
 ];
@@ -191,34 +179,51 @@ export const SKILLS: { group: string; items: string[] }[] = [
     group: "Financeiro e fiscal",
     items: [
       "Contas a pagar e a receber",
+      "Cobrança de clientes",
       "Conciliação bancária",
       "Conferência de caixa",
-      "Fluxo de caixa",
-      "NFC-e, NF-e e notas fiscais de serviço",
+      "Fluxo de caixa e projeções",
+      "NFC-e, NF-e e notas de serviço",
       "Orçamentos",
-      "Negociação com fornecedores e adquirentes (maquininhas)",
+      "Precificação e margens",
+      "Negociação com fornecedores e adquirentes",
+      "Follow-up com fornecedores",
     ],
   },
   {
-    group: "Sistemas e dados",
+    group: "Desenvolvimento",
     items: [
-      "ERP",
-      "SQL (uso no dia a dia nos sistemas que desenvolvi, com apoio de IA)",
-      "Supabase/PostgreSQL",
-      "Next.js e TypeScript",
-      "Excel",
-      "Git",
+      "Next.js e React",
+      "TypeScript e Node.js",
       "Python (básico)",
-      "Power BI (introdutório)",
-      "Desenvolvo sistemas de gestão com apoio de IA (Supabase/PostgreSQL)",
+      "APIs REST",
+      "PostgreSQL, Supabase, TiDB e MySQL",
+      "Deploy na Vercel e no Render",
+      "Firebase e Google Cloud",
+      "Git e GitHub",
+      "Sistemas de gestão com apoio de IA",
     ],
   },
   {
-    group: "Processos e idiomas",
+    group: "Dados e negócios",
     items: [
+      "SQL",
+      "Excel",
+      "Power BI (introdutório)",
+      "Relatórios financeiros e operacionais",
+      "Planos de negócio e orçamentação",
+      "Propostas comerciais e documentação técnica",
+    ],
+  },
+  {
+    group: "Processos e sistemas",
+    items: [
+      "Levantamento de requisitos",
+      "Modelagem de regras de negócio",
       "Documentação de processos",
-      "Treinamento de usuários",
+      "ERP (cadastros e treinamento de usuários)",
       "Scrum e XP (faculdade)",
+      "Automação com Arduino e sensores",
       "Inglês: leitura e compreensão",
     ],
   },
@@ -250,7 +255,7 @@ export const EDUCATION = {
 
 export const CONTACT = {
   title: "Vamos conversar.",
-  text: "Aberta a oportunidades como analista de ERP/implantação, de processos ou financeiro/fiscal. CLT ou PJ, presencial ou híbrido na região de Ribeirão Preto (Bebedouro, Sertãozinho e Jaboticabal) ou remoto.",
+  text: "Aberta a oportunidades como analista de ERP/implantação, de processos ou financeiro/fiscal. CLT ou PJ, presencial, híbrido ou remoto.",
 };
 
 export const CV = {
