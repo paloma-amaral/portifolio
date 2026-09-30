@@ -1,59 +1,41 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useSyncExternalStore } from "react";
 
 type Theme = "light" | "dark";
 
 interface ThemeContextValue {
   theme: Theme;
   toggleTheme: () => void;
-  setTheme: (t: Theme) => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
+/* A classe em <html> é a fonte da verdade; `themeScript` a define antes do primeiro render. */
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  return () => observer.disconnect();
+}
+const getSnapshot = (): Theme =>
+  document.documentElement.classList.contains("light") ? "light" : "dark";
+const getServerSnapshot = (): Theme => "dark";
+
+/* Renderiza os filhos sempre: o HTML inicial já tem o conteúdo completo. */
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
+  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-  useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem("portfolio-theme") as Theme | null;
-    if (saved === "light" || saved === "dark") {
-      setThemeState(saved);
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setThemeState("dark");
-    } else {
-      setThemeState("light");
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
+  const toggleTheme = () => {
+    const next: Theme = theme === "dark" ? "light" : "dark";
     const root = document.documentElement;
-    if (theme === "dark") {
-      root.classList.add("dark");
-      root.classList.remove("light");
-    } else {
-      root.classList.remove("dark");
-      root.classList.add("light");
-    }
-    localStorage.setItem("portfolio-theme", theme);
-  }, [theme, mounted]);
+    root.classList.toggle("dark", next === "dark");
+    root.classList.toggle("light", next === "light");
+    try {
+      localStorage.setItem("portfolio-theme", next);
+    } catch {}
+  };
 
-  const toggleTheme = () =>
-    setThemeState((prev) => (prev === "dark" ? "light" : "dark"));
-
-  const setTheme = (t: Theme) => setThemeState(t);
-
-  // Prevent flash of wrong theme
-  if (!mounted) return null;
-
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme() {
