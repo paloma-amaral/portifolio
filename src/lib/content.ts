@@ -8,7 +8,7 @@ export const SITE = {
   name: "Paloma Amaral",
   role: "Analista Financeiro e de Processos",
   cvRole: "Analista Administrativo, Financeiro e de Processos",
-  email: "palomadias028@gmail.com",
+  email: "palomaamaral028@gmail.com",
   location: "Pitangueiras, SP",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   // Renderizados somente quando houver URL confirmada.
@@ -23,7 +23,7 @@ export const HERO = {
     "Cuido do financeiro e do fiscal de 5 empresas e desenvolvi, com apoio de IA, o sistema de gestão que o grupo usa todos os dias. Estudante de Engenharia de Software (UNAERP, conclusão em 07/2027).",
   proofs: [
     { value: "5 empresas", text: "financeiro e fiscal, em 4 segmentos" },
-    { value: "9+ planilhas", text: "substituídas por um sistema único" },
+    { value: "Mais de 10", text: "planilhas substituídas por um sistema único" },
     { value: "Desde 06/2026", text: "em produção, com uso diário" },
   ],
 };
@@ -31,7 +31,7 @@ export const HERO = {
 export const SYSTEM_CASE = {
   title: "Sistema de gestão financeira e administrativa",
   context:
-    "Um grupo de 5 empresas em 4 segmentos (varejo alimentar, água e gás, locação de máquinas e coleta de resíduos) controlava o financeiro em 9 ou mais planilhas que não se comunicavam. As contas mensais dependiam de um lembrete de papel, e a rotina dependia de uma única pessoa.",
+    "Um grupo de 5 empresas em 4 segmentos (varejo alimentar, água e gás, locação de máquinas e coleta de resíduos) controlava o financeiro em mais de 10 planilhas que não se comunicavam. As contas mensais dependiam de um lembrete de papel, e a rotina dependia de uma única pessoa.",
   did: "Desenvolvi, com apoio de IA, um sistema web único e o mantenho em produção desde 06/2026. Ele reúne contas a pagar, conciliação bancária, conferência de caixa, impostos, folha e escalas, estoque, frota, fichas técnicas de produção e fechamento por empresa e do grupo.",
   results: [
     "Duas pessoas registram os dados todos os dias; a diretoria consulta o sistema como ponto de informação.",
@@ -71,25 +71,33 @@ export const EXPERIENCE: Job[] = [
     ],
   },
   {
-    title: "Treinamento de usuários em ERP (meio período)",
-    org: "Mesmo grupo empresarial",
-    bullets: [
-      "Treinei novos colaboradores no uso do ERP em ambiente de alta rotatividade.",
-    ],
-  },
-  {
     title: "Jovem Aprendiz de Administração",
-    org: "Usina, Pitangueiras (SP)",
+    org: "Usina Pitangueiras, Pitangueiras (SP)",
+    period: "05/2024 – 04/2025",
     bullets: [
       "Primeiros meses no almoxarifado.",
-      "Compras: follow-up com fornecedores por telefone e mensagem para acompanhar prazos de entrega.",
+      "Depois, em compras: follow-up com fornecedores por telefone e mensagem para acompanhar prazos de entrega.",
     ],
   },
   {
-    title: "Auxiliar de Escritório",
+    title: "Prestação de serviços avulsos (meio período, paralelo à usina)",
+    org: "Empório Hortifrutti & Armazém das Bebidas",
+    period: "01/2024 – 04/2025",
+    bullets: [
+      "Treinei novos colaboradores nas rotinas do financeiro e no uso do ERP.",
+      "Emiti notas fiscais.",
+    ],
+  },
+  {
+    title: "Auxiliar Administrativa",
     org: "Empório Hortifrutti & Armazém das Bebidas",
     period: "06/2022 – 12/2023",
-    bullets: ["Conferência de caixas.", "Cadastro e atualização de produtos no ERP."],
+    bullets: [
+      "Contas a pagar e a receber; conciliação de pedidos, notas fiscais, pagamentos e extratos bancários; conferência de caixas.",
+      "Lançamento e conferência de documentos fiscais (NF-e, boletos, DANFEs) e emissão de NF-e de compra e venda.",
+      "Cadastro de produtos, fornecedores e clientes no ERP; precificação e margens; negociação com fornecedores.",
+      "Relatórios de vendas, estoque e financeiros e inventários; documentei as atribuições do cargo para a contratação do substituto.",
+    ],
   },
 ];
 
@@ -101,7 +109,7 @@ export const SKILLS: { group: string; items: string[] }[] = [
       "Conciliação bancária",
       "Conferência de caixa",
       "Fluxo de caixa",
-      "Emissão de NFC-e e NFS-e",
+      "NFC-e, NF-e e notas fiscais de serviço",
       "Orçamentos",
       "Negociação com fornecedores e adquirentes (maquininhas)",
     ],
@@ -109,18 +117,24 @@ export const SKILLS: { group: string; items: string[] }[] = [
   {
     group: "Sistemas e dados",
     items: [
-      "ERP (cadastros e treinamento de usuários)",
-      "Sistema de gestão próprio em Next.js, TypeScript e PostgreSQL (com apoio de IA)",
-      "Git e GitHub",
+      "ERP",
+      "SQL (uso no dia a dia nos sistemas que desenvolvi, com apoio de IA)",
+      "Supabase/PostgreSQL",
+      "Next.js e TypeScript",
+      "Excel",
+      "Git",
+      "Python (básico)",
       "Power BI (introdutório)",
+      "Desenvolvo sistemas de gestão com apoio de IA (Supabase/PostgreSQL)",
     ],
   },
   {
-    group: "Processos",
+    group: "Processos e idiomas",
     items: [
-      "Mapeamento e documentação de processos",
+      "Documentação de processos",
       "Treinamento de usuários",
-      "Scrum e XP (aplicados na faculdade)",
+      "Scrum e XP (faculdade)",
+      "Inglês: leitura e compreensão",
     ],
   },
 ];
@@ -156,7 +170,7 @@ export const CONTACT = {
 
 export const CV = {
   summary:
-    "Analista administrativo-financeiro e de processos, com mais de 4 anos de experiência em rotinas administrativas, fiscais e financeiras. Responsável pelo contas a pagar, pela conciliação, pelo caixa e pela emissão fiscal (NFC-e e NFS-e) de 5 empresas de um grupo. Desenvolvi, com apoio de IA, e mantenho em produção um sistema de gestão financeira que substituiu 9+ planilhas. Estudante de Engenharia de Software (UNAERP, conclusão em 07/2027). Busco vaga de analista de ERP/implantação, processos ou financeiro com dados.",
+    "Analista administrativo-financeiro e de processos, com mais de 4 anos de experiência em rotinas administrativas, fiscais e financeiras. Responsável pelo contas a pagar, pela conferência de caixa e pela emissão fiscal (NFC-e e notas de serviço) de 5 empresas de um mesmo grupo. Desenvolvi, com apoio de IA, e mantenho em produção um sistema de gestão financeira que substituiu mais de 10 planilhas desconectadas, hoje usado diariamente e consultado pela diretoria. Estudante de Engenharia de Software (UNAERP, conclusão prevista em 07/2027).",
   experience: [
     {
       title: "Analista Administrativo e Financeiro (prestação de serviços PJ)",
@@ -167,26 +181,30 @@ export const CV = {
         "Lanço contas a pagar, apresento a programação diária para aprovação, efetuo pagamentos e negocio prazos e descontos com fornecedores.",
         "Emito NFC-e e notas fiscais de serviço; faço e confiro o caixa contra o sistema de vendas e o extrato.",
         "Desenvolvi e mantenho, com apoio de IA, sistema de gestão (Next.js, TypeScript, PostgreSQL) em produção desde 06/2026, usado diariamente por 2 pessoas e consultado pela diretoria.",
-        "Substituí 9+ planilhas desconectadas; automatizei a geração de contratos de mútuo entre empresas.",
+        "Substituí mais de 10 planilhas desconectadas; automatizei a geração de contratos de mútuo entre empresas.",
       ],
     },
     {
-      title: "Treinamento de usuários em ERP (meio período)",
-      org: "Mesmo grupo empresarial",
-      period: "",
-      bullets: ["Treinei novos colaboradores no ERP em ambiente de alta rotatividade."],
-    },
-    {
       title: "Jovem Aprendiz de Administração",
-      org: "Usina, Pitangueiras (SP)",
-      period: "",
+      org: "Usina Pitangueiras, Pitangueiras (SP)",
+      period: "05/2024 - 04/2025",
       bullets: ["Almoxarifado e compras: follow-up com fornecedores para acompanhar prazos de entrega."],
     },
     {
-      title: "Auxiliar de Escritório",
+      title: "Prestação de serviços avulsos (meio período, paralelo à usina)",
+      org: "Empório Hortifrutti & Armazém das Bebidas",
+      period: "01/2024 - 04/2025",
+      bullets: ["Treinamento de novos colaboradores no financeiro e no ERP; emissão de notas fiscais."],
+    },
+    {
+      title: "Auxiliar Administrativa",
       org: "Empório Hortifrutti & Armazém das Bebidas",
       period: "06/2022 - 12/2023",
-      bullets: ["Conferência de caixas e cadastro de produtos no ERP."],
+      bullets: [
+        "Contas a pagar e a receber, conciliação de pedidos, notas fiscais, pagamentos e extratos, conferência de caixas.",
+        "Lançamento e conferência de NF-e, boletos e DANFEs; emissão de NF-e de compra e venda.",
+        "Cadastro de produtos, fornecedores e clientes no ERP; precificação e margens; relatórios e inventários.",
+      ],
     },
   ],
   education: [
@@ -197,15 +215,15 @@ export const CV = {
   skills: [
     {
       group: "Financeiro e fiscal",
-      text: "contas a pagar e a receber, conciliação bancária, conferência de caixa, fluxo de caixa, NFC-e, NFS-e, orçamentos, negociação com fornecedores.",
+      text: "contas a pagar e a receber, conciliação bancária, conferência de caixa, fluxo de caixa, NFC-e, NF-e, notas fiscais de serviço, orçamentos, negociação com fornecedores e adquirentes.",
     },
     {
       group: "Sistemas e dados",
-      text: "ERP, Power BI introdutório, Next.js, TypeScript, PostgreSQL, Git.",
+      text: "ERP, SQL, Supabase/PostgreSQL, Next.js, TypeScript, Excel, Git, Python (básico), Power BI (introdutório).",
     },
     {
       group: "Processos",
-      text: "mapeamento e documentação de processos, treinamento de usuários, Scrum e XP.",
+      text: "documentação de processos, treinamento de usuários, Scrum e XP.",
     },
   ],
   courses: [
