@@ -167,11 +167,125 @@ body {
   }
 }
 
+/* ───────── Identidade visual: apresentação de produto ───────── */
+:root {
+  --grad: linear-gradient(120deg, #d4b0c6 0%, #b98ea7 40%, #8b6b9e 100%);
+  --glow: rgba(185, 142, 167, 0.22);
+  --surface: rgba(255, 255, 255, 0.03);
+}
+.light {
+  --grad: linear-gradient(120deg, #7a4f69 0%, #5e2e52 100%);
+  --glow: rgba(122, 79, 105, 0.16);
+  --surface: rgba(18, 15, 13, 0.03);
+}
+
+.text-grad {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.display-xl {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  font-size: clamp(3.25rem, 11vw, 6.5rem);
+}
+.display-lg {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  font-size: clamp(2.25rem, 6vw, 4.25rem);
+}
+.lead { font-size: 1.125rem; line-height: 1.6; color: var(--text-2); }
+@media (min-width: 768px) { .lead { font-size: 1.1875rem; } }
+
+/* Fundo com brilho lento (desligado com prefers-reduced-motion) */
+.aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  width: 55vw; height: 55vw; max-width: 720px; max-height: 720px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+.aurora::before { top: -18%; left: -10%; background: radial-gradient(circle, var(--glow), transparent 65%); }
+.aurora::after { bottom: -25%; right: -10%; background: radial-gradient(circle, rgba(139,107,158,0.25), transparent 65%); animation-delay: -11s; }
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(6vw, 4vw, 0) scale(1.15); }
+}
+
+.rise { animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+
+/* Cartões bento com brilho que segue o cursor */
+.bento {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.bento::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), var(--glow), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.bento:hover { border-color: var(--accent); transform: translateY(-3px); }
+.bento:hover::before { opacity: 1; }
+.bento > *:not(.aurora) { position: relative; }
+
+/* Faixa de tecnologias */
+.marquee { overflow: hidden; border-block: 1px solid var(--border); }
+.marquee-track { display: flex; width: max-content; animation: marquee 34s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Moldura de dispositivo */
+.device {
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+  border-radius: 16px;
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--surface);
+  overflow: hidden;
+}
+.device-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--bg-3); }
+.device-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); display: block; }
+.phone { border: 6px solid var(--bg-3); border-radius: 30px; background: var(--bg); overflow: hidden; box-shadow: 0 30px 80px -30px rgba(0,0,0,0.6); }
+
+/* Caminhos por perfil: o HTML tem os dois, o CSS mostra um */
+html[data-profile="cliente"] .path-recrutador { display: none; }
+html:not([data-profile="cliente"]) .path-cliente { display: none; }
+.path-recrutador, .path-cliente { animation: path-in 0.5s ease both; }
+@keyframes path-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* Carrossel por rolagem com encaixe */
+.snap-row { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 8px; }
+.snap-row::-webkit-scrollbar { display: none; }
+.snap-row > * { scroll-snap-align: center; flex: 0 0 min(86%, 560px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora::before, .aurora::after, .marquee-track { animation: none !important; }
+  .path-recrutador, .path-cliente { animation: none !important; }
+}
+
 /* Impressão: sem cromo do site, fundo branco, nada em branco */
 @media print {
   @page { size: A4; margin: 15mm; }
   html, body { background: #fff !important; color: #000 !important; }
   .no-print { display: none !important; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
   .cv { font-size: 10.5pt; line-height: 1.4; }
   .cv h2 { break-after: avoid; }
   .cv li, .cv .cv-job { break-inside: avoid; }
