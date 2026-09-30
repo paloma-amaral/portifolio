@@ -1,202 +1,93 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useScroll } from "framer-motion";
-
-import { useProfile } from "@/lib/ProfileContext";
 
 const NAV_LINKS = [
-  { href: "/#sobre",       label: "Quem Sou",   id: "sobre" },
-  { href: "/#experiencia", label: "Trajetória", id: "experiencia" },
-  { href: "/#projetos",    label: "Cases",      id: "projetos" },
-  { href: "/#atuacao",     label: "Paradigmas", id: "atuacao" },
-  { href: "/#laboratorio", label: "Simulador",  id: "laboratorio" },
-  { href: "/#showcase",    label: "Portfólio",  id: "showcase" },
-  { href: "/#metodo",      label: "Método",     id: "metodo" },
-  { href: "/#habilidades", label: "Skills",     id: "habilidades" },
-  { href: "/#contato",     label: "Contato",    id: "contato" },
+  { href: "/#inicio", label: "Sobre" },
+  { href: "/#projeto", label: "Projeto" },
+  { href: "/#experiencia", label: "Experiência" },
+  { href: "/#habilidades", label: "Habilidades" },
+  { href: "/#contato", label: "Contato" },
 ];
 
-const PROFILE_LABELS: Record<string, string> = {
-  all: "Geral",
-  clt: "CLT",
-  dados: "Dados",
-  pj: "PJ",
-  dev: "Dev"
-};
-
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const { activeProfile } = useProfile();
-  const { scrollYProgress } = useScroll();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Fechar menu ao clicar em um link
-  const handleNavClick = () => setMobileOpen(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-[var(--accent)] z-[9999] origin-left"
-        style={{ scaleX: scrollYProgress }}
-      />
-      
-      <header
-        className={`fixed z-50 transition-all duration-500 top-4 left-4 right-4 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-fit ${
-          scrolled ? "pill-nav px-2" : "bg-transparent md:top-6"
-        }`}
-      >
-        <div className="mx-auto px-4 h-14 md:h-12 flex items-center justify-between gap-4 md:gap-8">
-          {/* Logo + Indicador de Perfil */}
-          <div className="flex items-center gap-3">
-            <Link href="/" className="flex items-center gap-2 group shrink-0">
-              <span className="font-display font-bold text-[17px] tracking-tight text-[var(--text-1)] group-hover:text-[var(--accent)] transition-colors whitespace-nowrap">
-                Paloma Amaral
-              </span>
-            </Link>
+    <header className="no-print sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]">
+      <div className="section-wrap flex h-16 items-center justify-between gap-4">
+        <Link href="/" className="font-display font-bold text-lg tracking-tight whitespace-nowrap">
+          Paloma Amaral
+        </Link>
 
-            <AnimatePresence>
-              {activeProfile !== "all" && (
-                <motion.span 
-                  initial={{ opacity: 0, scale: 0.8, x: -10 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, x: -10 }}
-                  className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-[var(--border)] bg-[var(--bg-3)] text-[9px] font-mono uppercase tracking-widest text-[var(--text-2)] whitespace-nowrap select-none"
-                >
-                  <span className="w-1 h-1 rounded-full bg-[var(--accent)] animate-pulse" />
-                  Visão {PROFILE_LABELS[activeProfile]}
-                </motion.span>
+        <nav aria-label="Principal" className="hidden md:flex items-center gap-6">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-base text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors py-2"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <Link href="/curriculo" className="btn-primary hidden md:inline-flex">
+            Currículo
+          </Link>
+          <button
+            type="button"
+            className="md:hidden w-11 h-11 rounded-lg border border-[var(--border)] bg-[var(--bg-2)] flex items-center justify-center cursor-pointer"
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={open}
+            aria-controls="menu-mobile"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              {open ? (
+                <path d="M18 6L6 18M6 6l12 12" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
               )}
-            </AnimatePresence>
-          </div>
-
-          {/* Desktop Nav — só aparece em lg+ para ter espaço */}
-          <nav className="hidden lg:flex items-center gap-3 xl:gap-5">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.id}
-                href={link.href}
-                className="font-mono text-[9px] xl:text-[10px] tracking-wider uppercase text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors relative group whitespace-nowrap"
-              >
-                {link.label}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[var(--accent)] transition-all group-hover:w-full" />
-              </a>
-            ))}
-          </nav>
-
-          {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-3">
-            <ThemeToggle />
-            <Link href="/curriculo" className="btn-primary text-sm">
-              Ver Currículo
-            </Link>
-          </div>
-
-          {/* Tablet (md): só ThemeToggle + Hambúrguer */}
-          <div className="hidden md:flex lg:hidden items-center gap-2">
-            <ThemeToggle />
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-10 h-10 flex flex-col justify-center items-center gap-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-2)]"
-              aria-label="Menu"
-            >
-              <motion.span animate={mobileOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }} className="w-5 h-px bg-[var(--text-1)] block origin-center" />
-              <motion.span animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }} className="w-5 h-px bg-[var(--text-1)] block" />
-              <motion.span animate={mobileOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }} className="w-5 h-px bg-[var(--text-1)] block origin-center" />
-            </button>
-          </div>
-
-          {/* Mobile: ThemeToggle + Hamburger */}
-          <div className="flex md:hidden items-center gap-3">
-            <ThemeToggle />
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-10 h-10 flex flex-col justify-center items-center gap-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-2)]"
-              aria-label="Menu"
-            >
-              <motion.span
-                animate={mobileOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
-                className="w-5 h-px bg-[var(--text-1)] block origin-center transition-colors"
-              />
-              <motion.span
-                animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="w-5 h-px bg-[var(--text-1)] block"
-              />
-              <motion.span
-                animate={mobileOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
-                className="w-5 h-px bg-[var(--text-1)] block origin-center"
-              />
-            </button>
-          </div>
+            </svg>
+          </button>
         </div>
-      </header>
+      </div>
 
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMobileOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
-            />
-            {/* Drawer */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className="fixed top-0 right-0 bottom-0 w-72 bg-[var(--bg-2)] border-l border-[var(--border)] z-50 md:hidden flex flex-col"
-            >
-              {/* Header do drawer */}
-              <div className="h-16 flex items-center justify-between px-5 border-b border-[var(--border)]">
-                <span className="font-display font-bold text-sm text-[var(--text-2)]">Menu</span>
-                <button onClick={() => setMobileOpen(false)} className="text-[var(--text-3)] hover:text-[var(--text-1)]">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                    <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Links */}
-              <nav className="flex-1 flex flex-col px-5 pt-6 gap-1">
-                {NAV_LINKS.map((link, i) => (
-                  <motion.a
-                    key={link.id}
-                    href={link.href}
-                    onClick={handleNavClick}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06 }}
-                    className="py-4 border-b border-[var(--border)] font-display font-medium text-[var(--text-1)] hover:text-[var(--accent)] transition-colors flex items-center justify-between"
-                  >
-                    {link.label}
-                    <span className="text-[var(--text-3)] text-sm">↗</span>
-                  </motion.a>
-                ))}
-              </nav>
-
-              {/* CTA do drawer */}
-              <div className="p-5 border-t border-[var(--border)]">
-                <Link href="/curriculo" onClick={handleNavClick} className="btn-primary w-full justify-center">
-                  Ver Currículo
-                </Link>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
+      {open && (
+        <nav
+          id="menu-mobile"
+          aria-label="Menu principal"
+          className="md:hidden border-t border-[var(--border)] bg-[var(--bg)]"
+        >
+          <ul className="section-wrap py-2">
+            {NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="flex min-h-12 items-center border-b border-[var(--border)] text-base"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <Link
+                href="/curriculo"
+                onClick={() => setOpen(false)}
+                className="flex min-h-12 items-center text-base font-semibold text-[var(--accent)]"
+              >
+                Currículo
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      )}
+    </header>
   );
 }

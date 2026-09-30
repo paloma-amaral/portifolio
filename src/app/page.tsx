@@ -1,37 +1,28 @@
 import { Header } from "@/components/layout/Navbar";
-import { BottomNavigation } from "@/components/layout/BottomNavigation";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { AboutSection } from "@/components/sections/AboutSection";
+import { SystemCaseSection } from "@/components/sections/SystemCaseSection";
 import { TimelineSection } from "@/components/sections/TimelineSection";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
-import { FrentesSection } from "@/components/sections/FrentesSection";
-import { LabSection } from "@/components/sections/LabSection";
-import { ShowcaseSection } from "@/components/sections/ShowcaseSection";
-import { ScenariosSection } from "@/components/sections/ScenariosSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
+import { EducationSection } from "@/components/sections/EducationSection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 export default function HomePage() {
   return (
     <>
+      <a href="#conteudo" className="skip-link">
+        Pular para o conteúdo
+      </a>
       <Header />
-      <BottomNavigation />
-      <main className="flex-1">
+      <main id="conteudo" className="flex-1">
         <HeroSection />
-        <AboutSection />
+        <SystemCaseSection />
         <TimelineSection />
-        <ProjectsSection />
-        <FrentesSection />
-        <LabSection />
-        <ShowcaseSection />
-        <ScenariosSection />
         <SkillsSection />
+        <EducationSection />
         <ContactSection />
       </main>
       <Footer />
-      <ScrollToTop />
     </>
   );
 }

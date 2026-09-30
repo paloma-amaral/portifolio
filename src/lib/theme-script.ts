@@ -1,4 +1,4 @@
-/**
+/*
  * Inline script injected in <head> to prevent theme flash (FOUC).
  * Must use vanilla JS — no React or imports.
  */
