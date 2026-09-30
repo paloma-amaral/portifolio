@@ -18,7 +18,16 @@ export default function CurriculoPage() {
         <Link href="/" className="link-accent">
           ← Voltar ao site
         </Link>
-        <PrintButton />
+        <div className="flex flex-wrap gap-3">
+          <a
+            href="/curriculo/Curriculo-Paloma-Amaral.docx"
+            download
+            className="btn-primary"
+          >
+            Baixar currículo (DOCX)
+          </a>
+          <PrintButton />
+        </div>
       </div>
 
       <header className="mb-6">

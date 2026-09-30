@@ -174,36 +174,41 @@ export const CV = {
   experience: [
     {
       title: "Analista Administrativo e Financeiro (prestação de serviços PJ)",
-      org: "EcoService, Empório Caroni, Empório Hortifrutti, LGC Comércio de Gás, Eco Caroni Locações",
+      org: "EcoService, Empório Caroni, Empório Hortifrutti, LGC Comércio de Gás e Eco Caroni Locações",
       period: "04/2025 - Atual",
       bullets: [
-        "Respondo pelo financeiro e fiscal de 5 empresas de 4 segmentos (desde 03/2026).",
-        "Lanço contas a pagar, apresento a programação diária para aprovação, efetuo pagamentos e negocio prazos e descontos com fornecedores.",
-        "Emito NFC-e e notas fiscais de serviço; faço e confiro o caixa contra o sistema de vendas e o extrato.",
-        "Desenvolvi e mantenho, com apoio de IA, sistema de gestão (Next.js, TypeScript, PostgreSQL) em produção desde 06/2026, usado diariamente por 2 pessoas e consultado pela diretoria.",
-        "Substituí mais de 10 planilhas desconectadas; automatizei a geração de contratos de mútuo entre empresas.",
+        "Respondo pelo financeiro e pelo fiscal de 5 empresas de 4 segmentos (varejo alimentar, água e gás, locação de máquinas e coleta de resíduos).",
+        "Lanço as contas a pagar, apresento a programação diária para aprovação da diretoria, efetuo os pagamentos e negocio prazos e descontos com fornecedores.",
+        "Emito NFC-e e notas fiscais de serviço; confiro o caixa das empresas contra o sistema de vendas e o extrato; elaboro orçamentos e negocio taxas de maquininha.",
+        "Desenvolvi, com apoio de IA, e mantenho em produção desde 06/2026 um sistema de gestão financeira (Next.js, TypeScript e PostgreSQL), usado diariamente e consultado pela diretoria.",
+        "Automatizei a geração de contratos de mútuo entre empresas do grupo.",
       ],
     },
     {
-      title: "Jovem Aprendiz de Administração",
-      org: "Usina Pitangueiras, Pitangueiras (SP)",
+      title: "Aprendiz de Administração",
+      org: "Usina Pitangueiras - Pitangueiras, SP",
       period: "05/2024 - 04/2025",
-      bullets: ["Almoxarifado e compras: follow-up com fornecedores para acompanhar prazos de entrega."],
+      bullets: [
+        "Almoxarifado nos primeiros meses e, depois, setor de compras.",
+        "Follow-up com fornecedores por telefone e mensagem para acompanhar prazos de entrega.",
+      ],
     },
     {
-      title: "Prestação de serviços avulsos (meio período, paralelo à usina)",
-      org: "Empório Hortifrutti & Armazém das Bebidas",
+      title: "Prestação de serviços avulsos, meio período (paralelo à usina)",
+      org: "Empório Hortifrutti & Armazém das Bebidas LTDA",
       period: "01/2024 - 04/2025",
-      bullets: ["Treinamento de novos colaboradores no financeiro e no ERP; emissão de notas fiscais."],
+      bullets: [
+        "Treinamento de novos colaboradores nas rotinas do financeiro e no uso do ERP; emissão de notas fiscais.",
+      ],
     },
     {
       title: "Auxiliar Administrativa",
-      org: "Empório Hortifrutti & Armazém das Bebidas",
+      org: "Empório Hortifrutti & Armazém das Bebidas LTDA",
       period: "06/2022 - 12/2023",
       bullets: [
-        "Contas a pagar e a receber, conciliação de pedidos, notas fiscais, pagamentos e extratos, conferência de caixas.",
-        "Lançamento e conferência de NF-e, boletos e DANFEs; emissão de NF-e de compra e venda.",
-        "Cadastro de produtos, fornecedores e clientes no ERP; precificação e margens; relatórios e inventários.",
+        "Contas a pagar e a receber, notas fiscais, extratos bancários, e conferência de caixas.",
+        "Lançamento e conferência de documentos fiscais (NF-e, boletos, DANFEs); cadastro de produtos, fornecedores e clientes no ERP.",
+        "Precificação e margens, relatórios de vendas e estoque. Documentei as atribuições do cargo para a contratação do substituto.",
       ],
     },
   ],
@@ -215,19 +220,19 @@ export const CV = {
   skills: [
     {
       group: "Financeiro e fiscal",
-      text: "contas a pagar e a receber, conciliação bancária, conferência de caixa, fluxo de caixa, NFC-e, NF-e, notas fiscais de serviço, orçamentos, negociação com fornecedores e adquirentes.",
+      text: "contas a pagar, conciliação bancária, conferência de caixa, controle de saldos e fluxo de caixa diário, NFC-e, notas fiscais de serviço, orçamentos, negociação com fornecedores e com adquirentes.",
     },
     {
       group: "Sistemas e dados",
-      text: "ERP, SQL, Supabase/PostgreSQL, Next.js, TypeScript, Excel, Git, Python (básico), Power BI (introdutório).",
+      text: "ERP, SQL, Python (básico), Power BI (introdutório), Excel, Next.js, TypeScript, PostgreSQL, Git.",
     },
     {
       group: "Processos",
-      text: "documentação de processos, treinamento de usuários, Scrum e XP.",
+      text: "documentação de processos, treinamento de usuários, Scrum e XP (aplicados na faculdade).",
     },
   ],
   courses: [
-    "Data Analytics com Power BI - Digital Innovation One (82 h)",
+    "Bootcamp Data Analytics com Power BI - Digital Innovation One (82 h)",
     "Inglês - Remington (288 h)",
   ],
 };
