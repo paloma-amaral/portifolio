@@ -23,20 +23,25 @@ export const HERO = {
   sub: "Estudante de Engenharia de Software (UNAERP), conclusão prevista em 07/2027.",
 };
 
-export const PROFILES = [
-  {
-    id: "recrutador" as const,
-    title: "Sou recrutador(a)",
-    text: "Trajetória, projeto em produção e currículo.",
-    target: "#projeto",
-  },
-  {
-    id: "cliente" as const,
-    title: "Quero um sistema ou site",
-    text: "O que faço por encomenda e os trabalhos.",
-    target: "#servicos",
-  },
-];
+export const ABOUT = {
+  title: "Quem está por trás do sistema.",
+  paragraphs: [
+    "Sou de Pitangueiras (SP) e cuido do financeiro e do fiscal de 5 empresas de um mesmo grupo.",
+    "Comecei aos 18 anos, num escritório administrativo. Hoje faço o contas a pagar, emito as notas fiscais e mantenho o sistema de gestão que o grupo usa todos os dias.",
+    "Estudo Engenharia de Software na UNAERP (7º período de 8) e uso o que aprendo para resolver problemas da rotina.",
+  ],
+  facts: [
+    { value: "5 empresas", label: "financeiro e fiscal, em 4 segmentos" },
+    { value: "Desde 06/2026", label: "sistema de gestão em produção" },
+    { value: "Mais de 4 anos", label: "em rotinas administrativas, fiscais e financeiras" },
+    { value: "Remoto ou híbrido", label: "Ribeirão Preto, Bebedouro, Sertãozinho e Jaboticabal" },
+  ],
+  principles: [
+    { title: "Só mostro o que existe", text: "Cada trabalho do site tem rótulo: Em produção ou Demonstração." },
+    { title: "Explico os limites", text: "No sistema, os dados entram manualmente, porque bancos e ERP não têm API." },
+    { title: "Documento a rotina", text: "Escrevi a rotina financeira para ela não depender de uma pessoa só." },
+  ],
+};
 
 export const STACK = [
   "Next.js",

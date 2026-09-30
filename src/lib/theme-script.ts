@@ -1,5 +1,5 @@
 /*
- * Script inline no <head>: aplica tema e perfil de visitante antes do primeiro
+ * Script inline no <head>: aplica o tema antes do primeiro
  * render (evita flash). Vanilla JS, sem imports.
  */
 export const themeScript = `
@@ -11,10 +11,6 @@ export const themeScript = `
     var theme = saved || (prefersDark ? 'dark' : 'light');
     root.classList.add(theme);
     root.classList.remove(theme === 'dark' ? 'light' : 'dark');
-  } catch (e) {}
-  try {
-    var p = sessionStorage.getItem('portfolio-profile');
-    if (p === 'cliente' || p === 'recrutador') root.setAttribute('data-profile', p);
   } catch (e) {}
 })();
 `.trim();
