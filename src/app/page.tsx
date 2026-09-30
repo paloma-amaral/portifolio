@@ -6,6 +6,12 @@ import { TimelineSection } from "@/components/sections/TimelineSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
 import { EducationSection } from "@/components/sections/EducationSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import {
+  ServicesSection,
+  WorksSection,
+  ProcessSection,
+  ClientContactSection,
+} from "@/components/sections/ClientSections";
 
 export default function HomePage() {
   return (
@@ -16,11 +22,22 @@ export default function HomePage() {
       <Header />
       <main id="conteudo" className="flex-1">
         <HeroSection />
-        <SystemCaseSection />
-        <TimelineSection />
-        <SkillsSection />
-        <EducationSection />
-        <ContactSection />
+
+        {/* O HTML traz os dois caminhos; o perfil escolhido (data-profile) mostra um. */}
+        <div className="path-recrutador">
+          <SystemCaseSection />
+          <TimelineSection />
+          <SkillsSection />
+          <EducationSection />
+          <ContactSection />
+        </div>
+
+        <div className="path-cliente">
+          <ServicesSection />
+          <WorksSection />
+          <ProcessSection />
+          <ClientContactSection />
+        </div>
       </main>
       <Footer />
     </>

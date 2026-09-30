@@ -1,90 +1,128 @@
-import Image from "next/image";
 import fs from "node:fs";
 import path from "node:path";
-import { SYSTEM_CASE as S } from "@/lib/content";
+import { SYSTEM_CASE as S, SYSTEM_FACTS, SYSTEM_SCREENS } from "@/lib/content";
+import { Reveal, SpotCard } from "@/components/ui/motion";
+import { SectionHead } from "@/components/ui/SectionHead";
+import { ScreenCarousel } from "./ScreenCarousel";
 
-/* Capturas do ambiente de demonstração (dados fictícios) em public/images/sistema/.
- *  Sem arquivos, o bloco de imagens simplesmente não é renderizado. */
-function getScreenshots(): string[] {
+/* Capturas do ambiente de demonstração (dados fictícios): public/images/sistema/
+ * nomeadas 1-*.webp … 4-*.webp, na ordem das telas. Sem arquivo, mostra a ilustração. */
+function screenshotFor(index: number): string | undefined {
   try {
     const dir = path.join(process.cwd(), "public", "images", "sistema");
-    return fs
-      .readdirSync(dir)
-      .filter((f) => /\.(png|jpe?g|webp|avif)$/i.test(f))
-      .sort()
-      .map((f) => `/images/sistema/${f}`);
+    const file = fs.readdirSync(dir).sort().filter((f) => /\.(png|jpe?g|webp|avif)$/i.test(f))[index];
+    return file ? `/images/sistema/${file}` : undefined;
   } catch {
-    return [];
+    return undefined;
   }
 }
 
-function Block({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <h3 className="label mb-2">{label}</h3>
-      {children}
-    </div>
-  );
-}
+const BEFORE = [
+  "Mais de 10 planilhas sem ligação entre si",
+  "Contas mensais num lembrete de papel",
+  "Contrato de mútuo em caderno e Word",
+  "Caixa conferido em planilha, um mês por aba",
+];
+const AFTER = [
+  "Um sistema único",
+  "Total a pagar e vencimentos na tela",
+  "Contrato gerado automaticamente",
+  "Conferência de caixa no sistema",
+];
 
 export function SystemCaseSection() {
-  const shots = getScreenshots();
+  const slides = SYSTEM_SCREENS.map((s, i) => ({ ...s, src: screenshotFor(i) }));
+  const real = slides.some((s) => s.src);
 
   return (
-    <section id="projeto" className="section border-t border-[var(--border)]" aria-labelledby="titulo-projeto">
-      <div className="section-wrap">
-        <p className="label mb-2">Projeto principal</p>
-        <h2 id="titulo-projeto" className="section-title">
-          {S.title}
-        </h2>
+    <section id="projeto" aria-labelledby="titulo-projeto" className="section-wrap section">
+      <SectionHead id="titulo-projeto" eyebrow="Projeto principal · Em produção" title={S.title}>
+        <p>{S.did}</p>
+      </SectionHead>
 
-        <div className="grid gap-8 max-w-3xl">
-          <Block label="Contexto">
-            <p>{S.context}</p>
-          </Block>
-          <Block label="O que fiz">
-            <p>{S.did}</p>
-          </Block>
-          <Block label="Resultado">
-            <ul className="list-disc pl-5 space-y-2">
-              {S.results.map((r) => (
-                <li key={r}>{r}</li>
-              ))}
-            </ul>
-          </Block>
-          <Block label="Como é feito">
-            <p>{S.how}</p>
-          </Block>
-          <Block label="Limites">
-            <p>{S.limits}</p>
-          </Block>
-          <p className="text-[var(--text-2)]">{S.code}</p>
+      <Reveal className="mb-14 grid gap-4 md:grid-cols-2">
+        <div className="bento p-6">
+          <p className="label mb-4">Antes</p>
+          <ul className="space-y-3">
+            {BEFORE.map((b) => (
+              <li key={b} className="flex gap-3 text-[var(--text-2)]">
+                <span aria-hidden="true" className="text-[var(--text-3)]">✕</span>
+                {b}
+              </li>
+            ))}
+          </ul>
         </div>
+        <div className="bento border-[var(--accent)] p-6">
+          <p className="label mb-4 !text-[var(--accent)]">Depois</p>
+          <ul className="space-y-3">
+            {AFTER.map((b) => (
+              <li key={b} className="flex gap-3">
+                <span aria-hidden="true" className="text-[var(--accent)]">✓</span>
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Reveal>
 
-        {shots.length > 0 && (
-          <div className="mt-10">
-            <h3 className="label mb-3">Capturas do ambiente de demonstração (dados fictícios)</h3>
-            <ul className="grid gap-4 sm:grid-cols-2">
-              {shots.map((src, i) => (
-                <li key={src}>
-                  <Image
-                    src={src}
-                    alt={`Captura ${i + 1} do ambiente de demonstração do sistema de gestão, com dados fictícios`}
-                    width={1280}
-                    height={800}
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                    className="h-auto w-full rounded-[var(--radius-md)] border border-[var(--border)]"
-                  />
+      <Reveal className="mb-14">
+        <ScreenCarousel slides={slides} />
+        {!real && (
+          <p className="mt-4 text-sm text-[var(--text-3)]">
+            Ilustrações da interface. As capturas do ambiente de demonstração, com dados fictícios, entram no lugar delas.
+          </p>
+        )}
+      </Reveal>
+
+      <div className="grid gap-4 lg:grid-cols-3">
+        <Reveal className="lg:col-span-2">
+          <SpotCard className="h-full p-6 md:p-8">
+            <h3 className="font-display text-2xl font-semibold">Resultado</h3>
+            <ul className="mt-5 space-y-4">
+              {S.results.map((r) => (
+                <li key={r} className="flex gap-3">
+                  <span aria-hidden="true" className="mt-1 text-[var(--accent)]">◆</span>
+                  {r}
                 </li>
               ))}
             </ul>
-          </div>
-        )}
+          </SpotCard>
+        </Reveal>
 
-        <div className="card mt-10 max-w-3xl p-5">
-          <h3 className="font-display font-semibold text-lg mb-1">{S.doc.title}</h3>
-          <p className="text-[var(--text-2)]">{S.doc.text}</p>
-        </div>
+        <Reveal delay={0.1}>
+          <SpotCard className="h-full p-6 md:p-8">
+            <h3 className="label mb-5">Ficha técnica</h3>
+            <dl className="grid grid-cols-2 gap-x-4 gap-y-5">
+              {SYSTEM_FACTS.map((f) => (
+                <div key={f.label}>
+                  <dt className="font-display text-2xl font-bold text-grad">{f.value}</dt>
+                  <dd className="text-sm text-[var(--text-2)]">{f.label}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-6 text-[var(--text-2)]">{S.how}</p>
+          </SpotCard>
+        </Reveal>
+
+        <Reveal>
+          <SpotCard className="h-full p-6 md:p-8">
+            <h3 className="font-display text-xl font-semibold">Contexto</h3>
+            <p className="mt-3 text-[var(--text-2)]">{S.context}</p>
+          </SpotCard>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <SpotCard className="h-full p-6 md:p-8">
+            <h3 className="font-display text-xl font-semibold">Limites</h3>
+            <p className="mt-3 text-[var(--text-2)]">{S.limits}</p>
+          </SpotCard>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <SpotCard className="h-full p-6 md:p-8">
+            <h3 className="font-display text-xl font-semibold">{S.doc.title}</h3>
+            <p className="mt-3 text-[var(--text-2)]">{S.doc.text}</p>
+            <p className="mt-4 text-sm text-[var(--text-3)]">{S.code}</p>
+          </SpotCard>
+        </Reveal>
       </div>
     </section>
   );

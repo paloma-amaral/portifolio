@@ -17,16 +17,96 @@ export const SITE = {
 };
 
 export const HERO = {
-  label: `${SITE.name} · ${SITE.role}`,
-  title: "Rotinas financeiras que viram processos e sistemas que funcionam.",
-  subtitle:
-    "Cuido do financeiro e do fiscal de 5 empresas e desenvolvi, com apoio de IA, o sistema de gestão que o grupo usa todos os dias. Estudante de Engenharia de Software (UNAERP, conclusão em 07/2027).",
-  proofs: [
-    { value: "5 empresas", text: "financeiro e fiscal, em 4 segmentos" },
-    { value: "Mais de 10", text: "planilhas substituídas por um sistema único" },
-    { value: "Desde 06/2026", text: "em produção, com uso diário" },
-  ],
+  name: "Paloma Amaral",
+  tagline: "Financeiro, processos e sistemas.",
+  role: "Analista Administrativo, Financeiro e de Processos",
+  sub: "Estudante de Engenharia de Software (UNAERP), conclusão prevista em 07/2027.",
 };
+
+export const PROFILES = [
+  {
+    id: "recrutador" as const,
+    title: "Sou recrutador(a)",
+    text: "Trajetória, projeto em produção e currículo.",
+    target: "#projeto",
+  },
+  {
+    id: "cliente" as const,
+    title: "Quero um sistema ou site",
+    text: "O que faço por encomenda e os trabalhos.",
+    target: "#servicos",
+  },
+];
+
+export const STACK = [
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Tailwind",
+  "Supabase",
+  "PostgreSQL",
+  "Git",
+  "Power BI",
+];
+
+export const SYSTEM_FACTS = [
+  { value: "5", label: "empresas, em 4 segmentos" },
+  { value: "Mais de 10", label: "planilhas substituídas" },
+  { value: "06/2026", label: "em produção" },
+  { value: "2", label: "pessoas registram os dados todos os dias" },
+];
+
+export const SYSTEM_SCREENS = [
+  { kind: "pagar" as const, title: "Contas a pagar", caption: "Programação diária e vencimentos num só lugar." },
+  { kind: "conciliacao" as const, title: "Conciliação bancária", caption: "Extrato colado em lote e regras de de-para." },
+  { kind: "caixa" as const, title: "Conferência de caixa", caption: "Faturamento consultável até o dia anterior." },
+  { kind: "mutuo" as const, title: "Contrato de mútuo", caption: "Gerado a partir de origem, destino e valor." },
+];
+
+export const SERVICES = [
+  {
+    title: "Sistemas de gestão sob medida",
+    text: "Contas a pagar, caixa, conciliação, estoque e fechamento num sistema só, desenhado a partir da rotina da empresa.",
+    gets: "Sistema web, relatórios e treinamento da equipe.",
+    art: "sistema" as const,
+  },
+  {
+    title: "Sites e páginas",
+    text: "Site institucional ou página de apresentação, responsivo, com o texto organizado para leitura rápida.",
+    gets: "Site publicado e ajustes depois da entrega.",
+    art: "site" as const,
+  },
+  {
+    title: "Automação de rotinas financeiras",
+    text: "Importação de extratos e planilhas, conciliação com regras e conferência de caixa.",
+    gets: "Fluxo documentado e a ferramenta para a rotina.",
+    art: "fluxo" as const,
+  },
+];
+
+export const WORKS = [
+  {
+    title: "Sistema de gestão financeira e administrativa",
+    status: "Em produção",
+    problem: "Mais de 10 planilhas que não se comunicavam.",
+    tech: "Next.js · TypeScript · Supabase/PostgreSQL",
+    art: "sistema" as const,
+  },
+  {
+    title: "Este portfólio",
+    status: "Em produção",
+    problem: "Apresentar trajetória e trabalhos num só lugar.",
+    tech: "Next.js · React · Tailwind · Framer Motion",
+    art: "site" as const,
+  },
+];
+
+export const STEPS = [
+  { title: "Conversa", text: "Entendo a rotina, quem usa e o que hoje é feito à mão." },
+  { title: "Protótipo", text: "Você vê as telas antes de o sistema existir." },
+  { title: "Entrega", text: "Sistema no ar, com dados de teste e treinamento." },
+  { title: "Ajustes", text: "Correções e melhorias a partir do uso real." },
+];
 
 export const SYSTEM_CASE = {
   title: "Sistema de gestão financeira e administrativa",
