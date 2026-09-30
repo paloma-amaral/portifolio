@@ -3,27 +3,18 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { useProfile } from "@/lib/profile";
 
-const LINKS = {
-  recrutador: [
-    { href: "/#projeto", label: "Projeto" },
-    { href: "/#experiencia", label: "Trajetória" },
-    { href: "/#habilidades", label: "Habilidades" },
-    { href: "/#contato", label: "Contato" },
-  ],
-  cliente: [
-    { href: "/#servicos", label: "Serviços" },
-    { href: "/#trabalhos", label: "Trabalhos" },
-    { href: "/#como-funciona", label: "Como funciona" },
-    { href: "/#contato-cliente", label: "Contato" },
-  ],
-};
+const LINKS = [
+  { href: "/#sobre", label: "Sobre" },
+  { href: "/#projeto", label: "Projeto" },
+  { href: "/#experiencia", label: "Trajetória" },
+  { href: "/#servicos", label: "Por encomenda" },
+  { href: "/#contato", label: "Contato" },
+];
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const profile = useProfile();
-  const links = LINKS[profile];
+  const links = LINKS;
 
   return (
     <header className="no-print sticky top-0 z-50 border-b border-[var(--border)] bg-[color-mix(in_srgb,var(--bg)_82%,transparent)] backdrop-blur-md">

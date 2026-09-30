@@ -100,7 +100,7 @@ body {
 }
 
 .section-wrap {
-  max-width: 1040px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -264,11 +264,6 @@ body {
 .device-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); display: block; }
 .phone { border: 6px solid var(--bg-3); border-radius: 30px; background: var(--bg); overflow: hidden; box-shadow: 0 30px 80px -30px rgba(0,0,0,0.6); }
 
-/* Caminhos por perfil: o HTML tem os dois, o CSS mostra um */
-html[data-profile="cliente"] .path-recrutador { display: none; }
-html:not([data-profile="cliente"]) .path-cliente { display: none; }
-.path-recrutador, .path-cliente { animation: path-in 0.5s ease both; }
-@keyframes path-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
 /* Carrossel por rolagem com encaixe */
 .snap-row { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 8px; }
@@ -277,7 +272,6 @@ html:not([data-profile="cliente"]) .path-cliente { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .aurora::before, .aurora::after, .marquee-track { animation: none !important; }
-  .path-recrutador, .path-cliente { animation: none !important; }
 }
 
 /* Impressão: sem cromo do site, fundo branco, nada em branco */

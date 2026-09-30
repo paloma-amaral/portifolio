@@ -44,6 +44,10 @@ export function ContactSection() {
           {CONTACT.title}
         </h2>
         <p className="lead relative mt-5 max-w-2xl">{CONTACT.text}</p>
+        <p className="relative mt-3 max-w-2xl text-[var(--text-2)]">
+          Para um sistema ou site, escreva com uma descrição da rotina ou do que você precisa. Não publico preço:
+          cada trabalho é orçado depois da conversa.
+        </p>
         <div className="relative mt-8 flex flex-wrap gap-3">
           <a href={`mailto:${SITE.email}`} className="btn-primary">
             Enviar e-mail

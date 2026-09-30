@@ -3,7 +3,7 @@ import { HERO, STACK } from "@/lib/content";
 import { Art } from "@/components/ui/Art";
 import { Browser, Phone } from "@/components/ui/Device";
 import { Tilt } from "@/components/ui/motion";
-import { ProfileSelector } from "./ProfileSelector";
+import Link from "next/link";
 
 export function HeroSection() {
   const stack = [...STACK, ...STACK];
@@ -32,8 +32,16 @@ export function HeroSection() {
             {HERO.sub}
           </p>
 
-          <div className="rise mt-9" style={{ animationDelay: "0.4s" }}>
-            <ProfileSelector />
+          <div className="rise mt-9 flex flex-wrap gap-3" style={{ animationDelay: "0.4s" }}>
+            <a href="#projeto" className="btn-primary">
+              Ver o projeto
+            </a>
+            <Link href="/curriculo" className="btn-secondary">
+              Ver currículo
+            </Link>
+            <a href="#contato" className="btn-secondary">
+              Falar comigo
+            </a>
           </div>
         </div>
 

@@ -1,9 +1,8 @@
-import { SERVICES, STEPS, WORKS, SITE } from "@/lib/content";
+import { SERVICES, STEPS, WORKS } from "@/lib/content";
 import { Art } from "@/components/ui/Art";
 import { Browser } from "@/components/ui/Device";
 import { Reveal, SpotCard } from "@/components/ui/motion";
 import { SectionHead } from "@/components/ui/SectionHead";
-import { ContactLinks } from "./ContactSection";
 
 /* Espaço reservado para trabalhos que ainda faltam (outros sistemas e sites).
  * Não renderiza nada: só entra item que existe, tem captura e está rotulado. */
@@ -14,8 +13,12 @@ function TodoSlot(props: { note: string }) {
 
 export function ServicesSection() {
   return (
-    <section id="servicos" aria-labelledby="titulo-servicos" className="section-wrap section">
-      <SectionHead id="titulo-servicos" eyebrow="Por encomenda" title="O que eu faço para você." />
+    <section id="servicos" aria-labelledby="titulo-servicos" className="section-wrap section border-t border-[var(--border)]">
+      <SectionHead id="titulo-servicos" eyebrow="Por encomenda" title="Sistemas e sites sob medida.">
+        <p>
+          Ainda não atendi clientes. A prova são os trabalhos abaixo e as demonstrações que posso mostrar ao vivo.
+        </p>
+      </SectionHead>
       <div className="grid gap-4 lg:grid-cols-3">
         {SERVICES.map((s, i) => (
           <Reveal key={s.title} delay={i * 0.1}>
@@ -88,37 +91,6 @@ export function ProcessSection() {
           </li>
         ))}
       </ol>
-    </section>
-  );
-}
-
-export function ClientContactSection() {
-  return (
-    <section id="contato-cliente" aria-labelledby="titulo-contato-cliente" className="section-wrap section border-t border-[var(--border)]">
-      <Reveal className="bento relative p-8 md:p-14">
-        <div className="aurora" aria-hidden="true" />
-        <h2 id="titulo-contato-cliente" className="display-lg relative">
-          Conte o que você precisa.
-        </h2>
-        <p className="lead relative mt-5 max-w-2xl">
-          Escreva por e-mail com uma descrição da rotina ou do site que você quer. Não publico preço: cada trabalho é
-          orçado depois da conversa.
-        </p>
-        <p className="relative mt-4 max-w-2xl text-[var(--text-2)]">
-          Ainda não atendi clientes. A prova são os trabalhos acima e as demonstrações que posso mostrar ao vivo.
-        </p>
-        <div className="relative mt-8">
-          <a
-            href={`mailto:${SITE.email}?subject=${encodeURIComponent("Sistema ou site")}`}
-            className="btn-primary"
-          >
-            Escrever por e-mail
-          </a>
-        </div>
-        <div className="relative">
-          <ContactLinks />
-        </div>
-      </Reveal>
     </section>
   );
 }
