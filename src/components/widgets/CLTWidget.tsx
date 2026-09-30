@@ -7,22 +7,22 @@ const BOTTLENECKS = [
   { 
     id: "vendas", 
     label: "Vendas / PDV", 
-    issue: "Descontos aplicados sem regra sistêmica e falhas no mark-up.",
-    solution: "Parametrização de margem de lucro mínima no ERP.",
+    issue: "Desconto dado no caixa sem regra e preço formado sem contar as taxas.",
+    solution: "Margem mínima parametrizada no ERP e preço revisado por categoria.",
     lossPercent: 0.05 // 5% do faturamento
   },
   { 
     id: "estoque", 
     label: "Estoque", 
-    issue: "Baixas sem nota fiscal e produtos 'perdidos'.",
-    solution: "Fluxo sistêmico de bloqueio: só sai com NF-e validada.",
+    issue: "Saída de mercadoria sem nota e diferença entre estoque físico e sistema.",
+    solution: "Baixa só com documento e conferência periódica de estoque.",
     lossPercent: 0.03 // 3%
   },
   { 
     id: "financeiro", 
     label: "Contas a Pagar", 
-    issue: "Juros por atraso (DARFs) e pagamentos em duplicidade.",
-    solution: "Conciliação DDA rigorosa e relatórios de fluxo de caixa limpos.",
+    issue: "Juros por atraso e pagamento em duplicidade por falta de controle de vencimentos.",
+    solution: "Contas lançadas na chegada, conciliação do extrato e agenda de vencimentos.",
     lossPercent: 0.02 // 2%
   },
 ];
@@ -38,42 +38,42 @@ export function CLTWidget() {
         <div className="lg:w-[46%] flex flex-col gap-4 p-5 lg:p-6 border-b lg:border-b-0 lg:border-r border-[var(--border)] overflow-y-auto bg-[var(--bg)]">
           <div>
             <span className="font-mono text-[9px] text-[var(--accent)] uppercase tracking-[0.18em] block mb-2">O que é</span>
-            <h3 className="font-display font-semibold text-base mb-1">Mapa de Gargalos</h3>
+            <h3 className="font-display font-semibold text-base mb-1">Custo do retrabalho</h3>
             <p className="text-xs text-[var(--text-2)] leading-relaxed">
-              Onde as empresas perdem dinheiro sem saber? O vazamento silencioso no caixa pode devorar sua margem de lucro inteira.
+              Uma estimativa de quanto falhas comuns de processo custam por mês, em três áreas que encontro com frequência no varejo.
             </p>
           </div>
 
           <div className="p-3 rounded-lg bg-[var(--bg-3)] border border-[var(--border)]">
             <div className="flex items-center gap-2 mb-1.5">
               <span className="w-2 h-2 rounded-full bg-[#ef4444]" />
-              <span className="font-mono text-[10px] text-[#ef4444] uppercase tracking-widest font-bold">Prejuízo Invisível</span>
+              <span className="font-mono text-[10px] text-[#ef4444] uppercase tracking-widest font-bold">Perda por processo</span>
             </div>
             <p className="text-xs text-[var(--text-2)] leading-relaxed mb-2">
-              Custos gerados por falha de processo (ex: descontos indevidos, produtos perdidos sem NF, multas e juros por esquecimento).
+              Custos que nascem de falha de rotina: desconto sem regra, mercadoria que sai sem documento, conta paga com juros.
             </p>
             <p className="text-[10px] text-[var(--text-3)] mt-1.5 leading-relaxed">
-              ⚠ Eles não aparecem de forma clara no DRE, mas corroem o dinheiro do mês.
+              Não aparecem como linha no resultado; ficam diluídos em "outras despesas" ou em margem menor.
             </p>
           </div>
 
           <div className="p-3 rounded-lg bg-[var(--bg-3)] border border-[var(--border)]">
             <div className="flex items-center gap-2 mb-1.5">
               <span className="w-2 h-2 rounded-full bg-[var(--accent)]" />
-              <span className="font-mono text-[10px] text-[var(--accent)] uppercase tracking-widest font-bold">Processo Mapeado</span>
+              <span className="font-mono text-[10px] text-[var(--accent)] uppercase tracking-widest font-bold">O que resolve</span>
             </div>
             <p className="text-xs text-[var(--text-2)] leading-relaxed mb-2">
-              Criar travas sistêmicas no ERP e conciliações automáticas que impedem o erro humano antes que ele custe dinheiro.
+              Regras no sistema (margem mínima, baixa com documento) e conferências de rotina (extrato, estoque) que pegam o erro antes de virar custo.
             </p>
             <p className="text-[10px] text-[var(--text-3)] mt-1.5 leading-relaxed">
-              ✓ Soluções de prateleira muitas vezes não cobrem a cultura real da empresa.
+              Os percentuais abaixo são ilustrativos; em cada empresa eles saem da conciliação e da conferência de estoque.
             </p>
           </div>
 
           <div className="p-3 rounded-lg border border-[var(--border-2)] bg-[var(--accent)]/5">
             <span className="font-mono text-[9px] text-[var(--accent)] uppercase tracking-widest block mb-1">Por que importa?</span>
             <p className="text-[10px] text-[var(--text-2)] leading-relaxed">
-              Uma empresa de R$ 100k/mês com 10% de furos no processo está rasgando <strong>R$ 120.000,00</strong> por ano.
+              Numa empresa de R$ 100 mil/mês, 10% de perda por processo são <strong>R$ 120 mil por ano</strong>. É mais do que muitas gastam com sistema e equipe administrativa juntos.
             </p>
           </div>
         </div>
@@ -86,7 +86,7 @@ export function CLTWidget() {
           
           <div>
             <span className="font-mono text-[9px] text-[var(--accent)] uppercase tracking-[0.18em] block mb-1">Simule agora</span>
-            <p className="text-xs text-gray-600 dark:text-gray-400">Insira um faturamento e descubra o prejuízo estimado em cada área.</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400">Informe um faturamento mensal e passe o mouse em cada área.</p>
           </div>
 
           {/* Input de Simulação */}
@@ -135,7 +135,7 @@ export function CLTWidget() {
                     
                     {isHovered ? (
                       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                        <span className="text-[10px] font-bold text-[var(--accent)] uppercase tracking-widest block mb-1">✓ Solução Implantada</span>
+                        <span className="text-[10px] font-bold text-[var(--accent)] uppercase tracking-widest block mb-1">O que resolve</span>
                         <span className="text-[11px] text-gray-700 dark:text-gray-400 font-sans leading-tight block mb-2">
                           {node.solution}
                         </span>
@@ -145,7 +145,7 @@ export function CLTWidget() {
                       </motion.div>
                     ) : (
                       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                        <span className="text-[10px] font-bold text-[#ef4444] uppercase tracking-widest block mb-1">⚠ Prejuízo Oculto</span>
+                        <span className="text-[10px] font-bold text-[#ef4444] uppercase tracking-widest block mb-1">Falha comum</span>
                         <span className="text-[11px] text-gray-600 dark:text-gray-500 font-sans leading-tight">
                           {node.issue}
                         </span>

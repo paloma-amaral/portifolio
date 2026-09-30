@@ -18,122 +18,133 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
-  // --- CLT / Implementação ---
+  // --- Financeiro & Operações ---
   {
-    id: "implantacao-erp",
+    id: "sistema-caroni",
     profiles: ["clt", "all"],
-    title: "Implantação e Parametrização Financeira (ERP)",
-    business: "A empresa trocou de sistema e precisava migrar todo o Contas a Pagar/Receber e reconfigurar as regras de fluxo de caixa sem parar a operação.",
-    method: "Mapeamento dos processos antigos (As-Is), higienização dos dados financeiros nas planilhas de importação e setup das regras do novo ERP, garantindo que o primeiro fechamento no sistema novo batesse 100%.",
-    result: "Transição de sistema concluída sem atraso em pagamentos a fornecedores. O time financeiro passou a confiar no novo ERP desde o dia 1.",
-    tags: ["Implantação", "ERP", "Processos", "Financeiro"],
+    title: "Sistema financeiro para um grupo de oito CNPJs",
+    business: "O escritório financeiro do grupo administra oito empresas com a mesma equipe: duas lojas com PDV, prestadoras de serviço, frota e imóveis. Dinheiro circula entre elas todo dia e o controle em planilha não mostrava, no fim do mês, quem financiou quem.",
+    method: "Primeiro escrevi as regras: de onde vem o faturamento de cada tipo de empresa, o que é empréstimo entre empresas e o que não é, em que ordem o mês fecha. Depois construí o sistema em Next.js e Supabase, módulo a módulo: contas a pagar, conciliação bancária, conferência de caixa, contrato mútuo, folha, frota, agenda e fechamento. Usei assistentes de IA como apoio no código; as regras de negócio e a conferência dos cálculos são minhas.",
+    result: "Em uso pela equipe desde agosto de 2026 e ainda em evolução. O fechamento de cada empresa passou a sair com todas as fontes conferidas e com a apuração automática dos empréstimos entre empresas.",
+    tags: ["Next.js", "Supabase", "Financeiro", "Fechamento"],
     chart: "gantt"
   },
   {
-    id: "saneamento-dados",
+    id: "conciliacao-bancaria",
     profiles: ["clt", "all"],
-    title: "Saneamento de Banco de Dados (Master Data)",
-    business: "O sistema de vendas apresentava erros diários de faturamento porque o cadastro de produtos estava poluído (unidades de medida e classificações misturadas).",
-    method: "Extração da base completa do ERP para o Excel. Uso de ferramentas de texto e Power Query para padronizar os dados, categorizar corretamente as famílias de produtos e reimportar o cadastro limpo.",
-    result: "Fim das inconsistências no caixa. A equipe parou de abrir chamados internos para 'corrigir produto na hora da venda'.",
-    tags: ["Dados", "Excel", "Master Data", "Saneamento"],
-    chart: "funnel"
-  },
-  {
-    id: "dashboard-fechamento",
-    profiles: ["clt", "all"],
-    title: "Dashboard de Fechamento Diário de Caixa",
-    business: "O fechamento dos caixas físicos era feito anotando valores em papel, o que dificultava a visão consolidada da matriz.",
-    method: "Criação de uma planilha inteligente conectada ao relatório do ERP. Os operadores lançam apenas os valores líquidos e o dashboard calcula automaticamente as sobras/faltas diárias de cada loja.",
-    result: "Visão executiva em tempo real para a diretoria. Redução no tempo de fechamento e auditoria dos caixas.",
-    tags: ["Excel Avançado", "Dashboard", "Caixa"],
-    chart: "bar"
-  },
-
-  // --- Dados ---
-  {
-    id: "dashboard-cp",
-    profiles: ["dados", "all"],
-    title: "Painel de Gestão de Contas a Pagar e Alertas",
-    business: "A equipe financeira perdia prazos de boleto e pagava juros porque dependia de uma planilha manual que sempre estava desatualizada.",
-    method: "Estruturação de um modelo de dados dinâmico (via Excel Avançado/Power Query) lendo os relatórios extraídos do sistema. Criação de um dashboard com visão diária/semanal e formatação condicional alertando vencimentos.",
-    result: "O gestor passou a visualizar todo o fluxo da semana na segunda-feira de manhã. Zero juros pagos por esquecimento.",
-    tags: ["Dashboard", "Excel", "Contas a Pagar"],
-    chart: "area"
-  },
-  {
-    id: "consolidacao-vendas",
-    profiles: ["dados", "all"],
-    title: "Consolidação Automática de Dados de Vendas",
-    business: "A diretoria queria comparar o faturamento de duas filiais, mas cada uma usava um sistema diferente que gerava relatórios incompatíveis.",
-    method: "Desenvolvimento de uma rotina no Power Query que lê os relatórios díspares de uma pasta, limpa as colunas desnecessárias, padroniza as datas e junta tudo em uma única base de dados (Modelo Estrela).",
-    result: "O relatório que demorava 2 dias para ser montado 'na mão' passou a ser gerado em 5 minutos apertando o botão 'Atualizar'.",
-    tags: ["Power Query", "ETL", "Consolidação"],
-    chart: "line"
-  },
-  {
-    id: "dev-web-ia",
-    profiles: ["dados", "all"],
-    title: "Aplicações Web & Portfólios com IA",
-    business: "Empresas e profissionais perdem negócios por não terem uma presença digital forte, mas sofrem com o custo e a lentidão do desenvolvimento tradicional.",
-    method: "Criação de Landing Pages de alta conversão e sites institucionais modernos (como este portfólio) usando React e Next.js, potencializados por Inteligência Artificial para codificação rápida, geração de assets e design.",
-    result: "Entrega de páginas com design de ponta e altíssimo desempenho em tempo recorde. Forte apelo visual e otimização para captura de leads e oportunidades.",
-    tags: ["Web Dev", "Inteligência Artificial", "Next.js", "UI/UX"],
-    chart: "scatter"
-  },
-
-  // --- PJ / Consultoria ---
-  {
-    id: "backoffice-adm",
-    profiles: ["pj", "all"],
-    title: "Estruturação de Backoffice Administrativo",
-    business: "Um comércio local cresceu rápido, mas os donos misturavam contas pessoais e da empresa, operando no escuro financeiramente.",
-    method: "Mapeamento dos processos (As-Is / To-Be) e implantação de um setup de controles gerenciais focado exclusivamente no fluxo de dinheiro: separação de contas, rotina de aprovação de pagamentos e classificação correta de despesas (Plano de Contas).",
-    result: "Em poucas semanas, o cliente tinha clareza do quanto a empresa realmente lucrava e parou de descapitalizar o negócio.",
-    tags: ["Consultoria", "Processos", "Backoffice"],
-    chart: "bubble"
-  },
-  {
-    id: "markup-calc",
-    profiles: ["pj", "all"],
-    title: "Ferramenta de Formação de Preço (Mark-up)",
-    business: "O lojista vendia bem, mas fechava o mês no vermelho por não repassar o custo das taxas de maquininha e despesas fixas no preço final.",
-    method: "Desenvolvimento de uma calculadora financeira em planilha inteligente. O lojista insere o custo de compra, a categoria (para estimar perda/quebra) e a ferramenta cospe o preço mínimo de venda para não ter prejuízo.",
-    result: "Aumento imediato da margem de contribuição. O gestor passou a tomar decisões baseadas em dados e não no preço do vizinho.",
-    tags: ["Mark-up", "Precificação", "Finanças"],
+    title: "Conciliação bancária como portão do fechamento",
+    business: "Os sócios pagam contas direto pelo banco sem avisar o financeiro. Qualquer relatório de custo feito antes de conferir o extrato mostrava a empresa gastando menos do que gastava.",
+    method: "Importação do extrato de cada conta, tabela de-para para classificar lançamentos recorrentes e conferência linha a linha contra as contas a pagar. O fechamento só libera os números depois que o mês está conciliado.",
+    result: "Contas a pagar completas antes do fechamento, e um relatório que sinaliza quando ainda existe mês sem conciliação.",
+    tags: ["Conciliação", "Extrato", "PostgreSQL"],
     chart: "steps"
   },
   {
-    id: "automacao-relatorio",
-    profiles: ["pj", "all"],
-    title: "Automatização de Fechamento Semanal",
-    business: "Um gerente perdia metade do sábado compilando e somando manualmente as planilhas de venda e estoque enviadas pelos supervisores.",
-    method: "Criação de um template padronizado de preenchimento para as filiais, atrelado a um macro/Power Query que consolida tudo em um único dashboard gerencial instantaneamente.",
-    result: "Economia de mais de 4 horas semanais do gerente, devolvendo o final de semana para ele com informações mais precisas.",
-    tags: ["Automação", "Processos", "Dashboard"],
-    chart: "wave"
+    id: "conferencia-caixa",
+    profiles: ["clt", "all"],
+    title: "Conferência de caixa e faturamento por PDV",
+    business: "Nas lojas a venda nasce no caixa, e o crédito que cai no banco é a maquininha liquidando uma venda já contada. Somar os dois inflava o faturamento; ignorar um deles apagava parte.",
+    method: "Conferência diária por caixa e turno, com dinheiro, cartão, PIX e fiado separados. Relatório das maquininhas com bruto e líquido. Cruzamento com a relação de produtos vendidos exportada do ERP.",
+    result: "Faturamento bruto e líquido saindo de fontes definidas, sem dupla contagem, e sobras e faltas por operador de caixa.",
+    tags: ["Caixa", "Maquininhas", "ERP"],
+    chart: "bar"
   },
-  // --- DESENVOLVEDORA ---
+
+  // --- Análise de Dados ---
   {
-    id: "portfolio-moderno",
-    profiles: ["dev", "all"],
-    title: "Desenvolvimento de Portfólio Moderno",
-    business: "Necessidade de um portfólio digital altamente interativo, com arquitetura robusta e performance otimizada, refletindo o perfil técnico e analítico.",
-    method: "Aplicação de React e Next.js para renderização eficiente. Uso de Tailwind CSS e Framer Motion para construir interfaces com glassmorphism (vidro fosco) e micro-interações fluidas.",
-    result: "Criação de uma experiência imersiva e responsiva. Código limpo, componentizado e modular facilitando manutenções e escalabilidade futura.",
-    tags: ["Frontend", "React", "Tailwind CSS"],
+    id: "fechamento-analitico",
+    profiles: ["dados", "all"],
+    title: "Fechamento analítico por empresa",
+    business: "O fechamento padrão traz os números. A gestão precisava também de leitura: por que o mês ficou pior, qual cliente concentra a receita, quanto guardar por dia para folha e imposto.",
+    method: "Cálculos sobre as mesmas tabelas do fechamento: margem por produto contra uma referência de mercado, concentração de clientes e fornecedores, provisão diária de folha e tributos e comparação com o mês anterior.",
+    result: "Dois relatórios por empresa: um só com dados e conferências, outro com a análise. A leitura do mês deixou de depender de quem montou a planilha.",
+    tags: ["SQL", "Relatórios", "Margem"],
+    chart: "line"
+  },
+  {
+    id: "cadastro-produtos",
+    profiles: ["dados", "all"],
+    title: "Padronização de cadastro de produtos para o ERP",
+    business: "Cadastros com unidade, categoria e nome inconsistentes geravam erro na hora da venda e impediam qualquer análise por família de produto.",
+    method: "Extração completa da base, padronização no Excel e Power Query (unidade, categoria, nome canônico) e reimportação no ERP. Inclui a migração de um catálogo de vestuário para o Bling.",
+    result: "Base única e limpa. Margem e curva ABC por categoria passaram a ser possíveis.",
+    tags: ["Excel", "Power Query", "Master Data"],
     chart: "scatter"
   },
   {
-    id: "sistema-interno-ui",
-    profiles: ["dev", "all"],
-    title: "Interface para Dashboard Gerencial",
-    business: "A diretoria precisava visualizar os indicadores financeiros e de vendas em uma plataforma online própria, saindo das planilhas.",
-    method: "Construção de uma interface dashboard limpa utilizando React. Consumo de dados via API REST e exibição de dados complexos através de tabelas paginadas e gráficos responsivos.",
-    result: "Sistema intuitivo entregue, permitindo que a gestão tome decisões rapidamente baseada em visualização de dados fluida.",
-    tags: ["Fullstack", "API", "UI/UX"],
+    id: "leads-python",
+    profiles: ["dados", "all"],
+    title: "Coleta de leads B2B com Python",
+    business: "Uma empresa precisava de uma base de prospecção em Goiânia, separada por nicho e com telefone válido, sem comprar lista pronta.",
+    method: "Script em Python consultando OpenStreetMap e Google Places, com uma regra fixa: nenhum telefone é inferido, só entra número cadastrado pelo próprio estabelecimento. Saída em Excel com uma aba por nicho e uma de metodologia.",
+    result: "120 leads verificados na primeira rodada, sem custo de API. Base menor que a meta, mas sem número inventado.",
+    tags: ["Python", "Automação", "Excel"],
+    chart: "funnel"
+  },
+
+  // --- Consultoria ---
+  {
+    id: "mini-erp-vba",
+    profiles: ["pj", "all"],
+    title: "Mini-ERP em Excel/VBA para uma oficina",
+    business: "Uma empresa pequena de bicicletas elétricas controlava vendas, despesas e ordens de serviço em folhas soltas, sem fechamento mensal.",
+    method: "Planilha estruturada com formulários em VBA para vendas, despesas e OS, macros de fechamento e um guia de implantação para o próprio dono montar e manter.",
+    result: "Primeiro fechamento mensal formal da empresa, feito na ferramenta que o dono já usava.",
+    tags: ["Excel", "VBA", "Fechamento"],
     chart: "area"
-  }
+  },
+  {
+    id: "formacao-preco",
+    profiles: ["pj", "all"],
+    title: "Formação de preço para varejo",
+    business: "Lojistas que definem preço olhando o concorrente e não percebem que taxa de maquininha, quebra e custo fixo consomem a margem.",
+    method: "Calculadora de preço mínimo a partir do custo, das taxas por forma de pagamento e da margem desejada, com a diferença entre markup e margem explicada na própria ferramenta.",
+    result: "Preço definido a partir do custo real. Uma versão simplificada está no laboratório desta página.",
+    tags: ["Precificação", "Margem", "Excel"],
+    chart: "bubble"
+  },
+  {
+    id: "contrato-mutuo",
+    profiles: ["pj", "all"],
+    title: "Empréstimos entre empresas do mesmo grupo",
+    business: "Quando a mesma equipe paga contas de oito empresas, uma acaba pagando conta da outra. Sem registro, o resultado de cada uma fica errado e o contador não tem base para o contrato mútuo.",
+    method: "Regras para identificar os caminhos por onde o empréstimo aparece (transferência, conta paga por outra empresa, folha, fiado de funcionário, caixa físico) e um módulo de contrato mútuo que consolida e imprime.",
+    result: "Cada empresa fecha com a despesa de quem deve, não de quem pagou, e o contrato mútuo sai pronto do sistema.",
+    tags: ["Intercompany", "Contrato Mútuo", "Regras de negócio"],
+    chart: "wave"
+  },
+
+  // --- Desenvolvimento ---
+  {
+    id: "zap-commerce",
+    profiles: ["dev", "all"],
+    title: "Zap-Commerce: catálogo de atacado com pedido no WhatsApp",
+    business: "Lojistas de atacado que vendem por WhatsApp perdem pedido no meio da conversa: sem catálogo, sem regra de quantidade mínima, sem endereço de entrega organizado.",
+    method: "Vitrine mobile-first em React e Vite, sacola persistida no dispositivo, checkout com entrega em mãos, excursão ou Correios (CEP via ViaCEP) e mensagem final formatada para o WhatsApp. API em NestJS, Prisma e PostgreSQL, multi-tenant, com painel do lojista e autenticação JWT.",
+    result: "Sistema funcional, publicado como caso da agência e rodando em função serverless no Vercel.",
+    tags: ["React", "NestJS", "Prisma", "PostgreSQL"],
+    chart: "steps"
+  },
+  {
+    id: "sistema-os",
+    profiles: ["dev", "all"],
+    title: "Gestão de ordens de serviço para equipes técnicas",
+    business: "Empresa de serviços técnicos com OS abertas pelo atendimento, orçamentos pelo comercial e execução em campo, sem um lugar único para acompanhar tudo.",
+    method: "Frontend em React e TypeScript com perfis de acesso (administrador, gestor, atendente, vendedor, técnico), OS que gera ordens técnicas, agenda de programação e funil de orçamentos. Backend em NestJS com Prisma.",
+    result: "Fluxo completo da abertura à execução, com área restrita para o técnico ver e executar as próprias ordens.",
+    tags: ["React", "TypeScript", "NestJS", "Prisma"],
+    chart: "gantt"
+  },
+  {
+    id: "portfolio",
+    profiles: ["dev", "all"],
+    title: "Este portfólio",
+    business: "Precisava de uma página que mostrasse os trabalhos por área de interesse sem repetir conteúdo para cada público.",
+    method: "Next.js, Tailwind e Framer Motion. Um seletor de área filtra seções, estudos de caso e ferramentas; os simuladores do laboratório são componentes React independentes. Desenvolvido com apoio de assistentes de IA, com revisão minha de cada tela e texto.",
+    result: "Uma página só, cinco leituras, e uma versão de currículo pronta para impressão.",
+    tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    chart: "line"
+  },
 ];
 
 // --- MINI CHARTS (9 Tipos Únicos) ---
@@ -260,19 +271,18 @@ export function ProjectsSection() {
         <header className="mb-14">
           <div className="flex items-center gap-3 mb-4">
             <span className="section-number">02</span>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-3)]">Projetos de Impacto</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-3)]">Estudos de caso</span>
           </div>
           <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
-            Problemas reais. <span className="text-[var(--text-2)]">Resultados reais.</span>
+            O que eu <span className="text-[var(--accent)]">já fiz.</span>
           </h2>
           <p className="mt-4 text-sm text-[var(--text-2)] max-w-lg leading-relaxed">
-            Abaixo apresento <strong>Estudos de Caso</strong> — cenários simulados baseados em problemas muito comuns no mercado financeiro e administrativo. 
-            Eles demonstram exatamente a minha metodologia e como eu resolvo (ou resolveria) esses gargalos caso chegassem até mim.
+            Trabalhos reais, descritos em três partes: o problema como ele apareceu, o que foi feito e o que mudou. Detalhes que identificam clientes foram omitidos.
           </p>
           
           <div className="mt-6 inline-flex items-center gap-2 bg-[var(--bg-3)] border border-[var(--border)] px-4 py-2 rounded-full shadow-sm">
             <svg className="w-4 h-4 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-2)] font-bold">Estudos de Caso & Metodologia</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-2)] font-bold">Problema · O que foi feito · Resultado</span>
           </div>
         </header>
 
@@ -350,7 +360,7 @@ export function ProjectsSection() {
               <div className="p-6 sm:p-8">
                 {/* Header do modal */}
                 <div className="flex justify-between items-start mb-6">
-                  <span className="font-mono text-[10px] text-[var(--accent)] uppercase tracking-widest">Estudo de Caso</span>
+                  <span className="font-mono text-[10px] text-[var(--accent)] uppercase tracking-widest">Estudo de caso</span>
                   <button onClick={() => setActiveProject(null)} className="text-[var(--text-3)] hover:text-[var(--text-1)]">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                       <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
@@ -368,11 +378,11 @@ export function ProjectsSection() {
                     <p className="text-sm text-[var(--text-2)] leading-relaxed border-l-2 border-[#ef4444]/30 pl-3">{activeProject.business}</p>
                   </div>
                   <div>
-                    <span className="font-mono text-[9px] text-amber-400 uppercase tracking-widest block mb-2">A Metodologia</span>
+                    <span className="font-mono text-[9px] text-amber-400 uppercase tracking-widest block mb-2">O que foi feito</span>
                     <p className="text-sm text-[var(--text-2)] leading-relaxed border-l-2 border-amber-400/30 pl-3">{activeProject.method}</p>
                   </div>
                   <div>
-                    <span className="font-mono text-[9px] text-[var(--accent)] uppercase tracking-widest block mb-2">O Resultado</span>
+                    <span className="font-mono text-[9px] text-[var(--accent)] uppercase tracking-widest block mb-2">Resultado</span>
                     <p className="text-sm text-[var(--text-1)] leading-relaxed font-medium border-l-2 border-[var(--accent)]/50 pl-3">{activeProject.result}</p>
                   </div>
                 </div>

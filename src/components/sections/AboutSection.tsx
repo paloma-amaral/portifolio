@@ -5,48 +5,48 @@ import { useProfile } from "@/lib/ProfileContext";
 
 const ABOUT_CONTENT = {
   all: {
-    headline: "A ponte entre o código e a operação.",
-    description: "Conecto a rotina de negócios (financeiro, fiscal e estoque) à tecnologia. Eu mapeio onde o processo trava e executo a solução na prática, seja estruturando ERPs ou desenvolvendo painéis de dados.",
+    headline: "Entre o financeiro e o código.",
+    description: "Trabalho há três anos com rotina financeira de varejo e serviços: contas a pagar, conciliação, caixa, folha e fechamento. Em paralelo, curso Engenharia de Software e construo os sistemas que uso nesse trabalho. O principal deles gerencia o financeiro de um grupo com oito CNPJs.",
     features: [
-      { number: "01", title: "Dados e Decisão", desc: "Dados confiáveis não nascem de planilhas soltas; eles vêm de uma operação estruturada. Uso a tecnologia para automatizar rotinas manuais e transformar números em dados claros." },
-      { number: "02", title: "O Método (Tech + Adm)", desc: "Minha trajetória une a operação real das empresas à análise de sistemas. Atuo analisando a rotina do negócio para aplicar uma solução técnica." },
-      { number: "03", title: "Automação e ERP", desc: "Estruturo sistemas e fluxos que reduzem erros humanos e eliminam gargalos burocráticos no backoffice financeiro." }
+      { number: "01", title: "Rotina financeira", desc: "Contas a pagar e receber, conciliação bancária, conferência de caixa, NF-e, folha e fechamento mensal. É o que faço todos os dias, para mais de uma empresa ao mesmo tempo." },
+      { number: "02", title: "Dados e relatórios", desc: "Organizo os números que saem do ERP, das maquininhas e do extrato em bases que batem entre si, e monto os relatórios de fechamento a partir delas (Excel, SQL, Python)." },
+      { number: "03", title: "Sistemas e IA", desc: "Desenvolvo em Next.js, React e PostgreSQL, com assistentes de IA como apoio no código. O que a IA não faz por mim é o que mais importa: saber qual é a regra de negócio, se o número está certo e qual dado não pode sair da empresa." }
     ]
   },
   clt: {
-    headline: "Precisão na rotina de Backoffice.",
-    description: "Garanto que o fluxo de caixa, o faturamento e a conciliação bancária rodem sem erros. Estruturo processos no ERP para que a operação não dependa de controles manuais vulneráveis.",
+    headline: "Backoffice financeiro, todos os dias.",
+    description: "Cuido do ciclo financeiro completo de várias empresas ao mesmo tempo: o que entra, o que sai e o que precisa bater. Trabalho com ERP, extrato bancário, relatório de maquininhas e caixa físico, e conheço as diferenças entre cada um.",
     features: [
-      { number: "01", title: "Contas e Fechamento", desc: "Auditoria rigorosa de pagamentos, recebimentos e conciliações bancárias para que a diretoria tenha segurança no caixa diário." },
-      { number: "02", title: "Implantação de Sistemas", desc: "Mapeamento dos processos e transição segura de plataformas (como higienização de cadastros e parametrização financeira)." },
-      { number: "03", title: "Rotinas Fiscais", desc: "Garantia de conformidade na emissão de Notas Fiscais (NF-e, NFS-e) e apuração básica, blindando a empresa de passivos." }
+      { number: "01", title: "Contas a pagar e conciliação", desc: "Lançamento, aprovação e baixa de contas. Conciliação do extrato linha a linha, incluindo pagamentos feitos direto pelos sócios que não passaram pelo financeiro." },
+      { number: "02", title: "Caixa e faturamento", desc: "Conferência diária de caixa por PDV e turno, relatório de maquininhas com bruto e líquido, e a separação entre o que foi vendido e o que foi recebido." },
+      { number: "03", title: "Fechamento mensal", desc: "Ordem de fechamento (conciliação, caixa, cartões, produtos, resultado), relatório gerencial por empresa e apuração dos empréstimos entre empresas do grupo." }
     ]
   },
   dados: {
-    headline: "Dados que guiam decisões.",
-    description: "Transformo bases de dados confusas e planilhas desconexas em painéis executivos (BI) e scripts automatizados que economizam dezenas de horas do time por semana.",
+    headline: "Cada número tem uma fonte.",
+    description: "Num fechamento, cada valor vem de um lugar diferente: ERP, caixa, maquininha, extrato. Meu trabalho é fazer essas fontes conversarem e mostrar o resultado de um jeito que a gestão consegue ler sem precisar de quem montou a planilha.",
     features: [
-      { number: "01", title: "Python & Automação", desc: "Desenvolvimento de scripts para extrair dados brutos do ERP, limpar inconsistências (Saneamento) e formatar informações." },
-      { number: "02", title: "Modelagem SQL", desc: "Criação de queries estruturadas (PostgreSQL) para cruzar vendas, estoque e despesas, garantindo a precisão (Single Source of Truth)." },
-      { number: "03", title: "Dashboards e BI", desc: "Construção de relatórios visuais dinâmicos para a alta gestão, substituindo relatórios estáticos por indicadores em tempo real." }
+      { number: "01", title: "Tratamento de dados", desc: "Extração de relatórios do ERP e das adquirentes, limpeza e padronização no Excel, Power Query e Python (Pandas)." },
+      { number: "02", title: "SQL e modelagem", desc: "Modelagem de tabelas no PostgreSQL (Supabase) para contas, vendas, caixa e folha, com as consultas que alimentam os relatórios do sistema." },
+      { number: "03", title: "Relatórios", desc: "Fechamento mensal, fechamento analítico, receita em 12 meses, margem por produto e curva ABC. Power BI para painéis, ExcelJS para exportação." }
     ]
   },
   pj: {
-    headline: "Soluções sob medida para seu negócio.",
-    description: "Atuo de forma consultiva para identificar onde sua empresa perde dinheiro por falta de processos. Implemento automações financeiras que liberam sua equipe para focar no crescimento.",
+    headline: "Organização financeira para quem está estruturando.",
+    description: "Atendo empresas pequenas que ainda controlam o financeiro na planilha ou no caderno. Começo mapeando a rotina, depois monto os controles e, quando faz sentido, uma ferramenta simples para sustentar o processo.",
     features: [
-      { number: "01", title: "Diagnóstico Operacional", desc: "Mapeamento do fluxo do seu negócio para identificar gargalos e tarefas repetitivas em vendas, compras ou no financeiro." },
-      { number: "02", title: "Redução de Fricção", desc: "Integração de ferramentas e criação de automações sistêmicas que eliminam a necessidade de controles paralelos e duplos inputs." },
-      { number: "03", title: "Precificação e Custos", desc: "Estruturação de DRE gerencial, mark-up e margens para garantir que a sua operação deixe o lucro projetado no final do mês." }
+      { number: "01", title: "Diagnóstico da rotina", desc: "Levantamento de como o dinheiro entra e sai hoje: contas, prazos, formas de pagamento e o que está misturado com a conta pessoal." },
+      { number: "02", title: "Controles e precificação", desc: "Plano de contas, fluxo de caixa e formação de preço com custo, taxas e margem. Ferramenta em Excel/VBA ou sistema web, conforme o tamanho da operação." },
+      { number: "03", title: "Rotina de fechamento", desc: "Um roteiro mensal que a empresa consegue seguir sem depender de mim: o que conferir, em que ordem e como ler o resultado." }
     ]
   },
   dev: {
-    headline: "Código moderno, interfaces fluidas.",
-    description: "Desenvolvo aplicações web escaláveis. Transformo layouts e ideias em interfaces responsivas, rápidas e acessíveis, focadas na melhor experiência do usuário.",
+    headline: "Sistemas construídos a partir da rotina.",
+    description: "Desenvolvo aplicações web em Next.js, React, NestJS e PostgreSQL. Meu maior projeto é o sistema financeiro que uso no dia a dia para gerir um grupo de empresas. Os outros vão de catálogo de atacado com pedido no WhatsApp a gestão de ordens de serviço.",
     features: [
-      { number: "01", title: "Frontend & UI", desc: "Criação de componentes reutilizáveis em React e Next.js, estilizados com Tailwind CSS e animações avançadas." },
-      { number: "02", title: "Integração & Dados", desc: "Consumo de APIs REST, manipulação de estado complexo e estruturação eficiente de dados vindos do backend." },
-      { number: "03", title: "Boas Práticas", desc: "Aplicação de código limpo, arquitetura modular, versionamento com Git/GitHub e metodologias ágeis." }
+      { number: "01", title: "Frontend", desc: "React e Next.js (App Router, Server Components), Tailwind e Framer Motion. Interfaces para quem lança dado o dia inteiro: teclado, tabelas e conferência rápida." },
+      { number: "02", title: "Backend e dados", desc: "NestJS, Prisma e Supabase (RLS, storage, pg_cron). Autenticação com JWT, jobs agendados, exportação para Excel, backup e log de auditoria." },
+      { number: "03", title: "Trabalho com IA", desc: "Uso assistentes de IA no dia a dia de desenvolvimento e sei onde eles erram: regra de negócio, cálculo financeiro e dado sensível. Esses três eu especifico, confiro e testo antes de qualquer tela ir para a equipe." }
     ]
   }
 };

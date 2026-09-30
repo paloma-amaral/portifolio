@@ -6,24 +6,24 @@ import { useState } from "react";
 const SERVICES = [
   { 
     id: "auditoria", 
-    title: "Auditoria de Margem", 
+    title: "Revisão de margem", 
     time: "Único",
-    pain: "Você fatura alto, mas a conta bancária não cresce. Onde está vazando dinheiro?",
-    solution: "Análise de cadastro. Correção de mark-up para proteger a margem de lucro real da sua operação."
+    pain: "A empresa vende bem, mas o saldo não acompanha. Normalmente o preço foi formado sem contar taxa de cartão, quebra e custo fixo.",
+    solution: "Revisão do cadastro de produtos e do preço por categoria, com a margem real calculada sobre a venda, não sobre o custo."
   },
   { 
     id: "automacao", 
-    title: "Automação Operacional", 
+    title: "Automação de rotina", 
     time: "Sob Demanda",
-    pain: "Seus funcionários perdem o dia inteiro copiando e colando dados no Excel.",
-    solution: "Planilhas com fórmulas avançadas e automações em Python que rodam rotinas em segundos."
+    pain: "Parte da semana da equipe vai para copiar dados entre relatórios e planilhas.",
+    solution: "Planilhas com Power Query ou scripts em Python que leem os relatórios e montam a consolidação sozinhos."
   },
   { 
     id: "setup", 
-    title: "Estruturação Financeira", 
+    title: "Controles financeiros", 
     time: "Único",
-    pain: "Descontrole total de Contas a Pagar. Pagamento de juros e multas por esquecimento.",
-    solution: "Implementação de um fluxo de caixa cego, com processo claro de conciliação bancária diária."
+    pain: "Contas a pagar sem controle de vencimento: juros e multa por esquecimento, e nenhuma visão do que vence na semana.",
+    solution: "Rotina de lançamento na chegada, agenda de vencimentos e conciliação do extrato, em planilha ou sistema conforme o tamanho da empresa."
   }
 ];
 
@@ -44,39 +44,39 @@ export function PJWidget() {
       <div className="lg:w-[46%] flex flex-col gap-4 p-5 lg:p-6 border-b lg:border-b-0 lg:border-r border-[var(--border)] overflow-y-auto bg-[var(--bg)]">
         <div>
           <span className="font-mono text-[9px] text-[var(--accent)] uppercase tracking-[0.18em] block mb-2">O que é</span>
-          <h3 className="font-display font-semibold text-base mb-1">O Custo da Desorganização</h3>
+          <h3 className="font-display font-semibold text-base mb-1">Horas manuais</h3>
           <p className="text-xs text-[var(--text-2)] leading-relaxed">
-            Muitas empresas focam apenas em vender mais, esquecendo que processos ruins custam mais caro que a própria mercadoria.
+            Uma conta simples: quantas horas por semana a equipe gasta em tarefa manual que uma planilha bem montada ou um script faria.
           </p>
         </div>
 
         <div className="p-3 rounded-lg bg-[var(--bg-3)] border border-[var(--border)]">
           <div className="flex items-center gap-2 mb-1.5">
             <span className="w-2 h-2 rounded-full bg-gray-400" />
-            <span className="font-mono text-[10px] text-gray-400 uppercase tracking-widest font-bold">Tempo Perdido (Excel)</span>
+            <span className="font-mono text-[10px] text-gray-400 uppercase tracking-widest font-bold">Tarefa manual</span>
           </div>
           <p className="text-xs text-[var(--text-2)] leading-relaxed mb-2">
-            Quando funcionários qualificados passam dias copiando dados entre planilhas, a empresa perde dinheiro duas vezes: pagando salário para trabalho de robô e deixando de gerar inteligência.
+            Copiar relatório do ERP para o Excel, somar planilha de filial, conferir boleto um a um. É trabalho necessário, mas não precisa ser feito à mão.
           </p>
         </div>
 
         <div className="p-3 rounded-lg bg-[var(--bg-3)] border border-[var(--border)]">
           <div className="flex items-center gap-2 mb-1.5">
             <span className="w-2 h-2 rounded-full bg-[var(--accent)]" />
-            <span className="font-mono text-[10px] text-[var(--accent)] uppercase tracking-widest font-bold">Backoffice Lucrativo</span>
+            <span className="font-mono text-[10px] text-[var(--accent)] uppercase tracking-widest font-bold">Rotina automatizada</span>
           </div>
           <p className="text-xs text-[var(--text-2)] leading-relaxed mb-2">
-            Automações financeiras garantem que 100% das notas sejam cobradas, 0% de juros sejam pagos por atraso e a conciliação bata todos os dias.
+            A consolidação passa a ser um botão de atualizar, os vencimentos ficam em uma agenda e a conferência do extrato vira rotina diária de minutos.
           </p>
           <p className="text-[10px] text-[var(--text-3)] mt-1.5 leading-relaxed">
-            ✓ O backoffice deixa de ser um "centro de custo" e passa a proteger o lucro.
+            O tempo que sobra costuma ir para o que só uma pessoa faz: negociar prazo, cobrar cliente, olhar a margem.
           </p>
         </div>
 
         <div className="p-3 rounded-lg border border-[var(--border-2)] bg-[var(--accent)]/5">
           <span className="font-mono text-[9px] text-[var(--accent)] uppercase tracking-widest block mb-1">Por que importa?</span>
           <p className="text-[10px] text-[var(--text-2)] leading-relaxed">
-            Se você poupa 20 horas por semana da sua equipe com um sistema novo, você ganhou quase 1000 horas no ano para focar em crescimento real.
+            20 horas por semana são cerca de 80 horas por mês, meio salário de uma pessoa administrativa. A automação raramente zera isso, mas costuma cortar pela metade.
           </p>
         </div>
       </div>
@@ -89,7 +89,7 @@ export function PJWidget() {
         
         <div>
           <span className="font-mono text-[9px] text-[var(--accent)] uppercase tracking-[0.18em] block mb-1">Simule agora</span>
-          <p className="text-xs text-gray-400">Descubra o impacto de uma consultoria direcionada.</p>
+          <p className="text-xs text-gray-400">Informe as horas semanais de tarefa manual e escolha uma frente.</p>
         </div>
 
         {/* Input de Simulação */}
@@ -136,14 +136,14 @@ export function PJWidget() {
                 className="flex flex-col gap-3 h-full"
               >
                 <div>
-                  <span className="text-[9px] uppercase tracking-widest text-[#ef4444] mb-1 block font-bold">O Problema Real</span>
+                  <span className="text-[9px] uppercase tracking-widest text-[#ef4444] mb-1 block font-bold">Situação comum</span>
                   <p className="text-xs text-[var(--text-2)] leading-relaxed border-l border-[#ef4444]/30 pl-2">
                     {activeService.pain}
                   </p>
                 </div>
                 
                 <div className="mt-auto">
-                  <span className="text-[9px] uppercase tracking-widest text-[var(--accent)] mb-1 block font-bold">A Entrega (Valor)</span>
+                  <span className="text-[9px] uppercase tracking-widest text-[var(--accent)] mb-1 block font-bold">O que é feito</span>
                   <p className="text-xs text-[var(--text-1)] leading-relaxed border-l border-[var(--accent)]/30 pl-2">
                     {activeService.solution}
                   </p>
@@ -151,17 +151,17 @@ export function PJWidget() {
                   {/* Info dinâmica baseada no input */}
                   {activeId === 'automacao' && (
                     <div className="mt-3 text-[10px] bg-[var(--accent)]/10 text-[var(--accent)] p-2 rounded border border-[var(--accent)]/20">
-                      Sua equipe perde <strong>{diasPerdidos} dias úteis por mês</strong> no Excel. Automação reduz isso a quase zero.
+                      {horasSemanais}h por semana equivalem a <strong>{diasPerdidos} dias úteis por mês</strong> em tarefa manual.
                     </div>
                   )}
                   {activeId === 'auditoria' && (
                     <div className="mt-3 text-[10px] bg-[var(--accent)]/10 text-[var(--accent)] p-2 rounded border border-[var(--accent)]/20">
-                      Se você vende {horasSemanais * 100} produtos/mês com 10% a menos de margem, o prejuízo anual é gigantesco.
+                      Em {horasSemanais * 100} vendas por mês, 10% de margem a menos por erro de preço é uma diferença que aparece no fechamento, não no caixa do dia.
                     </div>
                   )}
                   {activeId === 'setup' && (
                     <div className="mt-3 text-[10px] bg-[var(--accent)]/10 text-[var(--accent)] p-2 rounded border border-[var(--accent)]/20">
-                      Pagando apenas {horasSemanais} boletos com multa por mês, o setup financeiro se paga sozinho.
+                      {horasSemanais} boletos pagos com juros por mês já costumam custar mais do que a rotina de controle que evitaria isso.
                     </div>
                   )}
                 </div>

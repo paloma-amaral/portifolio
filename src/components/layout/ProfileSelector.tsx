@@ -4,11 +4,11 @@ import { useProfile, ProfileType } from "@/lib/ProfileContext";
 import { motion } from "framer-motion";
 
 const PROFILES: { id: ProfileType; label: string; emoji: string }[] = [
-  { id: "all",   label: "Visão Geral",      emoji: "◈" },
-  { id: "clt",   label: "Analista CLT",     emoji: "◇" },
-  { id: "dados", label: "Dados & BI",       emoji: "◉" },
-  { id: "pj",    label: "Consultoria PJ",   emoji: "◎" },
-  { id: "dev",   label: "Desenvolvedora",   emoji: "▣" },
+  { id: "all",   label: "Panorama",                emoji: "◈" },
+  { id: "clt",   label: "Financeiro & Operações",  emoji: "◇" },
+  { id: "dados", label: "Análise de Dados",        emoji: "◉" },
+  { id: "pj",    label: "Consultoria",             emoji: "◎" },
+  { id: "dev",   label: "Desenvolvimento",         emoji: "▣" },
 ];
 
 export function ProfileSelector() {
@@ -17,7 +17,7 @@ export function ProfileSelector() {
   return (
     <div className="w-full mb-8">
       <p className="font-mono text-[9px] text-[var(--text-3)] mb-3 uppercase tracking-[0.2em]">
-        Selecione o perfil de interesse
+        Selecione a área de interesse
       </p>
       
       <div className="flex flex-nowrap gap-2 overflow-x-auto pb-1 scrollbar-none" style={{ scrollbarWidth: "none" }}>

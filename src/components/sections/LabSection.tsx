@@ -173,10 +173,10 @@ function MarginSimulator() {
 
 const TABS = [
   { id: "margem",      label: "Markup & Margem",      profiles: ["all", "pj", "clt"] },
-  { id: "gargalos",    label: "Mapa de Gargalos",      profiles: ["all", "clt"] },
-  { id: "dados",       label: "Tradutor de Dados",     profiles: ["all", "dados"] },
-  { id: "consultoria", label: "ROI de Consultoria",    profiles: ["all", "pj"] },
-  { id: "api-sim",     label: "Simulador de Estado",   profiles: ["all", "dev"] },
+  { id: "gargalos",    label: "Custo do retrabalho",    profiles: ["all", "clt"] },
+  { id: "dados",       label: "Tratamento de dados",    profiles: ["all", "dados"] },
+  { id: "consultoria", label: "Horas manuais",          profiles: ["all", "pj"] },
+  { id: "api-sim",     label: "Estados de requisição",   profiles: ["all", "dev"] },
 ];
 
 export function LabSection() {
@@ -192,19 +192,19 @@ export function LabSection() {
 
         <header className="mb-10">
           <div className="flex items-center gap-3 mb-3">
-            <span className="section-number">04</span>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-3)]">Laboratório Interativo</span>
+            <span className="section-number text-white/50 border-white/20">04</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-white/50">Simuladores</span>
           </div>
-          <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight">
-            Simule. <span className="text-[var(--text-2)]">Explore. Entenda.</span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight text-white">
+            Ferramentas <span className="text-white/50">interativas.</span>
           </h2>
-          <p className="mt-3 text-sm text-[var(--text-2)] max-w-lg leading-relaxed">
-            Ferramentas que demonstram como a análise financeira funciona na prática — com seus próprios números.
+          <p className="mt-3 text-sm text-white/60 max-w-lg leading-relaxed">
+            Pequenos simuladores que uso para explicar conceitos do dia a dia. Altere os valores e veja o cálculo.
           </p>
         </header>
 
         {/* Tabs */}
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-2 mb-8">
           {visibleTabs.map(tab => (
             <button
               key={tab.id}
@@ -214,10 +214,10 @@ export function LabSection() {
                   window.navigator.vibrate(50);
                 }
               }}
-              className={`tap-transparent px-4 py-2 rounded-full font-mono text-[10px] uppercase tracking-widest border transition-all ${
+              className={`tap-transparent px-5 py-2.5 rounded-full font-mono text-[10px] uppercase tracking-widest border transition-all backdrop-blur-sm ${
                 currentTab === tab.id
-                  ? "bg-[var(--accent)] text-[var(--bg)] border-[var(--accent)]"
-                  : "bg-transparent text-[var(--text-3)] border-[var(--border)] hover:border-[var(--text-3)]"
+                  ? "bg-white text-black border-white shadow-[0_0_15px_rgba(255,255,255,0.3)] font-bold"
+                  : "bg-white/5 text-white/60 border-white/10 hover:border-white/30 hover:bg-white/10"
               }`}
             >
               {tab.label}
@@ -226,8 +226,8 @@ export function LabSection() {
         </div>
 
         {/* Widget */}
-        <SpotlightWrapper className="w-full rounded-[var(--radius-md)]">
-          <div className="card overflow-hidden min-h-[480px] md:max-h-[620px]">
+        <div className="w-full rounded-[2rem] p-1 bg-gradient-to-b from-white/10 to-transparent">
+          <div className="card overflow-hidden min-h-[480px] md:max-h-[620px] bg-[#121214] border-0 rounded-[1.8rem] shadow-2xl">
             <div className="h-full flex flex-col" style={{ minHeight: "inherit" }}>
               <AnimatePresence mode="wait">
                 <motion.div
@@ -247,7 +247,7 @@ export function LabSection() {
               </AnimatePresence>
             </div>
           </div>
-        </SpotlightWrapper>
+        </div>
 
       </div>
     </section>

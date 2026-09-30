@@ -5,19 +5,12 @@ import { useProfile } from "@/lib/ProfileContext";
 import { ProfileSelector } from "../layout/ProfileSelector";
 
 const PROFILE_HEADLINES: Record<string, { title: string; sub: string }> = {
-  all:   { title: "Do extrato ao insight.", sub: "Operações, dados e tecnologia unificados em uma profissional." },
-  clt:   { title: "Processos que não falham.", sub: "Estruturo backoffice financeiro e ERPs para operar com precisão." },
-  dados: { title: "Dados que geram decisão.", sub: "Transformo planilhas em painéis executivos que orientam o negócio." },
-  pj:    { title: "Sua operação, sem caos.", sub: "Consultoria financeira e automação para negócios que querem crescer." },
-  dev:   { title: "Código limpo, entrega real.", sub: "Desenvolvimento Frontend e Fullstack moderno (Next.js, React, Tailwind)." },
+  all:   { title: "Financeiro, operação e código.", sub: "Cuido da rotina financeira de um grupo de empresas e construo os sistemas que essa rotina usa." },
+  clt:   { title: "Rotina financeira em dia.", sub: "Contas a pagar, conciliação bancária, conferência de caixa e fechamento mensal, hoje para oito CNPJs." },
+  dados: { title: "Números que batem entre as fontes.", sub: "Organizo dados de ERP, caixa, maquininha e extrato em bases que conferem e relatórios que a gestão consegue ler." },
+  pj:    { title: "Financeiro em ordem para empresas pequenas.", sub: "Controles, precificação e rotina de fechamento para negócios que ainda operam na planilha." },
+  dev:   { title: "Sistemas feitos a partir da rotina.", sub: "Aplicações web em Next.js, React, NestJS e PostgreSQL, desenhadas por quem também usa as telas todo dia." },
 };
-
-const COUNTERS = [
-  { value: "2+", label: "Anos de Operação Financeira" },
-  { value: "100%",  label: "Conciliação Bancária e Fechamento" },
-  { value: "4h", label: "Economizadas por Semana (Automação)" },
-  { value: "3",  label: "Formações Técnicas" },
-];
 
 /* ─── Variantes do container (orquestra os filhos) ─── */
 const containerVariants = {
@@ -101,7 +94,7 @@ export function HeroSection() {
           <div className="max-w-3xl relative z-10 w-full">
 
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--accent)] mb-4">
-            Paloma Amaral · Analista Financeiro &amp; Operações
+            Paloma Amaral · Financeiro, Operações e Sistemas
           </p>
 
           {/* Título — animação stagger por letra, com perspectiva 3D sutil */}
@@ -153,11 +146,20 @@ export function HeroSection() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="text-base text-[var(--text-2)] leading-relaxed max-w-md mb-8"
+              className="text-base text-[var(--text-2)] leading-relaxed max-w-md mb-6"
             >
               {sub}
             </motion.p>
           </AnimatePresence>
+
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+            className="text-[11px] font-mono uppercase tracking-widest text-[var(--text-3)] mb-8 max-w-md border-l-2 border-[var(--accent)] pl-4"
+          >
+            Consultoria financeira para 4 empresas · Sistema financeiro próprio, em uso e em evolução · Engenharia de Software (UNAERP)
+          </motion.p>
 
           <div className="flex flex-col sm:flex-row gap-3">
             <a href="/curriculo" className="btn-primary">Ver Currículo</a>
@@ -217,23 +219,6 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-
-      {/* Counters */}
-        <div className="border-t border-[var(--border)] pt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
-          {COUNTERS.map((c, i) => (
-            <motion.div
-              key={c.label}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 + i * 0.1, duration: 0.4 }}
-              className="flex flex-col gap-1"
-            >
-              <span className="font-display font-bold text-2xl sm:text-3xl text-[var(--accent)]">{c.value}</span>
-              <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--text-3)] leading-tight">{c.label}</span>
-            </motion.div>
-          ))}
-        </div>
-
       </div>
 
       {/* Indicador de scroll */}

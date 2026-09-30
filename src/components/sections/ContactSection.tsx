@@ -63,49 +63,38 @@ export function ContactSection() {
       <div className="section-wrap relative z-10">
         
         <div className="max-w-2xl mx-auto text-center">
-          <span className="section-number block mb-6">06 / Contato</span>
+          <span className="section-number block mb-6">07 / Contato</span>
           
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-            Uma empresa mais organizada <br />
-            <span className="text-[var(--accent)]">começa com uma conversa.</span>
+            Se fizer sentido para a sua empresa, <br />
+            <span className="text-[var(--accent)]">vamos conversar.</span>
           </h2>
           
           <p className="text-[var(--text-2)] mb-12 text-sm sm:text-base leading-relaxed font-mono">
-            Disponível para oportunidades CLT, Projetos Pontuais ou BPO Financeiro.
+            Disponível para vaga CLT, projetos pontuais ou BPO financeiro.
           </p>
 
 
 
-          {/* Contatos */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            {CONTACTS.map((contact, i) => (
-              <motion.a
-                key={contact.id}
-                href={contact.href}
-                target={contact.id !== "email" ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -3 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-3 px-5 py-4 rounded-xl border border-[var(--border)] bg-[var(--bg-2)] hover:border-[var(--accent)] hover:bg-[var(--bg-3)] transition-all group"
-              >
-                <span className="text-[var(--text-3)] group-hover:text-[var(--accent)] transition-colors">
-                  {contact.icon}
-                </span>
-                <div className="text-left">
-                  <div className="font-mono text-[9px] text-[var(--text-3)] uppercase tracking-widest">{contact.label}</div>
-                  <div className="text-xs text-[var(--text-1)] font-medium">{contact.value}</div>
-                </div>
-              </motion.a>
-            ))}
+          {/* Call To Action Único e Chamativo */}
+          <div className="flex justify-center mt-8">
+            <a
+              href="https://wa.me/5516988725256"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-5 rounded-full bg-[var(--text-1)] text-[var(--bg)] font-sans font-bold text-base hover-gentle-pulse shadow-lg transition-colors hover:bg-[var(--accent)] hover:text-white"
+            >
+              Falar no WhatsApp
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </a>
           </div>
 
           {/* Localização */}
           <p className="mt-10 font-mono text-[10px] text-[var(--text-3)] uppercase tracking-widest">
-            Pitangueiras, SP — Interior Paulista · Disponível para remoto
+            Pitangueiras, SP · Remoto ou híbrido
           </p>
         </div>
 

@@ -1,288 +1,136 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Briefcase, Database, MonitorSmartphone, GitBranch, ShieldCheck, LineChart, Code2, Server, LayoutDashboard, Calculator, Settings, CheckCircle2, Bot } from "lucide-react";
-import { useProfile } from "@/lib/ProfileContext";
+import { motion } from "framer-motion";
+import { CheckCircle2, Loader2, MapPin } from "lucide-react";
+import { SpotlightWrapper } from "@/components/ui/SpotlightWrapper";
 
-// Define all possible columns and group them by profile
-const SKILL_PROFILES = {
-  all: [
-    {
-      id: "financeiro", title: "Financeiro & Fiscal", icon: <Briefcase className="w-5 h-5" />,
-      skills: [
-        { name: "Contas a Pagar/Receber", level: "Sólido" },
-        { name: "Conciliação Bancária", level: "Sólido" },
-        { name: "Fluxo de Caixa", level: "Sólido" },
-        { name: "Mark-up & Precificação", level: "Proficiente" },
-      ]
-    },
-    {
-      id: "dados", title: "Dados & Inteligência", icon: <Database className="w-5 h-5" />,
-      skills: [
-        { name: "Power BI", level: "Aprendendo" },
-        { name: "SQL (PostgreSQL)", level: "Sólido" },
-        { name: "Python (Pandas)", level: "Sólido" },
-        { name: "Excel", level: "Sólido" },
-      ]
-    },
-    {
-      id: "sistemas", title: "Sistemas & Tech", icon: <MonitorSmartphone className="w-5 h-5" />,
-      skills: [
-        { name: "Lógica de Programação", level: "Proficiente" },
-        { name: "HTML & CSS", level: "Proficiente" },
-        { name: "Git & GitHub", level: "Proficiente" },
-        { name: "Next.js / React", level: "Aprendendo" },
-      ]
-    },
-    {
-      id: "gestao", title: "Gestão & Processos", icon: <GitBranch className="w-5 h-5" />,
-      skills: [
-        { name: "Mapeamento de Processos", level: "Proficiente" },
-        { name: "Backoffice Operacional", level: "Sólido" },
-        { name: "Scrum / Agile", level: "Aprendendo" },
-      ]
-    }
-  ],
-  clt: [
-    {
-      id: "operacao", title: "Rotina de Backoffice", icon: <CheckCircle2 className="w-5 h-5" />,
-      skills: [
-        { name: "Conciliação Bancária", level: "Sólido" },
-        { name: "Contas a Pagar e Receber", level: "Sólido" },
-        { name: "Fechamento de Caixa", level: "Sólido" },
-        { name: "Controle de Inadimplência", level: "Proficiente" },
-      ]
-    },
-    {
-      id: "erps", title: "Sistemas & ERP", icon: <Settings className="w-5 h-5" />,
-      skills: [
-        { name: "Parametrização de ERP", level: "Sólido" },
-        { name: "Migração de Cadastros", level: "Sólido" },
-        { name: "Implantação Financeira", level: "Proficiente" },
-        { name: "Saneamento de Banco", level: "Sólido" },
-      ]
-    },
-    {
-      id: "fiscal", title: "Fiscal & Faturamento", icon: <Calculator className="w-5 h-5" />,
-      skills: [
-        { name: "Emissão NF-e / NFS-e", level: "Sólido" },
-        { name: "Retenções na Fonte", level: "Sólido" },
-        { name: "Regras de Tributação", level: "Aprendendo" },
-      ]
-    },
-    {
-      id: "processos", title: "Gestão & Mapeamento", icon: <GitBranch className="w-5 h-5" />,
-      skills: [
-        { name: "Mapeamento (As-Is/To-Be)", level: "Proficiente" },
-        { name: "Treinamento de Equipe", level: "Sólido" },
-        { name: "Auditoria de Lançamentos", level: "Sólido" },
-      ]
-    }
-  ],
-  dados: [
-    {
-      id: "linguagens", title: "Linguagens & Scripts", icon: <Code2 className="w-5 h-5" />,
-      skills: [
-        { name: "Python", level: "Sólido" },
-        { name: "Pandas & NumPy", level: "Sólido" },
-        { name: "Web Scraping Bás.", level: "Aprendendo" },
-      ]
-    },
-    {
-      id: "banco", title: "Bancos de Dados", icon: <Server className="w-5 h-5" />,
-      skills: [
-        { name: "PostgreSQL", level: "Sólido" },
-        { name: "SQL (Queries Complexas)", level: "Sólido" },
-        { name: "Modelagem de Dados", level: "Aprendendo" },
-      ]
-    },
-    {
-      id: "visualizacao", title: "Visualização (BI)", icon: <LayoutDashboard className="w-5 h-5" />,
-      skills: [
-        { name: "Power BI", level: "Aprendendo" },
-        { name: "Excel Avançado / VBA", level: "Sólido" },
-        { name: "Dashboards Executivos", level: "Sólido" },
-      ]
-    },
-    {
-      id: "analitica", title: "Análise de Negócios", icon: <LineChart className="w-5 h-5" />,
-      skills: [
-        { name: "Análise de Faturamento", level: "Sólido" },
-        { name: "Curva ABC", level: "Sólido" },
-        { name: "KPIs Financeiros", level: "Sólido" },
-      ]
-    }
-  ],
-  pj: [
-    {
-      id: "diagnostico", title: "Diagnóstico Operacional", icon: <Briefcase className="w-5 h-5" />,
-      skills: [
-        { name: "Auditoria Financeira", level: "Sólido" },
-        { name: "Revisão de DRE", level: "Sólido" },
-        { name: "Identificação de Gargalos", level: "Proficiente" },
-      ]
-    },
-    {
-      id: "automacao", title: "Automação Sistêmica", icon: <Bot className="w-5 h-5" />,
-      skills: [
-        { name: "Integração via API", level: "Aprendendo" },
-        { name: "Scripts Python (Tarefas)", level: "Sólido" },
-        { name: "Planilhas Inteligentes", level: "Sólido" },
-      ]
-    },
-    {
-      id: "gestao", title: "Consultoria e Gestão", icon: <GitBranch className="w-5 h-5" />,
-      skills: [
-        { name: "Otimização de Tempo", level: "Sólido" },
-        { name: "Saneamento de Processos", level: "Sólido" },
-        { name: "Padronização de Rotinas", level: "Proficiente" },
-      ]
-    },
-    {
-      id: "pricing", title: "Precificação (Pricing)", icon: <Calculator className="w-5 h-5" />,
-      skills: [
-        { name: "Cálculo de Mark-up", level: "Sólido" },
-        { name: "Margem de Contribuição", level: "Sólido" },
-        { name: "Ponto de Equilíbrio", level: "Sólido" },
-      ]
-    }
-  ],
-  dev: [
-    {
-      id: "frontend", title: "Frontend & UI", icon: <MonitorSmartphone className="w-5 h-5" />,
-      skills: [
-        { name: "React & Next.js", level: "Proficiente" },
-        { name: "Tailwind CSS", level: "Proficiente" },
-        { name: "Framer Motion", level: "Aprendendo" },
-      ]
-    },
-    {
-      id: "linguagens", title: "Linguagens", icon: <Code2 className="w-5 h-5" />,
-      skills: [
-        { name: "TypeScript", level: "Proficiente" },
-        { name: "JavaScript", level: "Sólido" },
-        { name: "C / C++", level: "Proficiente" },
-      ]
-    },
-    {
-      id: "backend", title: "Dados & APIs", icon: <Server className="w-5 h-5" />,
-      skills: [
-        { name: "Integração de APIs REST", level: "Sólido" },
-        { name: "SQL & PostgreSQL", level: "Sólido" },
-        { name: "Python", level: "Sólido" },
-      ]
-    },
-    {
-      id: "ferramentas", title: "Ferramentas & Ágil", icon: <Settings className="w-5 h-5" />,
-      skills: [
-        { name: "Git & GitHub", level: "Proficiente" },
-        { name: "Figma (Hand-off)", level: "Sólido" },
-        { name: "Metodologia Scrum", level: "Aprendendo" },
-      ]
-    }
-  ]
-};
-
-const CERTIFICATIONS = [
-  { name: "PSM I — Professional Scrum Master", org: "Scrum.org", status: "Em progresso" },
-  { name: "PL-300 — Microsoft Power BI", org: "Microsoft", status: "Em progresso" },
-  { name: "Google Data Analytics", org: "Google / Coursera", status: "Em progresso" },
+const COMPLETED = [
+  "Data Analytics com Power BI — DIO (82h, 2024)",
+  "SQL na Prática: problemas reais — UNAERP (6h, 2025)",
+  "MongoDB — UNAERP (6h, 2024)",
+  "Desenvolvimento de IA do Zero: do Problema ao Modelo — UNAERP (9h, 2026)",
 ];
 
-const LEVEL_STYLE: Record<string, string> = {
-  Sólido:      "text-emerald-400 border-emerald-400/30 bg-emerald-400/10",
-  Proficiente: "text-[var(--accent)] border-[var(--accent)]/30 bg-[var(--accent)]/10",
-  Aprendendo:  "text-amber-400 border-amber-400/30 bg-amber-400/10",
-};
+const IN_PROGRESS = [
+  "PSM I — Professional Scrum Master (Scrum.org)",
+  "PL-300 — Microsoft Power BI (Microsoft)",
+  "Google Data Analytics (Google/Coursera)",
+];
+
+const ROADMAP = [
+  { area: "Testes & Qualidade", items: "Jest/Node.js, Automação de Testes de API" },
+  { area: "DevOps & Cloud", items: "GitHub Actions/CI-CD, AWS Cloud Practitioner, Docker Foundations" },
+  { area: "Processos & Gestão", items: "BPMN, Scrum Fundamentals (SFC™), Gestão de Projetos de TI/ERP" },
+  { area: "Dados & Finanças", items: "Engenharia de Dados/ETL, Modelagem Financeira e Valuation" },
+];
 
 export function SkillsSection() {
-  const { activeProfile } = useProfile();
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
-
-  const activeColumns = SKILL_PROFILES[activeProfile as keyof typeof SKILL_PROFILES];
-
   return (
-    <section id="habilidades" className="py-24 border-t border-[var(--border)]">
-      <div className="section-wrap">
-
-        <header className="mb-14">
+    <section id="habilidades" className="py-24 border-t border-[var(--border)] overflow-hidden">
+      <div className="section-wrap max-w-5xl mx-auto">
+        <header className="mb-16">
           <div className="flex items-center gap-3 mb-4">
-            <span className="section-number">06</span>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-3)]">Competências</span>
+            <span className="section-number">05</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-3)]">Formação</span>
           </div>
           <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
-            Onde o conhecimento <span className="text-[var(--text-2)]">se aplica.</span>
+            Certificações e <span className="text-[var(--accent)]">estudos.</span>
           </h2>
-          <p className="mt-4 text-sm text-[var(--text-2)] max-w-lg leading-relaxed">
-            Habilidades técnicas e gerenciais.
+          <p className="mt-4 text-sm text-[var(--text-2)] max-w-2xl leading-relaxed">
+            O que já concluí, o que estou cursando agora e o que pretendo estudar em seguida.
           </p>
         </header>
 
-        {/* 4 colunas de skills com Bento Box Aesthetic */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
-          <AnimatePresence mode="wait">
-            {activeColumns.map((col, ci) => (
-              <motion.div
-                key={`col-${activeProfile}-${col.id}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ delay: ci * 0.1, duration: 0.35 }}
-                className="card card-glow p-6 flex flex-col gap-5"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[var(--bg-3)] border border-[var(--border)] flex items-center justify-center text-[var(--accent)] shadow-sm">
-                    {col.icon}
-                  </div>
-                  <h3 className="font-display font-semibold text-[15px]">{col.title}</h3>
-                </div>
-
-                <div className="flex flex-col gap-2 flex-1">
-                  {col.skills.map((skill) => (
-                    <div
-                      key={skill.name}
-                      onMouseEnter={() => setHoveredSkill(skill.name)}
-                      onMouseLeave={() => setHoveredSkill(null)}
-                      className={`flex items-center justify-between py-2.5 px-3 rounded-lg transition-colors cursor-default ${hoveredSkill === skill.name ? 'bg-[var(--bg-3)]' : ''}`}
-                    >
-                      <span className="text-[13px] text-[var(--text-1)] font-medium">{skill.name}</span>
-                      <span className={`font-mono text-[9px] px-2 py-0.5 rounded-full border uppercase tracking-widest ${LEVEL_STYLE[skill.level]}`}>
-                        {skill.level}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {/* Certificações em progresso */}
-        <div className="border-t border-[var(--border)] pt-10">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-3)] mb-6 flex items-center gap-2">
-            <ShieldCheck className="w-3.5 h-3.5 text-[var(--text-3)]" />
-            Certificações em Andamento (2026)
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {CERTIFICATIONS.map((cert, i) => (
-              <motion.div
-                key={cert.name}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="card card-glow p-5 flex items-start gap-4"
-              >
-                <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)] animate-pulse mt-1 flex-shrink-0 shadow-[0_0_8px_var(--accent)]" />
-                <div>
-                  <p className="text-sm font-semibold text-[var(--text-1)] leading-snug">{cert.name}</p>
-                  <p className="font-mono text-[10px] text-[var(--text-3)] mt-1.5 uppercase tracking-wide">{cert.org}</p>
-                </div>
-              </motion.div>
-            ))}
+        <SpotlightWrapper className="w-full rounded-2xl border border-[var(--border)] bg-[var(--bg-2)] relative">
+          
+          {/* Barra de Progresso Global (Goal Gradient) */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-[var(--bg-3)] rounded-t-2xl overflow-hidden">
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: "35%" }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="h-full bg-gradient-to-r from-[var(--accent-2)] to-[var(--accent)]"
+            />
           </div>
-        </div>
+
+          <div className="p-6 sm:p-10 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+            
+            {/* CONCLUÍDO */}
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-3 border-b border-[var(--border)] pb-3">
+                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                <h3 className="font-mono text-xs uppercase tracking-widest font-bold text-[var(--text-1)]">Concluído</h3>
+              </div>
+              <ul className="flex flex-col gap-4">
+                {COMPLETED.map((item, i) => (
+                  <motion.li 
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="flex items-start gap-3"
+                  >
+                    {/* SVG Path drawing animation */}
+                    <div className="shrink-0 mt-0.5">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="text-emerald-500">
+                        <motion.path 
+                          d="M20 6L9 17l-5-5"
+                          initial={{ pathLength: 0 }}
+                          whileInView={{ pathLength: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: i * 0.1 + 0.3 }}
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-[13px] leading-relaxed text-[var(--text-2)]">{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+
+            {/* EM ANDAMENTO */}
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-3 border-b border-[var(--border)] pb-3">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                >
+                  <Loader2 className="w-5 h-5 text-amber-500" />
+                </motion.div>
+                <h3 className="font-mono text-xs uppercase tracking-widest font-bold text-[var(--text-1)]">Em Andamento</h3>
+              </div>
+              <ul className="flex flex-col gap-4">
+                {IN_PROGRESS.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5 opacity-50" />
+                    <span className="text-[13px] leading-relaxed text-[var(--text-2)]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* PRÓXIMOS PASSOS */}
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-3 border-b border-[var(--border)] pb-3">
+                <MapPin className="w-5 h-5 text-[var(--text-3)]" />
+                <h3 className="font-mono text-xs uppercase tracking-widest font-bold text-[var(--text-1)]">Roadmap 2026+</h3>
+              </div>
+              <ul className="flex flex-col gap-5">
+                {ROADMAP.map((item, i) => (
+                  <li key={i} className="flex flex-col gap-1">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-3)]">{item.area}</span>
+                    <span className="text-[12px] leading-relaxed text-[var(--text-2)] opacity-80">{item.items}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        </SpotlightWrapper>
 
       </div>
     </section>

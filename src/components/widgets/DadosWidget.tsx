@@ -34,19 +34,19 @@ export function DadosWidget() {
       <div className="lg:w-[46%] flex flex-col gap-4 p-5 lg:p-6 border-b lg:border-b-0 lg:border-r border-[var(--border)] overflow-y-auto bg-[var(--bg)]">
         <div>
           <span className="font-mono text-[9px] text-[var(--accent)] uppercase tracking-[0.18em] block mb-2">O que é</span>
-          <h3 className="font-display font-semibold text-base mb-1">Engenharia de Dados (Básico)</h3>
+          <h3 className="font-display font-semibold text-base mb-1">Tratamento de dados</h3>
           <p className="text-xs text-[var(--text-2)] leading-relaxed">
-            Dados crus gerados pela empresa não têm valor até serem limpos, traduzidos e cruzados com a conta bancária.
+            O relatório da maquininha, o extrato do banco e o relatório do ERP falam do mesmo dinheiro em formatos diferentes. Antes de qualquer análise, eles precisam ser lidos, padronizados e cruzados.
           </p>
         </div>
 
         <div className="p-3 rounded-lg bg-[var(--bg-3)] border border-[var(--border)]">
           <div className="flex items-center gap-2 mb-1.5">
             <span className="w-2 h-2 rounded-full bg-gray-400" />
-            <span className="font-mono text-[10px] text-gray-400 uppercase tracking-widest font-bold">Dado Bruto (Caos)</span>
+            <span className="font-mono text-[10px] text-gray-400 uppercase tracking-widest font-bold">Dado bruto</span>
           </div>
           <p className="text-xs text-[var(--text-2)] leading-relaxed mb-2">
-            Arquivos ilegíveis de maquininhas, boletos pendentes, relatórios do sistema que não conversam com o banco.
+            CSV da adquirente com bruto e líquido em colunas diferentes, extrato com descrições abreviadas, relatório do ERP com outra data de referência.
           </p>
           <div className="font-mono text-[9px] text-gray-500 bg-black/20 rounded p-2 overflow-hidden text-ellipsis whitespace-nowrap">
             20250612;98412;150.00;PGTO;PENDING
@@ -56,20 +56,20 @@ export function DadosWidget() {
         <div className="p-3 rounded-lg bg-[var(--bg-3)] border border-[var(--border)]">
           <div className="flex items-center gap-2 mb-1.5">
             <span className="w-2 h-2 rounded-full bg-[var(--accent)]" />
-            <span className="font-mono text-[10px] text-[var(--accent)] uppercase tracking-widest font-bold">Dado Tratado (Python)</span>
+            <span className="font-mono text-[10px] text-[var(--accent)] uppercase tracking-widest font-bold">Dado tratado</span>
           </div>
           <p className="text-xs text-[var(--text-2)] leading-relaxed mb-2">
-            Um script em Python (ou ferramentas de BI) automatiza a leitura, limpeza e cruzamento diário desses arquivos.
+            Um script em Python ou uma consulta no Power Query lê os arquivos, padroniza datas e valores e cruza venda com liquidação.
           </p>
           <p className="text-[10px] text-[var(--text-3)] mt-1.5 leading-relaxed">
-            ✓ Um clique resolve o que a equipe levava 4 horas copiando e colando no Excel.
+            O ganho não é só tempo: o cruzamento mostra a taxa cobrada por transação, que é onde a diferença entre bruto e líquido se esconde.
           </p>
         </div>
 
         <div className="p-3 rounded-lg border border-[var(--border-2)] bg-[var(--accent)]/5">
           <span className="font-mono text-[9px] text-[var(--accent)] uppercase tracking-widest block mb-1">Por que importa?</span>
           <p className="text-[10px] text-[var(--text-2)] leading-relaxed">
-            A conciliação manual esconde fraudes, falhas em contratos com o banco (taxas abusivas) e pagamentos retidos que você não percebeu.
+            Sem o cruzamento, tarifa cobrada a mais e venda não liquidada passam despercebidas, porque cada uma vale centavos e o total só aparece no fim do mês.
           </p>
         </div>
       </div>
@@ -82,7 +82,7 @@ export function DadosWidget() {
         
         <div>
           <span className="font-mono text-[9px] text-[var(--accent)] uppercase tracking-[0.18em] block mb-1">Simule agora</span>
-          <p className="text-xs text-gray-600 dark:text-gray-400">Insira um volume de transações mensais e traduza os dados.</p>
+          <p className="text-xs text-gray-600 dark:text-gray-400">Informe um volume mensal de transações e rode o cruzamento.</p>
         </div>
 
         {/* Input Section */}
@@ -117,7 +117,7 @@ export function DadosWidget() {
                     onClick={handleProcess}
                     className="bg-[var(--accent)] text-black px-4 py-2 rounded text-xs font-bold shadow-[0_0_15px_var(--accent)] hover:scale-105 transition-transform"
                   >
-                    Traduzir Dados Brutos
+                    Cruzar os arquivos
                   </button>
                 </div>
               </motion.div>
@@ -132,7 +132,7 @@ export function DadosWidget() {
                 className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white/80 dark:bg-[#111111]/80 backdrop-blur-sm"
               >
                 <span className="w-5 h-5 border-2 border-[var(--accent)] border-t-transparent rounded-full animate-spin" />
-                <span className="text-[10px] text-[var(--accent)]">Cruzando Extratos via Script...</span>
+                <span className="text-[10px] text-[var(--accent)]">Lendo arquivos e cruzando...</span>
               </motion.div>
             )}
 
@@ -144,21 +144,21 @@ export function DadosWidget() {
                 className="absolute inset-0 p-5 bg-white dark:bg-[#161616] flex flex-col gap-4 overflow-y-auto"
               >
                 <div className="flex justify-between items-center border-b border-[var(--border)] pb-2">
-                  <span className="text-[10px] font-bold text-gray-900 dark:text-white uppercase tracking-wider">Dashboard Executivo</span>
+                  <span className="text-[10px] font-bold text-gray-900 dark:text-white uppercase tracking-wider">Resultado do cruzamento</span>
                   <button onClick={handleReset} className="text-[9px] text-gray-500 hover:text-gray-900 dark:hover:text-white underline">
-                    Tentar Novo Valor
+                    Outro valor
                   </button>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-3">
                   <div className="bg-black/30 p-2 rounded border border-[var(--border)]">
-                    <span className="block text-[8px] text-gray-500 uppercase mb-1">Receita Processada</span>
+                    <span className="block text-[8px] text-gray-500 uppercase mb-1">Vendas cruzadas</span>
                     <span className="block text-sm font-bold text-green-400">
                       {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(receitaTotal)}
                     </span>
                   </div>
                   <div className="bg-black/30 p-2 rounded border border-red-900/30">
-                    <span className="block text-[8px] text-red-400 uppercase mb-1">Prejuízo Oculto Detectado</span>
+                    <span className="block text-[8px] text-red-400 uppercase mb-1">Tarifa acima do contrato</span>
                     <span className="block text-sm font-bold text-red-500">
                       - {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(prejuizoInvisivel)}
                     </span>
@@ -166,10 +166,10 @@ export function DadosWidget() {
                 </div>
 
                 <div className="mt-auto">
-                  <span className="text-[9px] text-[var(--accent)] uppercase font-bold mb-1 block">Ação Recomendada (IA)</span>
+                  <span className="text-[9px] text-[var(--accent)] uppercase font-bold mb-1 block">O que fazer com isso</span>
                   <ul className="text-[10px] text-gray-300 space-y-1.5 list-disc ml-3 font-sans">
-                    <li>O banco cobrou indevidamente tarifas em {volume} transações. Solicitar estorno imediato.</li>
-                    <li>Script automatizado reduziu o tempo de fechamento em 95%.</li>
+                    <li>Conferir a taxa contratada com a adquirente e pedir revisão das {volume} transações com diferença.</li>
+                    <li>Valores ilustrativos: R$ 150 por venda e R$ 0,50 de diferença por transação.</li>
                   </ul>
                 </div>
               </motion.div>

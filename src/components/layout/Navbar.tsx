@@ -9,21 +9,19 @@ import { useProfile } from "@/lib/ProfileContext";
 
 const NAV_LINKS = [
   { href: "/#sobre",       label: "Quem Sou",   id: "sobre" },
-  { href: "/#experiencia", label: "Trajetória", id: "experiencia" },
-  { href: "/#projetos",    label: "Cases",      id: "projetos" },
-  { href: "/#atuacao",     label: "Paradigmas", id: "atuacao" },
-  { href: "/#laboratorio", label: "Simulador",  id: "laboratorio" },
-  { href: "/#showcase",    label: "Portfólio",  id: "showcase" },
+  { href: "/#projetos",    label: "Projetos",      id: "projetos" },
   { href: "/#metodo",      label: "Método",     id: "metodo" },
-  { href: "/#habilidades", label: "Skills",     id: "habilidades" },
+  { href: "/#experiencia", label: "Trajetória", id: "experiencia" },
+  { href: "/#habilidades", label: "Formação",     id: "habilidades" },
+  { href: "/#laboratorio", label: "Lab",        id: "laboratorio" },
   { href: "/#contato",     label: "Contato",    id: "contato" },
 ];
 
 const PROFILE_LABELS: Record<string, string> = {
-  all: "Geral",
-  clt: "CLT",
+  all: "Panorama",
+  clt: "Financeiro",
   dados: "Dados",
-  pj: "PJ",
+  pj: "Consultoria",
   dev: "Dev"
 };
 

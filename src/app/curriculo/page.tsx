@@ -36,7 +36,7 @@ export default function CurriculoPage() {
         <header className="border-b-2 border-black pb-6 mb-6 flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6">
           <div className="flex-1 text-center sm:text-left">
             <h1 className="text-4xl font-bold uppercase tracking-wide mb-2 font-sans text-black">Paloma Amaral</h1>
-            <p className="text-sm text-gray-800 mb-3 font-sans font-semibold uppercase tracking-wider">Analista Administrativo e Financeiro</p>
+            <p className="text-sm text-gray-800 mb-3 font-sans font-semibold uppercase tracking-wider">Analista Financeira · Operações e Sistemas</p>
             <div className="flex flex-col sm:flex-row gap-1 sm:gap-4 text-xs text-gray-600 font-sans">
               <span className="flex items-center justify-center sm:justify-start gap-1">
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -64,7 +64,7 @@ export default function CurriculoPage() {
         <section>
           <h2 className="text-sm font-bold uppercase tracking-widest border-b border-gray-300 pb-1 mb-3 font-sans text-black">Resumo Profissional</h2>
           <p className="text-[13px] leading-relaxed text-justify">
-            Profissional com sólida experiência em operações administrativas e financeiras (B2B), destacando-se na estruturação completa do ciclo de Contas a Pagar/Receber, faturamento e conciliação bancária de alto volume. Especialista em mitigar prejuízos operacionais através de auditorias de margem e parametrização de ERPs. Estudante de Engenharia de Software, combino o domínio de processos de negócio com ferramentas analíticas (SQL, Power BI, Excel Avançado) e automações (Python) para proteger o fluxo de caixa, eliminar tarefas repetitivas e gerar relatórios executivos precisos para a alta gestão.
+            Três anos de rotina financeira em varejo e serviços: contas a pagar e receber, conciliação bancária, conferência de caixa, NF-e, folha e fechamento mensal. Hoje atendo um grupo de oito CNPJs e desenvolvi o sistema web (Next.js, PostgreSQL) que sustenta essa rotina. Uso Excel, SQL e Python para tratar dados e montar relatórios. Estudante de Engenharia de Software (UNAERP), com projetos em React, NestJS e Prisma.
           </p>
         </section>
 
@@ -75,15 +75,17 @@ export default function CurriculoPage() {
           <div className="flex flex-col gap-6">
             <div>
               <div className="flex justify-between items-baseline mb-1">
-                <h3 className="font-bold text-[14px] text-black">Analista Administrativo e Financeiro (Consultoria PJ)</h3>
+                <h3 className="font-bold text-[14px] text-black">Analista Financeira (consultoria)</h3>
                 <span className="text-xs font-sans text-gray-600">06/2025 – Atual</span>
               </div>
               <p className="text-[13px] italic mb-2 text-gray-800">EcoService, Empório Hortifrutti, LGC Gás, Eco Caroni</p>
               <ul className="text-[13px] list-disc list-inside space-y-1.5 text-justify">
-                <li>Gerenciamento end-to-end do fluxo financeiro, com foco na estruturação do **Contas a Pagar**, prevenindo perdas com juros (DARFs) e pagamentos em duplicidade.</li>
-                <li>Execução de conciliação bancária cruzando DDA e sistemas internos, além de emissão e validação em lote de Notas Fiscais Eletrônicas (NF-e).</li>
-                <li>Desenvolvimento e revisão de contratos de prestação de serviços, assegurando mitigação de riscos jurídicos na contratação de fornecedores.</li>
-                <li>Modernização do backoffice via implantação de rotinas em planilhas inteligentes e automações lógicas, otimizando o fechamento de relatórios operacionais.</li>
+                <li>Contas a pagar e receber de um grupo de oito CNPJs: lançamento, aprovação, baixa e controle de vencimentos, evitando juros e pagamentos em duplicidade.</li>
+                <li>Conciliação bancária linha a linha de todas as contas do grupo, incluindo pagamentos feitos diretamente pelos sócios; emissão e validação de NF-e.</li>
+                <li>Conferência diária de caixa por PDV, relatório de maquininhas (bruto e líquido), folha de pagamento e apuração de empréstimos entre empresas (contrato mútuo).</li>
+                <li>Fechamento mensal por empresa, com relatório gerencial e analítico (margem por produto, concentração de clientes, provisão de folha e impostos).</li>
+                <li>Desenvolvimento do sistema financeiro usado pela equipe (Next.js, Supabase/PostgreSQL), em uso pela equipe desde agosto de 2026 e em evolução contínua, com documentação das regras de negócio.</li>
+                <li>Elaboração e revisão de contratos de prestação de serviços com fornecedores.</li>
               </ul>
             </div>
 
@@ -94,9 +96,9 @@ export default function CurriculoPage() {
               </div>
               <p className="text-[13px] italic mb-2 text-gray-800">Empório Hortifrutti & Armazém das Bebidas LTDA</p>
               <ul className="text-[13px] list-disc list-inside space-y-1.5 text-justify">
-                <li>Execução primária de rotinas financeiras de varejo com alto volume diário, conferência de caixas, sangrias e conciliação sistêmica de cartões.</li>
-                <li>Atuação estratégica na precificação de produtos (Cálculo de Mark-up) e monitoramento de margem de lucro por categoria, sustentando a operação comercial.</li>
-                <li>Gestão de banco de dados e cadastros (Master Data) de clientes, fornecedores e produtos para o ERP de vendas.</li>
+                <li>Rotina financeira de varejo com alto volume diário: conferência de caixas, sangrias e conciliação de cartões.</li>
+                <li>Precificação de produtos (markup) e acompanhamento de margem por categoria.</li>
+                <li>Cadastros de clientes, fornecedores e produtos no ERP de vendas, incluindo padronização da base de produtos.</li>
               </ul>
             </div>
           </div>
@@ -106,10 +108,10 @@ export default function CurriculoPage() {
         <section>
           <h2 className="text-sm font-bold uppercase tracking-widest border-b border-gray-300 pb-1 mb-3 font-sans text-black">Habilidades e Conhecimentos Técnicos</h2>
           <ul className="text-[13px] list-disc list-inside space-y-1.5">
-            <li><strong>Operações Financeiras:</strong> Conciliação Bancária Avançada, Fluxo de Caixa, Precificação, DDA, Contas a Pagar/Receber.</li>
-            <li><strong>Inteligência de Dados:</strong> Power BI, SQL (PostgreSQL), Python (Pandas/Matplotlib), Excel Avançado.</li>
-            <li><strong>Gestão Fiscal:</strong> Emissão de NF-e, apuração e rotinas de faturamento corporativo.</li>
-            <li><strong>Desenvolvimento:</strong> Conhecimento prático em Next.js, HTML/CSS, Lógica de Programação, Python (Scripts de automação).</li>
+            <li><strong>Financeiro:</strong> contas a pagar e receber, conciliação bancária, conferência de caixa, fluxo de caixa, precificação, folha, fechamento mensal, contrato mútuo.</li>
+            <li><strong>Dados:</strong> Excel avançado e Power Query, SQL (PostgreSQL), Python (Pandas), Power BI.</li>
+            <li><strong>Fiscal:</strong> emissão de NF-e e NFS-e, rotinas de faturamento e apuração de tributos.</li>
+            <li><strong>Desenvolvimento:</strong> Next.js, React, TypeScript, NestJS, Prisma, Supabase, Tailwind; VBA para ferramentas em Excel; Git/GitHub e deploy no Vercel; uso de assistentes de IA no desenvolvimento, com especificação e revisão próprias.</li>
           </ul>
         </section>
 

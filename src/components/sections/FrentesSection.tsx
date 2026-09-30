@@ -4,164 +4,165 @@ import { useState } from "react";
 import { useProfile } from "@/lib/ProfileContext";
 
 const CASES = [
-  // ── CLT / Implementação (3 casos) ───────────────────────────────────────────────────────
+  // ── Financeiro & Operações ──────────────────────────────────────────────
   {
-    id: "cultura-dados",
+    id: "fontes-faturamento",
     profileMatch: ["clt"],
     featuredIn: ["all"],
-    label: "Cultura de Sistemas",
+    label: "Faturamento",
     before: {
-      title: "O caos das planilhas isoladas.",
-      body: "Informação descentralizada: o financeiro tem uma planilha, vendas tem outra, e os números nunca batem no final do mês."
+      title: "Um número, várias origens.",
+      body: "Faturamento somado de caixa, maquininha e extrato conforme o que estava à mão. O mesmo mês dava valores diferentes dependendo de quem calculava."
     },
     after: {
-      title: "SSOT (Single Source of Truth).",
-      body: "Sistemas integrados. O ERP atua como fonte única de verdade, alimentando todas as áreas e garantindo decisões baseadas no mesmo dado."
+      title: "Cada número, uma fonte.",
+      body: "O caixa fecha o dinheiro, a maquininha fecha o cartão, o extrato fecha a prestadora de serviço. A regra está escrita e o sistema aplica sempre do mesmo jeito."
     }
   },
   {
-    id: "foco-analista",
+    id: "contas-socios",
     profileMatch: ["clt"],
     featuredIn: [],
-    label: "Foco do Analista",
+    label: "Contas a pagar",
     before: {
-      title: "Trabalho puramente braçal.",
-      body: "Profissionais caros passando 80% do dia copiando e colando dados entre telas, apenas para manter a operação respirando."
+      title: "Despesa que não aparecia.",
+      body: "Sócios pagavam conta direto pelo banco e não avisavam. O relatório de custo saía menor do que a realidade."
     },
     after: {
-      title: "Trabalho Estratégico (Tech).",
-      body: "Automação da coleta. A máquina faz o trabalho repetitivo para que o humano gaste 90% do tempo gerando insights que dão lucro."
+      title: "Extrato conciliado antes do fechamento.",
+      body: "A conciliação linha a linha completa as contas a pagar. O fechamento só libera com o mês conciliado."
     }
   },
   {
-    id: "implantacao-software",
+    id: "fechamento-mensal",
     profileMatch: ["clt"],
     featuredIn: [],
-    label: "Implantação de ERP",
+    label: "Fechamento",
     before: {
-      title: "Forçar a empresa a caber no software.",
-      body: "Comprar um sistema caro de prateleira e tentar obrigar a operação a mudar para se adaptar às limitações da ferramenta."
+      title: "Uma planilha por empresa, feita à mão.",
+      body: "Oito arquivos, fórmulas copiadas de um para o outro, e ninguém sabia se os empréstimos entre as empresas estavam certos."
     },
     after: {
-      title: "Tecnologia moldada à operação.",
-      body: "Mapear os processos (As-Is) primeiro, e então parametrizar o ERP para que ele automatize e resolva as dores reais do time."
+      title: "Um fechamento por empresa, saído do sistema.",
+      body: "Mesmas tabelas, mesma ordem, empréstimos apurados automaticamente e legenda quando um número precisa de explicação."
     }
   },
 
-  // ── DADOS / BI / TECH (3 casos) ─────────────────────────────────────────────────────
+  // ── Análise de Dados ─────────────────────────────────────────────────────
   {
-    id: "lucro-cego",
+    id: "saldo-diario",
     profileMatch: ["dados"],
     featuredIn: ["all"],
-    label: "Visão Financeira",
+    label: "Acompanhamento",
     before: {
-      title: "A ilusão do 'faturamento alto'.",
-      body: "A empresa vende muito, bate metas comerciais, mas no fim do mês falta dinheiro no caixa e ninguém sabe onde a margem vazou."
+      title: "O mês só era lido no fim.",
+      body: "Relatório montado depois do fechamento. Quando um problema aparecia, já tinha acontecido há semanas."
     },
     after: {
-      title: "Caixa totalmente rastreado.",
-      body: "DRE Gerencial cruzada com fluxo de caixa por meio de Data Analytics. Fica cristalino para onde cada centavo está indo."
+      title: "Saldo do dia e histórico de fluxo.",
+      body: "Saldo de cada conta e dinheiro físico registrados todo dia, antes da movimentação. O mês vai sendo lido enquanto acontece."
     }
   },
   {
-    id: "relatorios-estaticos",
+    id: "cadastro-produtos",
     profileMatch: ["dados"],
     featuredIn: [],
-    label: "Consumo de Dados",
+    label: "Cadastros",
     before: {
-      title: "Relatórios estáticos em PDF.",
-      body: "Fechar o mês com muito suor, gerar um relatório e enviar para a diretoria ler 10 dias depois do evento já ter ocorrido."
+      title: "Cadastro de produtos poluído.",
+      body: "Unidades, categorias e nomes inconsistentes. Erro na venda e nenhuma análise por família de produto era possível."
     },
     after: {
-      title: "Dashboards Vivos em tempo real.",
-      body: "Modelos de dados (Power BI/Metabase) conectados ao banco. O diretor acompanha a margem do dia atualizada em tempo real."
+      title: "Base padronizada.",
+      body: "Extração, limpeza no Excel e Power Query e reimportação no ERP. Margem e curva ABC por categoria passaram a existir."
     }
   },
   {
-    id: "resolucao-gargalos",
+    id: "margem-produto",
     profileMatch: ["dados"],
     featuredIn: [],
-    label: "Escalabilidade",
+    label: "Margem",
     before: {
-      title: "Mais demanda, mais contratação.",
-      body: "A solução para o crescimento do volume de vendas era sempre a mesma: contratar mais pessoas para digitar boletos e notas."
+      title: "Margem estimada.",
+      body: "Preço formado por markup e ninguém sabia a margem real por categoria depois das taxas e das perdas."
     },
     after: {
-      title: "Escalabilidade Tecnológica.",
-      body: "Crescimento suportado por conexões via API, macros e integrações (ETL) que processam 10 ou 10.000 linhas no mesmo tempo."
+      title: "Margem por produto, contra referência.",
+      body: "Produtos vendidos importados do ERP, custo e preço cruzados, margem comparada a uma referência de mercado e justificativa registrada quando foge."
     }
   },
 
-  // ── PJ / CONSULTORIA (3 casos) ──────────────────────────────────────────
+  // ── Consultoria ──────────────────────────────────────────────────────────
   {
-    id: "perfil-tradutor",
+    id: "conta-pessoal",
     profileMatch: ["pj"],
     featuredIn: ["all"],
-    label: "A Ponte",
+    label: "Controles",
     before: {
-      title: "Guerra Fria: TI vs. Financeiro.",
-      body: "O desenvolvedor cria sistemas que o financeiro não pediu, e o financeiro exige fluxos que o TI não entende tecnicamente."
+      title: "Tudo na mesma conta.",
+      body: "Despesa da casa e da empresa misturadas. O dono sabia quanto vendia, mas não quanto sobrava."
     },
     after: {
-      title: "O Analista Tradutor.",
-      body: "O elo perfeito: alguém que entende as regras de débito/crédito e DRE, mas também sabe o que é uma chave primária no banco de dados."
+      title: "Separação e plano de contas.",
+      body: "Conta da empresa separada, despesas classificadas e uma rotina simples de aprovação de pagamentos. O resultado do mês passa a ser um número, não uma sensação."
     }
   },
   {
-    id: "precificacao-cega",
+    id: "precificacao",
     profileMatch: ["pj"],
     featuredIn: [],
     label: "Precificação",
     before: {
-      title: "Preço definido pelo concorrente.",
-      body: "Vender pelo mesmo preço da loja da frente, ignorando completamente os custos fixos da sua própria empresa e as taxas da maquininha."
+      title: "Preço do concorrente.",
+      body: "Vender pelo mesmo preço da loja da frente, sem contar taxa de maquininha, quebra e custo fixo."
     },
     after: {
-      title: "Precificação Matemática (Mark-up).",
-      body: "Calculadora de margem dinâmica. Sabendo o custo real e as taxas, define-se a margem exata necessária para proteger o negócio."
+      title: "Preço com custo, taxa e margem.",
+      body: "Calculadora de preço mínimo por produto. A margem desejada é uma escolha; o preço mínimo é uma conta."
     }
   },
   {
-    id: "dependencia-pessoas",
+    id: "dependencia-pessoa",
     profileMatch: ["pj"],
     featuredIn: [],
     label: "Processos",
     before: {
-      title: "A empresa refém de uma mente.",
-      body: "Todo o conhecimento operacional financeiro mora na cabeça de um único funcionário antigo. Se ele viaja, tudo trava."
+      title: "O processo mora na cabeça de alguém.",
+      body: "Todo o conhecimento do financeiro em uma pessoa. Se ela falta, o fechamento para."
     },
     after: {
-      title: "Processos Documentados e Cegos.",
-      body: "Criação de manuais de processos (SOPs) e ferramentas blindadas, permitindo que a empresa rode perfeitamente independente das pessoas."
+      title: "Roteiro escrito.",
+      body: "Regras de negócio documentadas dentro do próprio sistema, capítulo a capítulo, para que outra pessoa consiga fechar o mês."
     }
   },
-  // ── DESENVOLVEDORA ─────────────────────────────────────────────────────────
+
+  // ── Desenvolvimento ──────────────────────────────────────────────────────
   {
-    id: "dev-ux",
+    id: "dev-telas",
     profileMatch: ["dev"],
     featuredIn: ["all"],
-    label: "Frontend & UI",
+    label: "Interface",
     before: {
-      title: "Interfaces travadas e genéricas.",
-      body: "Sistemas web com carregamento lento, bloqueio de tela em requisições e zero feedback visual, frustrando a experiência do usuário final."
+      title: "Tela genérica de cadastro.",
+      body: "Formulário com todos os campos, sem ordem e sem atalho, para quem lança dezenas de contas por dia."
     },
     after: {
-      title: "Aplicações Fluidas e Responsivas.",
-      body: "Uso de React e Tailwind para criar interfaces assíncronas com micro-interações (loading states, animações), engajando e retendo o usuário."
+      title: "Tela na ordem do trabalho.",
+      body: "Campos na sequência em que a pessoa lê o documento, teclado primeiro, conferência visual antes de salvar."
     }
   },
   {
-    id: "dev-estado",
+    id: "dev-ambiente",
     profileMatch: ["dev"],
     featuredIn: [],
-    label: "Arquitetura de Código",
+    label: "Ambiente",
     before: {
-      title: "Código espaguete e monolítico.",
-      body: "Lógica de negócios, chamadas de API e regras de UI misturadas num único componente gigante, tornando impossível escalar ou dar manutenção."
+      title: "Testar em produção.",
+      body: "Mudança feita direto no sistema que a equipe usa, com dados reais."
     },
     after: {
-      title: "Clean Code & Componentização.",
-      body: "Separação rigorosa de responsabilidades. Uso de Custom Hooks para gerenciar dados e componentes visuais isolados, garantindo um sistema modular e limpo."
+      title: "Ambiente de demonstração separado.",
+      body: "Mesmo código, banco próprio com dados fictícios e reinício automático todo dia. Quem quer testar, testa sem tocar em dado real."
     }
   },
 ];
@@ -188,15 +189,14 @@ export function FrentesSection() {
 
         <header className="mb-14">
           <div className="flex items-center gap-3 mb-4">
-            <span className="section-number">03</span>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-3)]">Paradigma vs. Processo Real</span>
+            <span className="section-number text-white/50 border-white/20">03</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-white/50">Antes e depois</span>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            A Mudança de <span className="text-[var(--accent)]">Paradigma.</span>
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight mb-4 text-white">
+            O que mudou <span className="text-[var(--accent)] text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent)] to-purple-500">na rotina.</span>
           </h2>
-          <p className="max-w-xl text-sm text-[var(--text-2)] leading-relaxed">
-            Profissionais puramente operacionais focam apenas em "fazer o trabalho". Eu foco em <strong>mudar a forma como o trabalho é feito</strong>. 
-            Veja a diferença entre a cultura administrativa antiga e o método guiado por tecnologia e dados.
+          <p className="max-w-xl text-sm text-white/60 leading-relaxed">
+            Situações que encontrei na operação e o que foi feito em cada uma. <strong className="text-white">Arraste para comparar</strong> como era e como ficou.
           </p>
         </header>
 
@@ -225,7 +225,7 @@ export function FrentesSection() {
                       style={{ background: 'var(--slider-before-bg)' }}
                     >
                       <div className="w-[85%] md:w-[90%] text-left">
-                        <div className="font-mono text-[9px] uppercase tracking-widest mb-3 font-bold" style={{ color: 'var(--slider-before-tag)' }}>⚠ Antes (O Caos)</div>
+                        <div className="font-mono text-[9px] uppercase tracking-widest mb-3 font-bold" style={{ color: 'var(--slider-before-tag)' }}>Antes</div>
                         <p className="font-display font-bold text-lg lg:text-xl mb-3 leading-tight" style={{ color: 'var(--slider-before-text)' }}>{current.before.title}</p>
                         <p className="text-[11px] leading-relaxed" style={{ color: 'var(--slider-before-text)', opacity: 0.8 }}>{current.before.body}</p>
                       </div>
@@ -237,7 +237,7 @@ export function FrentesSection() {
                       style={{ clipPath: `inset(0 0 0 ${sliderPos}%)`, background: 'var(--slider-after-bg)' }}
                     >
                       <div className="w-[85%] md:w-[90%] ml-auto text-right flex flex-col items-end">
-                        <div className="font-mono text-[9px] uppercase tracking-widest mb-3 font-bold" style={{ color: 'var(--slider-after-text)' }}>✓ Depois (A Solução)</div>
+                        <div className="font-mono text-[9px] uppercase tracking-widest mb-3 font-bold" style={{ color: 'var(--slider-after-text)' }}>Depois</div>
                         <p className="font-display font-bold text-lg lg:text-xl mb-3 leading-tight" style={{ color: 'var(--slider-after-text)' }}>{current.after.title}</p>
                         <p className="text-[11px] leading-relaxed" style={{ color: 'var(--slider-after-text)', opacity: 0.8 }}>{current.after.body}</p>
                       </div>

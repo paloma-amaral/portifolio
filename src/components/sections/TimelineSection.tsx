@@ -5,19 +5,19 @@ import { useState } from "react";
 
 const TIMELINE = [
   {
-    id: "etec-adm",
+    id: "etec-dev",
     year: "2020",
-    role: "Técnico em Administração",
+    role: "Técnico em Desenv. de Sistemas",
     place: "ETEC Prof. Idio Zucchi",
-    detail: "Primeiro contato formal com rotinas financeiras, contabilidade básica e organização de processos administrativos. Aqui descobri que números contam histórias de negócio.",
+    detail: "Lógica de programação, C/C++ e banco de dados relacional.",
     tag: "Formação"
   },
   {
-    id: "etec-dev",
+    id: "etec-adm",
     year: "2022",
-    role: "Técnico em Desenv. de Sistemas",
+    role: "Técnico em Administração",
     place: "ETEC Prof. Idio Zucchi",
-    detail: "Aprendi lógica de programação, C/C++ e banco de dados relacionais. O elo entre tecnologia e processos de negócio começou a se formar aqui.",
+    detail: "Rotinas administrativas, contabilidade básica e organização de processos.",
     tag: "Formação"
   },
   {
@@ -25,7 +25,7 @@ const TIMELINE = [
     year: "2022–2023",
     role: "Assistente Administrativa",
     place: "Empório Hortifrutti & Armazém das Bebidas",
-    detail: "Mergulhei no backoffice real de varejo: conciliação bancária, emissão de NF-e, controle de caixa e precificação. Aprendi que a maioria dos problemas financeiros tem solução sistêmica.",
+    detail: "Backoffice de varejo com volume diário alto: conferência de caixa, sangrias, conciliação de cartões, emissão de NF-e, precificação e cadastros do ERP.",
     tag: "Operação"
   },
   {
@@ -33,7 +33,7 @@ const TIMELINE = [
     year: "2024",
     role: "Assistente Administrativo",
     place: "Usina Pitangueiras",
-    detail: "Primeiro contato com ERP de grande porte e processos corporativos. Trabalho com requisições, relatórios e movimentações em ambiente de alta exigência documental.",
+    detail: "ERP de grande porte e processos corporativos: requisições, relatórios e movimentações em ambiente com exigência documental.",
     tag: "Corporativo"
   },
   {
@@ -41,15 +41,15 @@ const TIMELINE = [
     year: "2024",
     role: "Engenharia de Software",
     place: "UNAERP",
-    detail: "Graduação em andamento. Aqui os dois mundos — operação financeira e tecnologia — se encontram de forma formal. Python, SQL, Next.js e lógica computacional se conectam ao que já vivi na prática.",
+    detail: "Graduação em andamento. Python, SQL, engenharia de software e o que já uso nos projetos: Next.js, NestJS e PostgreSQL.",
     tag: "Formação"
   },
   {
     id: "consultoria",
     year: "2025 – Hoje",
-    role: "Analista Financeiro (PJ)",
+    role: "Analista Financeira (consultoria)",
     place: "EcoService · Hortifrutti · LGC Gás · Eco Caroni",
-    detail: "Gerencio o ciclo financeiro completo para múltiplos clientes simultaneamente: contas a pagar/receber, NF-e, conciliação bancária, contratos e backoffice. Usando automações e lógica para ganhar escala.",
+    detail: "Ciclo financeiro completo de um grupo de empresas: contas a pagar e receber, NF-e, conciliação bancária, folha, contratos e fechamento mensal. Em 2026 desenvolvi o sistema que hoje sustenta essa rotina.",
     tag: "Consultoria"
   },
 ];
@@ -70,14 +70,14 @@ export function TimelineSection() {
 
         <header className="mb-14">
           <div className="flex items-center gap-3 mb-4">
-            <span className="section-number">01</span>
+            <span className="section-number">04</span>
             <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-3)]">Trajetória</span>
           </div>
           <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
             A trajetória <span className="text-[var(--text-2)]">até aqui.</span>
           </h2>
           <p className="mt-4 text-sm text-[var(--text-2)] max-w-lg leading-relaxed">
-            Uma trajetória que mistura operação financeira real com engenharia de software — não por acidente, mas por convicção de que a tecnologia só resolve o que ela entende.
+            Formação técnica em sistemas e em administração, operação financeira em varejo e indústria, e agora consultoria e desenvolvimento em paralelo com a graduação.
           </p>
         </header>
 
@@ -109,6 +109,7 @@ export function TimelineSection() {
                 <div
                   className="flex-1 cursor-pointer group"
                   onClick={() => setExpanded(isOpen ? null : item.id)}
+                  onMouseEnter={() => setExpanded(item.id)}
                 >
                   <div className="flex flex-wrap items-center gap-3 mb-1">
                     <span className="font-mono text-[10px] text-[var(--text-3)]">{item.year}</span>
